@@ -10,12 +10,12 @@ PLACEHOLDER = "<!-- BUILD:PROJECTS -->"
 
 def score_color(score):
     if score >= 80:
-        return "#3D8B7A"
+        return "#34A853"
     if score >= 60:
-        return "#4A90D9"
+        return "#4285F4"
     if score >= 40:
-        return "#D4883A"
-    return "#C75C5C"
+        return "#F9AB00"
+    return "#EA4335"
 
 
 def score_ring_svg(score):
