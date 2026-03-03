@@ -177,18 +177,28 @@ a:hover { color: var(--accent-hover); }
   text-align: center;
 }
 .hero-intro {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 24px;
 }
 .hero-avatar {
-  width: 80px;
-  height: 80px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--white);
-  box-shadow: var(--shadow-md);
+  border: 2px solid var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.hero-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.hero-credit {
+  font-size: 0.78rem;
+  color: var(--text-muted);
 }
 .hero-badge {
   display: inline-flex;
@@ -472,6 +482,10 @@ a:hover { color: var(--accent-hover); }
   gap: 64px;
   align-items: center;
 }
+.cta-price {
+  color: var(--accent);
+  font-size: 1.1em;
+}
 .cta-text h2 {
   font-size: 1.6rem;
   font-weight: 800;
@@ -527,7 +541,9 @@ a:hover { color: var(--accent-hover); }
   margin-bottom: 6px;
   color: var(--text);
 }
-.form-group input {
+.form-group input,
+.form-group select,
+.form-group textarea {
   width: 100%;
   padding: 12px 16px;
   border: 1px solid var(--border);
@@ -539,12 +555,48 @@ a:hover { color: var(--accent-hover); }
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
 }
-.form-group input:focus {
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(61,139,122,0.1);
 }
-.form-group input::placeholder {
+.form-group input::placeholder,
+.form-group textarea::placeholder {
   color: var(--text-muted);
+}
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239C958E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.form-group .form-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.form-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-optional {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 4px;
 }
 .form-submit {
   width: 100%;
@@ -678,6 +730,9 @@ details[open] .faq-q::after {
   .cta-form {
     padding: 24px;
   }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -688,8 +743,11 @@ details[open] .faq-q::after {
 <section class="hero">
   <div class="container hero-content">
     <div class="hero-intro">
-      <img src="assets/avatar.png" alt="GBP SEO 分析服務" width="80" height="80" class="hero-avatar">
       <div class="hero-badge">GBP SEO 優化服務</div>
+      <div class="hero-author">
+        <img src="assets/avatar.png" alt="GBP SEO 分析服務" width="36" height="36" class="hero-avatar">
+        <span class="hero-credit">created by <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">@dev.from.zero</a></span>
+      </div>
     </div>
     <h1>讓你的 Google 商家檔案<br>成為最強業務員</h1>
     <p>透過數據驅動的 GBP SEO 分析，幫助在地商家提升 Google 地圖排名、增加曝光、帶來更多真實客戶。</p>
@@ -774,7 +832,7 @@ details[open] .faq-q::after {
   <div class="container">
     <div class="cta-inner">
       <div class="cta-text fade-in">
-        <h2>免費獲得價值 NTD$10,000+<br>的 Google 商家檔案健檢報告</h2>
+        <h2>免費獲得價值 <span class="cta-price">NTD$4,000+</span><br>的 Google 商家檔案健檢報告</h2>
         <p>免費分析，立即索取您的專屬報告</p>
         <ul class="cta-benefits">
           <li>完整四大面向量化評分報告</li>
@@ -786,15 +844,59 @@ details[open] .faq-q::after {
       <div class="fade-in">
         <form class="cta-form" id="cta-form">
           <div class="form-fields" id="form-fields">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">稱呼</label>
+                <input type="text" id="name" name="name" placeholder="您的稱呼" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              </div>
             </div>
             <div class="form-group">
               <label for="gbp-url">Google 商家連結</label>
-              <input type="url" id="gbp-url" name="gbpUrl" placeholder="https://maps.google.com/..." required>
+              <input type="url" id="gbp-url" name="gbpUrl" placeholder="https://maps.app.goo.gl/..." required>
+              <div class="form-hint">可以是 Google Maps 連結、店家名稱或地址</div>
+            </div>
+            <div class="form-group">
+              <label for="need-type">需求類別</label>
+              <select id="need-type" name="needType" required>
+                <option value="" disabled selected>請選擇</option>
+                <option value="free-audit">免費健檢報告</option>
+                <option value="optimization">優化代操</option>
+                <option value="consultation">付費諮詢</option>
+                <option value="other">其他</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="company-size">公司規模<span class="form-optional">（選填）</span></label>
+                <select id="company-size" name="companySize">
+                  <option value="" selected>請選擇</option>
+                  <option value="individual">個人 / 自由工作者</option>
+                  <option value="small">小型商家（1-10 人）</option>
+                  <option value="medium">中型企業（11-50 人）</option>
+                  <option value="large">大型企業（50+ 人）</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="budget">每月預算<span class="form-optional">（選填）</span></label>
+                <select id="budget" name="budget">
+                  <option value="" selected>請選擇</option>
+                  <option value="under-5k">NT$5,000 以下</option>
+                  <option value="5k-10k">NT$5,000 – 10,000</option>
+                  <option value="10k-30k">NT$10,000 – 30,000</option>
+                  <option value="30k-above">NT$30,000 以上</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">具體問題描述<span class="form-optional">（選填）</span></label>
+              <textarea id="description" name="description" placeholder="簡述您目前遇到的問題或想達成的目標..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary form-submit">免費獲取健檢報告</button>
+            <p class="form-note">免費健檢報告將會公開分享在作品集中</p>
           </div>
           <div class="form-success" id="form-success">
             <div class="form-success-icon">
@@ -842,34 +944,56 @@ details[open] .faq-q::after {
   var fields = document.getElementById('form-fields');
   var success = document.getElementById('form-success');
 
+  /* Parse UTM params from URL */
+  var params = new URLSearchParams(window.location.search);
+  var utmSource = params.get('utm_source') || '';
+  var utmMedium = params.get('utm_medium') || '';
+  var utmCampaign = params.get('utm_campaign') || '';
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
+    var btn = form.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = '送出中...';
+
     var data = {
+      name: document.getElementById('name').value,
       email: document.getElementById('email').value,
-      gbpUrl: document.getElementById('gbp-url').value
+      gbpUrl: document.getElementById('gbp-url').value,
+      needType: document.getElementById('need-type').value,
+      companySize: document.getElementById('company-size').value,
+      budget: document.getElementById('budget').value,
+      description: document.getElementById('description').value,
+      /* Hidden fields — UTM & page tracking */
+      utmSource: utmSource,
+      utmMedium: utmMedium,
+      utmCampaign: utmCampaign,
+      refUrl: window.location.href,
+      submittedAt: new Date().toISOString()
     };
 
-    /* POST to Google Apps Script — replace URL below */
-    var APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+    var N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL';
 
-    if (APPS_SCRIPT_URL.indexOf('YOUR_') === 0) {
+    if (N8N_WEBHOOK_URL.indexOf('YOUR_') === 0) {
       /* Placeholder: just show success */
       fields.classList.add('hidden');
       success.classList.add('show');
       return;
     }
 
-    fetch(APPS_SCRIPT_URL, {
+    fetch(N8N_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-      mode: 'no-cors'
-    }).then(function () {
+      body: JSON.stringify(data)
+    }).then(function (res) {
+      if (!res.ok) throw new Error(res.status);
       fields.classList.add('hidden');
       success.classList.add('show');
     }).catch(function () {
-      alert('送出時發生錯誤，請稍後再試或直接寄信給我。');
+      btn.disabled = false;
+      btn.textContent = '免費獲取健檢報告';
+      alert('送出時發生錯誤，請稍後再試或直接聯繫我。');
     });
   });
 
