@@ -83,7 +83,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
     rel="stylesheet">
   <style>
     /* ===== Reset & Variables ===== */
@@ -117,7 +117,7 @@
       --radius: 16px;
       --radius-sm: 10px;
       --radius-full: 9999px;
-      --font: 'Inter', 'Noto Sans TC', sans-serif;
+      --font: 'Inter', 'Noto Sans TC', 'Noto Sans SC', sans-serif;
     }
 
     body {
@@ -177,6 +177,44 @@
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* ===== Language Switcher ===== */
+    .lang-switcher {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1000;
+      display: flex;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 3px;
+      box-shadow: var(--shadow-md);
+      font-size: 0.78rem;
+    }
+
+    .lang-switcher button {
+      background: none;
+      border: none;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .lang-switcher button.active {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .lang-switcher button:hover:not(.active) {
+      background: var(--surface);
     }
 
     /* ===== Hero ===== */
@@ -911,18 +949,25 @@
 
 <body>
 
+  <!-- Language Switcher -->
+  <div class="lang-switcher" id="lang-switcher">
+    <button data-lang="zh-TW" class="active">繁中</button>
+    <button data-lang="zh-CN">简中</button>
+    <button data-lang="en">EN</button>
+  </div>
+
   <header>
     <!-- ===== Hero ===== -->
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
           <div class="hero-intro">
-            <div class="hero-badge">GBP SEO 優化服務</div>
+            <div class="hero-badge" data-i18n="hero.badge">GBP SEO 優化服務</div>
           </div>
-          <h1>讓你的 Google 商家檔案<br>成為最強業務員</h1>
-          <p>透過 AI 驅動的 GBP SEO 分析，幫助在地商家提升 Google 地圖排名、增加曝光、帶來更多真實客戶。</p>
+          <h1 data-i18n-html="hero.title">讓你的 Google 商家檔案<br>成為最強業務員</h1>
+          <p data-i18n="hero.desc">透過 AI 驅動的 GBP SEO 分析，幫助在地商家提升 Google 地圖排名、增加曝光、帶來更多真實客戶。</p>
           <div class="hero-cta">
-            <a href="#cta" class="btn btn-primary" style="padding:12px 28px;font-size:1rem;">免費索取健檢報告</a>
+            <a href="#cta" class="btn btn-primary" style="padding:12px 28px;font-size:1rem;" data-i18n="hero.cta">免費索取健檢報告</a>
           </div>
           <div class="hero-highlights">
             <div class="highlight-card">
@@ -932,8 +977,8 @@
                   <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <h3>四大面向健檢</h3>
-              <p>基本資訊、評論、照片、關鍵字全面評分</p>
+              <h3 data-i18n="hero.h1.title">四大面向健檢</h3>
+              <p data-i18n="hero.h1.desc">基本資訊、評論、照片、關鍵字全面評分</p>
             </div>
             <div class="highlight-card">
               <div class="highlight-icon">
@@ -943,8 +988,8 @@
                     d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3>具體行動方案</h3>
-              <p>不只告訴你問題，還給你步驟拆解</p>
+              <h3 data-i18n="hero.h2.title">具體行動方案</h3>
+              <p data-i18n="hero.h2.desc">不只告訴你問題，還給你步驟拆解</p>
             </div>
             <div class="highlight-card">
               <div class="highlight-icon">
@@ -953,13 +998,13 @@
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3>一看就懂</h3>
-              <p>不需技術背景，照著步驟就能執行優化</p>
+              <h3 data-i18n="hero.h3.title">一看就懂</h3>
+              <p data-i18n="hero.h3.desc">不需技術背景，照著步驟就能執行優化</p>
             </div>
           </div>
         </div>
         <div class="hero-image">
-          <img src="assets/gbp-hero.png" alt="Google 商家檔案介面" width="480" height="480">
+          <img src="assets/gbp-hero.png" data-i18n-alt="hero.imgAlt" alt="Google 商家檔案介面" width="480" height="480">
         </div>
       </div>
       <div class="hero-author">
@@ -987,33 +1032,33 @@
     <section class="section" id="faq">
       <div class="container">
         <div class="section-header fade-in">
-          <h2>常見問題</h2>
-          <p>關於 Google 商家檔案優化，你可能想知道的事</p>
+          <h2 data-i18n="faq.title">常見問題</h2>
+          <p data-i18n="faq.subtitle">關於 Google 商家檔案優化，你可能想知道的事</p>
         </div>
         <div class="faq-list fade-in">
           <details class="faq-item" open>
-            <summary class="faq-q">什麼是 GBP SEO？</summary>
-            <div class="faq-a">
+            <summary class="faq-q" data-i18n="faq.q1">什麼是 GBP SEO？</summary>
+            <div class="faq-a" data-i18n-html="faq.a1">
               <p>GBP SEO 是針對 <strong>Google 商家檔案（Google Business
                   Profile）</strong>進行搜尋引擎優化的過程。透過完善商家基本資訊、爭取優質評論、上傳照片、撰寫關鍵字策略等方式，提升商家在 Google 地圖與在地搜尋結果中的排名與曝光度。</p>
             </div>
           </details>
           <details class="faq-item">
-            <summary class="faq-q">分析報告包含哪些內容？</summary>
-            <div class="faq-a">
+            <summary class="faq-q" data-i18n="faq.q2">分析報告包含哪些內容？</summary>
+            <div class="faq-a" data-i18n-html="faq.a2">
               <p>報告涵蓋<strong>四大面向</strong>的量化評分：商家基本資訊完整度、評論分析、照片與視覺內容、描述與關鍵字策略。每個面向都會標示目前狀態、具體問題，並提供可直接執行的優化步驟。</p>
             </div>
           </details>
           <details class="faq-item">
-            <summary class="faq-q">如何提升 Google 地圖上的商家排名？</summary>
-            <div class="faq-a">
+            <summary class="faq-q" data-i18n="faq.q3">如何提升 Google 地圖上的商家排名？</summary>
+            <div class="faq-a" data-i18n-html="faq.a3">
               <p>提升 Google 地圖排名的關鍵步驟包括：完善商家檔案資訊（電話、營業時間、地址）、積極爭取客戶評論並回覆、定期上傳高品質照片、撰寫包含目標關鍵字的商家描述，以及持續發布 Google 貼文保持活躍度。
               </p>
             </div>
           </details>
           <details class="faq-item">
-            <summary class="faq-q">這個分析服務適合什麼類型的商家？</summary>
-            <div class="faq-a">
+            <summary class="faq-q" data-i18n="faq.q4">這個分析服務適合什麼類型的商家？</summary>
+            <div class="faq-a" data-i18n-html="faq.a4">
               <p>任何在 Google 地圖上有實體據點或服務範圍的在地商家都適合，例如餐廳、美容美甲、診所、工作室、健身房、零售店等。只要你的客人會透過 Google 搜尋「附近的 ○○」來找到你，GBP SEO
                 就能幫你被更多人看見。</p>
             </div>
@@ -1027,12 +1072,12 @@
       <div class="container">
         <div class="cta-inner">
           <div class="cta-text fade-in">
-            <h2>免費獲得價值 <span class="cta-price">&nbsp;NTD$4,000+</span><br>的 Google 商家檔案健檢報告</h2>
-            <p>免費分析，立即索取您的專屬報告</p>
+            <h2><span data-i18n="cta.titleBefore">免費獲得價值</span> <span class="cta-price" data-i18n="cta.price">NTD$4,000+</span><br><span data-i18n="cta.titleAfter">的 Google 商家檔案健檢報告</span></h2>
+            <p data-i18n="cta.subtitle">免費分析，立即索取您的專屬報告</p>
             <ul class="cta-benefits">
-              <li>完整四大面向量化評分報告</li>
-              <li>找出你的商家檔案目前卡住的地方</li>
-              <li>具體可執行的優化步驟</li>
+              <li data-i18n="cta.benefit1">完整四大面向量化評分報告</li>
+              <li data-i18n="cta.benefit2">找出你的商家檔案目前卡住的地方</li>
+              <li data-i18n="cta.benefit3">具體可執行的優化步驟</li>
             </ul>
           </div>
           <div class="fade-in">
@@ -1040,62 +1085,62 @@
               <div class="form-fields" id="form-fields">
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="name">稱呼</label>
-                    <input type="text" id="name" name="name" placeholder="您的稱呼" required>
+                    <label for="name" data-i18n="form.name">稱呼</label>
+                    <input type="text" id="name" name="name" placeholder="您的稱呼" data-i18n-placeholder="form.namePlaceholder" required>
                   </div>
                   <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email" data-i18n="form.email">Email</label>
                     <input type="email" id="email" name="email" placeholder="you@example.com" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="instagram">Instagram<span class="form-optional">（選填）</span></label>
+                  <label for="instagram">Instagram<span class="form-optional" data-i18n="form.optional">（選填）</span></label>
                   <input type="text" id="instagram" name="instagram" placeholder="@yourhandle">
                 </div>
                 <div class="form-group">
-                  <label for="gbp-url">Google 商家連結</label>
+                  <label for="gbp-url" data-i18n="form.gbpUrl">Google 商家連結</label>
                   <input type="url" id="gbp-url" name="gbpUrl" placeholder="https://maps.app.goo.gl/..." required>
-                  <div class="form-hint">可以是 Google Maps 連結、店家名稱或地址</div>
+                  <div class="form-hint" data-i18n="form.gbpUrlHint">可以是 Google Maps 連結、店家名稱或地址</div>
                 </div>
                 <div class="form-group">
-                  <label for="need-type">需求類別</label>
+                  <label for="need-type" data-i18n="form.needType">需求類別</label>
                   <select id="need-type" name="needType" required>
-                    <option value="" disabled selected>請選擇</option>
-                    <option value="audit">商家檔案健檢</option>
-                    <option value="optimization">優化代操</option>
-                    <option value="ai-coaching">AI 陪跑</option>
-                    <option value="other">其他</option>
+                    <option value="" disabled selected data-i18n="form.selectPlaceholder">請選擇</option>
+                    <option value="audit" data-i18n="form.needType.audit">商家檔案健檢</option>
+                    <option value="optimization" data-i18n="form.needType.optimization">優化代操</option>
+                    <option value="ai-coaching" data-i18n="form.needType.aiCoaching">AI 陪跑</option>
+                    <option value="other" data-i18n="form.needType.other">其他</option>
                   </select>
                 </div>
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="company-size">公司規模</label>
+                    <label for="company-size" data-i18n="form.companySize">公司規模</label>
                     <select id="company-size" name="companySize" required>
-                      <option value="" disabled selected>請選擇</option>
-                      <option value="individual">個人 / 自由工作者</option>
-                      <option value="small">小型商家（1-10 人）</option>
-                      <option value="medium">中型企業（11-50 人）</option>
-                      <option value="large">大型企業（50+ 人）</option>
+                      <option value="" disabled selected data-i18n="form.selectPlaceholder">請選擇</option>
+                      <option value="individual" data-i18n="form.companySize.individual">個人 / 自由工作者</option>
+                      <option value="small" data-i18n="form.companySize.small">小型商家（1-10 人）</option>
+                      <option value="medium" data-i18n="form.companySize.medium">中型企業（11-50 人）</option>
+                      <option value="large" data-i18n="form.companySize.large">大型企業（50+ 人）</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="budget">每月預算</label>
+                    <label for="budget" data-i18n="form.budget">每月預算</label>
                     <select id="budget" name="budget" required>
-                      <option value="" disabled selected>請選擇</option>
-                      <option value="under-1k">低於 NT$1,000</option>
-                      <option value="1k-3k">NT$1,000 – 3,000</option>
-                      <option value="3k-5k">NT$3,000 – 5,000</option>
-                      <option value="5k-10k">NT$5,000 – 10,000</option>
-                      <option value="10k-20k">NT$10,000 – 20,000</option>
-                      <option value="20k-30k">NT$20,000 – 30,000</option>
+                      <option value="" disabled selected data-i18n="form.selectPlaceholder">請選擇</option>
+                      <option value="under-1k" data-i18n="form.budget.under1k">低於 NT$1,000</option>
+                      <option value="1k-3k" data-i18n="form.budget.1k3k">NT$1,000 – 3,000</option>
+                      <option value="3k-5k" data-i18n="form.budget.3k5k">NT$3,000 – 5,000</option>
+                      <option value="5k-10k" data-i18n="form.budget.5k10k">NT$5,000 – 10,000</option>
+                      <option value="10k-20k" data-i18n="form.budget.10k20k">NT$10,000 – 20,000</option>
+                      <option value="20k-30k" data-i18n="form.budget.20k30k">NT$20,000 – 30,000</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="description">具體問題描述<span class="form-optional">（選填）</span></label>
-                  <textarea id="description" name="description" placeholder="簡述您目前遇到的問題或想達成的目標..."></textarea>
+                  <label for="description"><span data-i18n="form.description">具體問題描述</span><span class="form-optional" data-i18n="form.optional">（選填）</span></label>
+                  <textarea id="description" name="description" placeholder="簡述您目前遇到的問題或想達成的目標..." data-i18n-placeholder="form.descPlaceholder"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary form-submit">免費獲取健檢報告</button>
+                <button type="submit" class="btn btn-primary form-submit" data-i18n="form.submit">免費獲取健檢報告</button>
               </div>
               <div class="form-success" id="form-success">
                 <div class="form-success-icon">
@@ -1104,8 +1149,8 @@
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3>已收到你的需求！</h3>
-                <p>我會在 2-3 個工作天內寄送初步分析結果到你的信箱。</p>
+                <h3 data-i18n="form.successTitle">已收到你的需求！</h3>
+                <p data-i18n="form.successDesc">我會在 2-3 個工作天內寄送初步分析結果到你的信箱。</p>
               </div>
             </form>
           </div>
@@ -1118,16 +1163,309 @@
   <footer class="footer">
     <div class="container">
       <nav class="footer-links" aria-label="頁尾導覽">
-        <a href="#faq">常見問題</a>
-        <a href="#cta">免費健檢</a>
+        <a href="#faq" data-i18n="footer.faq">常見問題</a>
+        <a href="#cta" data-i18n="footer.cta">免費健檢</a>
         <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">Threads</a>
       </nav>
-      <p>&copy; 2026 GBP SEO 優化服務. All rights reserved.</p>
+      <p data-i18n-html="footer.copyright">&copy; 2026 GBP SEO 優化服務. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- ===== i18n Dictionary ===== -->
+  <script>
+  window.I18N = {
+    'zh-TW': {
+      'meta.title': 'GBP SEO 分析服務 — Google 商家檔案優化，提升地圖排名與在地曝光',
+      'meta.description': '透過四大面向量化評分，分析你的 Google 商家檔案 (GBP) 弱點並提供具體優化步驟。幫助在地商家提升 Google 地圖排名、增加曝光、帶來更多客戶。免費索取初步健檢報告。',
+      'hero.badge': 'GBP SEO 優化服務',
+      'hero.title': '讓你的 Google 商家檔案<br>成為最強業務員',
+      'hero.desc': '透過 AI 驅動的 GBP SEO 分析，幫助在地商家提升 Google 地圖排名、增加曝光、帶來更多真實客戶。',
+      'hero.cta': '免費索取健檢報告',
+      'hero.h1.title': '四大面向健檢',
+      'hero.h1.desc': '基本資訊、評論、照片、關鍵字全面評分',
+      'hero.h2.title': '具體行動方案',
+      'hero.h2.desc': '不只告訴你問題，還給你步驟拆解',
+      'hero.h3.title': '一看就懂',
+      'hero.h3.desc': '不需技術背景，照著步驟就能執行優化',
+      'hero.imgAlt': 'Google 商家檔案介面',
+      'faq.title': '常見問題',
+      'faq.subtitle': '關於 Google 商家檔案優化，你可能想知道的事',
+      'faq.q1': '什麼是 GBP SEO？',
+      'faq.a1': '<p>GBP SEO 是針對 <strong>Google 商家檔案（Google Business Profile）</strong>進行搜尋引擎優化的過程。透過完善商家基本資訊、爭取優質評論、上傳照片、撰寫關鍵字策略等方式，提升商家在 Google 地圖與在地搜尋結果中的排名與曝光度。</p>',
+      'faq.q2': '分析報告包含哪些內容？',
+      'faq.a2': '<p>報告涵蓋<strong>四大面向</strong>的量化評分：商家基本資訊完整度、評論分析、照片與視覺內容、描述與關鍵字策略。每個面向都會標示目前狀態、具體問題，並提供可直接執行的優化步驟。</p>',
+      'faq.q3': '如何提升 Google 地圖上的商家排名？',
+      'faq.a3': '<p>提升 Google 地圖排名的關鍵步驟包括：完善商家檔案資訊（電話、營業時間、地址）、積極爭取客戶評論並回覆、定期上傳高品質照片、撰寫包含目標關鍵字的商家描述，以及持續發布 Google 貼文保持活躍度。</p>',
+      'faq.q4': '這個分析服務適合什麼類型的商家？',
+      'faq.a4': '<p>任何在 Google 地圖上有實體據點或服務範圍的在地商家都適合，例如餐廳、美容美甲、診所、工作室、健身房、零售店等。只要你的客人會透過 Google 搜尋「附近的 ○○」來找到你，GBP SEO 就能幫你被更多人看見。</p>',
+      'cta.titleBefore': '免費獲得價值',
+      'cta.price': 'NTD$4,000+',
+      'cta.titleAfter': '的 Google 商家檔案健檢報告',
+      'cta.subtitle': '免費分析，立即索取您的專屬報告',
+      'cta.benefit1': '完整四大面向量化評分報告',
+      'cta.benefit2': '找出你的商家檔案目前卡住的地方',
+      'cta.benefit3': '具體可執行的優化步驟',
+      'form.name': '稱呼',
+      'form.namePlaceholder': '您的稱呼',
+      'form.email': 'Email',
+      'form.optional': '（選填）',
+      'form.gbpUrl': 'Google 商家連結',
+      'form.gbpUrlHint': '可以是 Google Maps 連結、店家名稱或地址',
+      'form.needType': '需求類別',
+      'form.selectPlaceholder': '請選擇',
+      'form.needType.audit': '商家檔案健檢',
+      'form.needType.optimization': '優化代操',
+      'form.needType.aiCoaching': 'AI 陪跑',
+      'form.needType.other': '其他',
+      'form.companySize': '公司規模',
+      'form.companySize.individual': '個人 / 自由工作者',
+      'form.companySize.small': '小型商家（1-10 人）',
+      'form.companySize.medium': '中型企業（11-50 人）',
+      'form.companySize.large': '大型企業（50+ 人）',
+      'form.budget': '每月預算',
+      'form.budget.under1k': '低於 NT$1,000',
+      'form.budget.1k3k': 'NT$1,000 – 3,000',
+      'form.budget.3k5k': 'NT$3,000 – 5,000',
+      'form.budget.5k10k': 'NT$5,000 – 10,000',
+      'form.budget.10k20k': 'NT$10,000 – 20,000',
+      'form.budget.20k30k': 'NT$20,000 – 30,000',
+      'form.description': '具體問題描述',
+      'form.descPlaceholder': '簡述您目前遇到的問題或想達成的目標...',
+      'form.submit': '免費獲取健檢報告',
+      'form.submitting': '送出中...',
+      'form.successTitle': '已收到你的需求！',
+      'form.successDesc': '我會在 2-3 個工作天內寄送初步分析結果到你的信箱。',
+      'form.error': '送出時發生錯誤，請稍後再試或直接聯繫我。',
+      'footer.faq': '常見問題',
+      'footer.cta': '免費健檢',
+      'footer.copyright': '&copy; 2026 GBP SEO 優化服務. All rights reserved.',
+      'card.preview': '報告預覽',
+      'card.viewReport': '查看報告',
+      'empty.text': '成為第一個獲得免費健檢報告的商家',
+      'empty.cta': '免費索取報告'
+    },
+    'zh-CN': {
+      'meta.title': 'GBP SEO 分析服务 — Google 商家档案优化，提升地图排名与本地曝光',
+      'meta.description': '通过四大维度量化评分，分析你的 Google 商家档案 (GBP) 弱点并提供具体优化步骤。帮助本地商家提升 Google 地图排名、增加曝光、带来更多客户。免费获取初步健检报告。',
+      'hero.badge': 'GBP SEO 优化服务',
+      'hero.title': '让你的 Google 商家档案<br>成为最强业务员',
+      'hero.desc': '通过 AI 驱动的 GBP SEO 分析，帮助本地商家提升 Google 地图排名、增加曝光、带来更多真实客户。',
+      'hero.cta': '免费获取健检报告',
+      'hero.h1.title': '四大维度健检',
+      'hero.h1.desc': '基本信息、评论、照片、关键词全面评分',
+      'hero.h2.title': '具体行动方案',
+      'hero.h2.desc': '不只告诉你问题，还给你步骤拆解',
+      'hero.h3.title': '一看就懂',
+      'hero.h3.desc': '不需技术背景，照着步骤就能执行优化',
+      'hero.imgAlt': 'Google 商家档案界面',
+      'faq.title': '常见问题',
+      'faq.subtitle': '关于 Google 商家档案优化，你可能想知道的事',
+      'faq.q1': '什么是 GBP SEO？',
+      'faq.a1': '<p>GBP SEO 是针对 <strong>Google 商家档案（Google Business Profile）</strong>进行搜索引擎优化的过程。通过完善商家基本信息、争取优质评论、上传照片、撰写关键词策略等方式，提升商家在 Google 地图与本地搜索结果中的排名与曝光度。</p>',
+      'faq.q2': '分析报告包含哪些内容？',
+      'faq.a2': '<p>报告涵盖<strong>四大维度</strong>的量化评分：商家基本信息完整度、评论分析、照片与视觉内容、描述与关键词策略。每个维度都会标示目前状态、具体问题，并提供可直接执行的优化步骤。</p>',
+      'faq.q3': '如何提升 Google 地图上的商家排名？',
+      'faq.a3': '<p>提升 Google 地图排名的关键步骤包括：完善商家档案信息（电话、营业时间、地址）、积极争取客户评论并回复、定期上传高品质照片、撰写包含目标关键词的商家描述，以及持续发布 Google 帖子保持活跃度。</p>',
+      'faq.q4': '这个分析服务适合什么类型的商家？',
+      'faq.a4': '<p>任何在 Google 地图上有实体据点或服务范围的本地商家都适合，例如餐厅、美容美甲、诊所、工作室、健身房、零售店等。只要你的客人会通过 Google 搜索「附近的 ○○」来找到你，GBP SEO 就能帮你被更多人看见。</p>',
+      'cta.titleBefore': '免费获得价值',
+      'cta.price': '¥920+',
+      'cta.titleAfter': '的 Google 商家档案健检报告',
+      'cta.subtitle': '免费分析，立即获取您的专属报告',
+      'cta.benefit1': '完整四大维度量化评分报告',
+      'cta.benefit2': '找出你的商家档案目前卡住的地方',
+      'cta.benefit3': '具体可执行的优化步骤',
+      'form.name': '称呼',
+      'form.namePlaceholder': '您的称呼',
+      'form.email': 'Email',
+      'form.optional': '（选填）',
+      'form.gbpUrl': 'Google 商家链接',
+      'form.gbpUrlHint': '可以是 Google Maps 链接、店家名称或地址',
+      'form.needType': '需求类别',
+      'form.selectPlaceholder': '请选择',
+      'form.needType.audit': '商家档案健检',
+      'form.needType.optimization': '优化代操',
+      'form.needType.aiCoaching': 'AI 陪跑',
+      'form.needType.other': '其他',
+      'form.companySize': '公司规模',
+      'form.companySize.individual': '个人 / 自由工作者',
+      'form.companySize.small': '小型商家（1-10 人）',
+      'form.companySize.medium': '中型企业（11-50 人）',
+      'form.companySize.large': '大型企业（50+ 人）',
+      'form.budget': '每月预算',
+      'form.budget.under1k': '低于 ¥230',
+      'form.budget.1k3k': '¥230 – 690',
+      'form.budget.3k5k': '¥690 – 1,150',
+      'form.budget.5k10k': '¥1,150 – 2,300',
+      'form.budget.10k20k': '¥2,300 – 4,600',
+      'form.budget.20k30k': '¥4,600 – 6,900',
+      'form.description': '具体问题描述',
+      'form.descPlaceholder': '简述您目前遇到的问题或想达成的目标...',
+      'form.submit': '免费获取健检报告',
+      'form.submitting': '提交中...',
+      'form.successTitle': '已收到你的需求！',
+      'form.successDesc': '我会在 2-3 个工作天内寄送初步分析结果到你的邮箱。',
+      'form.error': '提交时发生错误，请稍后再试或直接联系我。',
+      'footer.faq': '常见问题',
+      'footer.cta': '免费健检',
+      'footer.copyright': '&copy; 2026 GBP SEO 优化服务. All rights reserved.',
+      'card.preview': '报告预览',
+      'card.viewReport': '查看报告',
+      'empty.text': '成为第一个获得免费健检报告的商家',
+      'empty.cta': '免费获取报告'
+    },
+    'en': {
+      'meta.title': 'GBP SEO Analysis — Google Business Profile Optimization for Maps Ranking',
+      'meta.description': 'Quantitative scoring across 4 dimensions to analyze your Google Business Profile (GBP) weaknesses and provide actionable optimization steps. Help local businesses rank higher on Google Maps. Get a free audit report.',
+      'hero.badge': 'GBP SEO Optimization',
+      'hero.title': 'Turn Your Google Business Profile<br>Into Your Best Salesperson',
+      'hero.desc': 'AI-powered GBP SEO analysis to help local businesses rank higher on Google Maps, boost visibility, and attract more real customers.',
+      'hero.cta': 'Get Free Audit Report',
+      'hero.h1.title': '4-Dimension Audit',
+      'hero.h1.desc': 'Comprehensive scoring on info, reviews, photos & keywords',
+      'hero.h2.title': 'Actionable Steps',
+      'hero.h2.desc': 'Not just problems — step-by-step solutions',
+      'hero.h3.title': 'Easy to Follow',
+      'hero.h3.desc': 'No tech background needed, just follow the steps',
+      'hero.imgAlt': 'Google Business Profile interface',
+      'faq.title': 'FAQ',
+      'faq.subtitle': 'What you need to know about Google Business Profile optimization',
+      'faq.q1': 'What is GBP SEO?',
+      'faq.a1': '<p>GBP SEO is the process of optimizing your <strong>Google Business Profile</strong> for search engines. By improving your business information, collecting quality reviews, uploading photos, and crafting keyword strategies, you can boost your ranking and visibility in Google Maps and local search results.</p>',
+      'faq.q2': 'What does the analysis report include?',
+      'faq.a2': '<p>The report covers quantitative scoring across <strong>four dimensions</strong>: business info completeness, review analysis, photos & visual content, and description & keyword strategy. Each dimension identifies current status, specific issues, and provides actionable optimization steps.</p>',
+      'faq.q3': 'How can I improve my business ranking on Google Maps?',
+      'faq.a3': '<p>Key steps to improve your Google Maps ranking include: completing your business profile (phone, hours, address), actively collecting and responding to customer reviews, regularly uploading high-quality photos, writing keyword-rich business descriptions, and maintaining activity with Google Posts.</p>',
+      'faq.q4': 'What types of businesses is this service for?',
+      'faq.a4': '<p>Any local business with a physical location or service area on Google Maps — restaurants, salons, clinics, studios, gyms, retail stores, and more. If your customers search "○○ near me" on Google, GBP SEO helps them find you.</p>',
+      'cta.titleBefore': 'Get a Free',
+      'cta.price': '$125+',
+      'cta.titleAfter': 'Google Business Profile Audit Report',
+      'cta.subtitle': 'Free analysis — get your personalized report now',
+      'cta.benefit1': 'Complete 4-dimension scoring report',
+      'cta.benefit2': 'Identify what\'s holding your profile back',
+      'cta.benefit3': 'Actionable optimization steps',
+      'form.name': 'Name',
+      'form.namePlaceholder': 'Your name',
+      'form.email': 'Email',
+      'form.optional': ' (optional)',
+      'form.gbpUrl': 'Google Business URL',
+      'form.gbpUrlHint': 'Google Maps link, business name, or address',
+      'form.needType': 'Service Type',
+      'form.selectPlaceholder': 'Select',
+      'form.needType.audit': 'Profile Audit',
+      'form.needType.optimization': 'Managed Optimization',
+      'form.needType.aiCoaching': 'AI Coaching',
+      'form.needType.other': 'Other',
+      'form.companySize': 'Company Size',
+      'form.companySize.individual': 'Individual / Freelancer',
+      'form.companySize.small': 'Small Business (1-10)',
+      'form.companySize.medium': 'Medium Business (11-50)',
+      'form.companySize.large': 'Enterprise (50+)',
+      'form.budget': 'Monthly Budget',
+      'form.budget.under1k': 'Under $31',
+      'form.budget.1k3k': '$31 – $93',
+      'form.budget.3k5k': '$93 – $155',
+      'form.budget.5k10k': '$155 – $310',
+      'form.budget.10k20k': '$310 – $620',
+      'form.budget.20k30k': '$620 – $930',
+      'form.description': 'Problem Description',
+      'form.descPlaceholder': 'Briefly describe your current challenges or goals...',
+      'form.submit': 'Get Free Audit Report',
+      'form.submitting': 'Submitting...',
+      'form.successTitle': 'Request received!',
+      'form.successDesc': 'We\'ll send the initial analysis to your inbox within 2-3 business days.',
+      'form.error': 'An error occurred. Please try again or contact us directly.',
+      'footer.faq': 'FAQ',
+      'footer.cta': 'Free Audit',
+      'footer.copyright': '&copy; 2026 GBP SEO Optimization. All rights reserved.',
+      'card.preview': 'Report Preview',
+      'card.viewReport': 'View Report',
+      'empty.text': 'Be the first to get a free audit report',
+      'empty.cta': 'Get Free Report'
+    }
+  };
+  </script>
+
   <script>
     (function () {
+      /* ===== i18n Engine ===== */
+      function detectLang() {
+        var stored = localStorage.getItem('lang');
+        if (stored && window.I18N[stored]) return stored;
+        var nav = (navigator.language || '').toLowerCase();
+        if (nav.startsWith('zh')) {
+          if (nav === 'zh-tw' || nav === 'zh-hant' || nav === 'zh-hk') return 'zh-TW';
+          if (nav === 'zh-cn' || nav === 'zh-hans' || nav === 'zh-sg' || nav === 'zh') return 'zh-CN';
+          return 'zh-TW';
+        }
+        if (nav.startsWith('en')) return 'en';
+        return 'zh-TW';
+      }
+
+      function applyLang(lang) {
+        var dict = window.I18N[lang];
+        if (!dict) return;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (dict[key] != null) el.textContent = dict[key];
+        });
+
+        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-html');
+          if (dict[key] != null) el.innerHTML = dict[key];
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key] != null) el.placeholder = dict[key];
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-alt');
+          if (dict[key] != null) el.alt = dict[key];
+        });
+
+        if (dict['meta.title']) document.title = dict['meta.title'];
+        var metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && dict['meta.description']) metaDesc.setAttribute('content', dict['meta.description']);
+
+        document.documentElement.lang = lang === 'en' ? 'en' : lang;
+
+        document.querySelectorAll('.lang-switcher button').forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+
+        localStorage.setItem('lang', lang);
+        window.__currentLang = lang;
+      }
+
+      /* Detect and apply */
+      var lang = detectLang();
+      window.__currentLang = lang;
+      if (lang !== 'zh-TW') {
+        applyLang(lang);
+      } else {
+        localStorage.setItem('lang', lang);
+        document.querySelectorAll('.lang-switcher button').forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === 'zh-TW');
+        });
+      }
+
+      /* Language switcher clicks */
+      document.querySelectorAll('.lang-switcher button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyLang(btn.getAttribute('data-lang'));
+        });
+      });
+
+      /* Helper: get i18n string for current language */
+      function t(key) {
+        var dict = window.I18N[window.__currentLang || 'zh-TW'];
+        return (dict && dict[key]) || key;
+      }
+
       /* ===== Animate pre-rendered score rings ===== */
       setTimeout(function () {
         var rings = document.querySelectorAll('.score-ring-progress');
@@ -1156,7 +1494,7 @@
 
         var btn = form.querySelector('.form-submit');
         btn.disabled = true;
-        btn.textContent = '送出中...';
+        btn.textContent = t('form.submitting');
 
         var data = {
           name: document.getElementById('name').value,
@@ -1194,8 +1532,8 @@
           success.classList.add('show');
         }).catch(function () {
           btn.disabled = false;
-          btn.textContent = '免費獲取健檢報告';
-          alert('送出時發生錯誤，請稍後再試或直接聯繫我。');
+          btn.textContent = t('form.submit');
+          alert(t('form.error'));
         });
       });
 

@@ -54,7 +54,7 @@ def card_html(p):
             '<rect x="3" y="3" width="18" height="18" rx="2"/>'
             '<circle cx="8.5" cy="8.5" r="1.5"/>'
             '<path d="M21 15l-5-5L5 21"/></svg>'
-            '<span>報告預覽</span></div>'
+            '<span data-i18n="card.preview">報告預覽</span></div>'
         )
 
     actions = ""
@@ -67,7 +67,7 @@ def card_html(p):
             '<polyline points="14 2 14 8 20 8"/>'
             '<line x1="16" y1="13" x2="8" y2="13"/>'
             '<line x1="16" y1="17" x2="8" y2="17"/></svg>'
-            '查看報告</a>'
+            '<span data-i18n="card.viewReport">查看報告</span></a>'
         )
     if maps_url:
         actions += (
@@ -124,8 +124,8 @@ def build():
     else:
         cards = (
             '<div class="empty-state">'
-            '<p>成為第一個獲得免費健檢報告的商家</p>'
-            '<a href="#cta" class="btn btn-primary" style="margin-top:16px;">免費索取報告</a>'
+            '<p data-i18n="empty.text">成為第一個獲得免費健檢報告的商家</p>'
+            '<a href="#cta" class="btn btn-primary" style="margin-top:16px;" data-i18n="empty.cta">免費索取報告</a>'
             '</div>'
         )
 
