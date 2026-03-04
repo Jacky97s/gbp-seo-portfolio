@@ -80,6 +80,9 @@
 }
 </script>
 
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -96,6 +99,7 @@
     }
 
     html {
+      font-size: 110%;
       scroll-behavior: smooth;
     }
 
@@ -138,9 +142,9 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 40px;
     }
 
     /* ===== Animations ===== */
@@ -220,6 +224,10 @@
     /* ===== Hero ===== */
     .hero {
       background: var(--gradient-warm);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       padding: 80px 0 80px;
       position: relative;
       overflow: hidden;
@@ -251,7 +259,7 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.3fr 0.7fr;
       gap: 48px;
       align-items: center;
     }
@@ -270,11 +278,19 @@
       align-items: center;
     }
 
-    .hero-image img {
+    .hero-image img,
+    .hero-image-mobile img {
       max-width: 360px;
       width: 100%;
       height: auto;
       filter: drop-shadow(0 8px 24px rgba(32, 33, 36, 0.12));
+    }
+
+    .hero-image-mobile {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 32px;
     }
 
     .hero-intro {
@@ -298,8 +314,10 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-top: 40px;
-      position: relative;
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      right: 0;
       z-index: 1;
     }
 
@@ -886,7 +904,11 @@
       }
 
       .hero-image {
-        order: -1;
+        display: none;
+      }
+
+      .hero-image-mobile {
+        display: flex;
       }
 
       .hero-image img {
@@ -908,15 +930,26 @@
     }
 
     @media (max-width: 600px) {
+      html {
+        font-size: 100%;
+      }
+
       .hero {
+        min-height: 100svh;
         padding: 56px 0 48px;
+        padding-bottom: 80px;
+      }
+
+      .hero-author {
+        position: static;
+        margin-top: 32px;
       }
 
       .hero h1 {
         font-size: 1.8rem;
       }
 
-      .hero-image img {
+      .hero-image-mobile img {
         max-width: 220px;
       }
 
@@ -966,6 +999,9 @@
           </div>
           <h1 data-i18n-html="hero.title">讓你的 Google 商家檔案<br>成為最強業務員</h1>
           <p data-i18n="hero.desc">透過 AI 驅動的 GBP SEO 分析，幫助在地商家提升 Google 地圖排名、增加曝光、帶來更多真實客戶。</p>
+          <div class="hero-image-mobile">
+            <img src="assets/gbp-hero.png" data-i18n-alt="hero.imgAlt" alt="Google 商家檔案介面" width="480" height="480">
+          </div>
           <div class="hero-cta">
             <a href="#cta" class="btn btn-primary" style="padding:12px 28px;font-size:1rem;" data-i18n="hero.cta">免費索取健檢報告</a>
           </div>
@@ -1098,8 +1134,8 @@
                   <input type="text" id="instagram" name="instagram" placeholder="@yourhandle">
                 </div>
                 <div class="form-group">
-                  <label for="gbp-url" data-i18n="form.gbpUrl">Google 商家連結</label>
-                  <input type="url" id="gbp-url" name="gbpUrl" placeholder="https://maps.app.goo.gl/..." required>
+                  <label for="gbp-info" data-i18n="form.gbpUrl">Google 商家資訊</label>
+                  <input type="text" id="gbp-info" name="gbpInfo" placeholder="https://maps.app.goo.gl/..." required>
                   <div class="form-hint" data-i18n="form.gbpUrlHint">可以是 Google Maps 連結、店家名稱或地址</div>
                 </div>
                 <div class="form-group">
@@ -1140,6 +1176,7 @@
                   <label for="description"><span data-i18n="form.description">具體問題描述</span><span class="form-optional" data-i18n="form.optional">（選填）</span></label>
                   <textarea id="description" name="description" placeholder="簡述您目前遇到的問題或想達成的目標..." data-i18n-placeholder="form.descPlaceholder"></textarea>
                 </div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAACl4rs-G2afDAzBg" data-theme="light"></div>
                 <button type="submit" class="btn btn-primary form-submit" data-i18n="form.submit">免費獲取健檢報告</button>
               </div>
               <div class="form-success" id="form-success">
@@ -1209,7 +1246,7 @@
       'form.namePlaceholder': '您的稱呼',
       'form.email': 'Email',
       'form.optional': '（選填）',
-      'form.gbpUrl': 'Google 商家連結',
+      'form.gbpUrl': 'Google 商家資訊',
       'form.gbpUrlHint': '可以是 Google Maps 連結、店家名稱或地址',
       'form.needType': '需求類別',
       'form.selectPlaceholder': '請選擇',
@@ -1236,6 +1273,7 @@
       'form.successTitle': '已收到你的需求！',
       'form.successDesc': '我會在 2-3 個工作天內寄送初步分析結果到你的信箱。',
       'form.error': '送出時發生錯誤，請稍後再試或直接聯繫我。',
+      'form.turnstileError': '請先完成人機驗證',
       'footer.faq': '常見問題',
       'footer.cta': '免費健檢',
       'footer.copyright': '&copy; 2026 GBP SEO 優化服務. All rights reserved.',
@@ -1279,7 +1317,7 @@
       'form.namePlaceholder': '您的称呼',
       'form.email': 'Email',
       'form.optional': '（选填）',
-      'form.gbpUrl': 'Google 商家链接',
+      'form.gbpUrl': 'Google 商家信息',
       'form.gbpUrlHint': '可以是 Google Maps 链接、店家名称或地址',
       'form.needType': '需求类别',
       'form.selectPlaceholder': '请选择',
@@ -1306,6 +1344,7 @@
       'form.successTitle': '已收到你的需求！',
       'form.successDesc': '我会在 2-3 个工作天内寄送初步分析结果到你的邮箱。',
       'form.error': '提交时发生错误，请稍后再试或直接联系我。',
+      'form.turnstileError': '请先完成人机验证',
       'footer.faq': '常见问题',
       'footer.cta': '免费健检',
       'footer.copyright': '&copy; 2026 GBP SEO 优化服务. All rights reserved.',
@@ -1349,7 +1388,7 @@
       'form.namePlaceholder': 'Your name',
       'form.email': 'Email',
       'form.optional': ' (optional)',
-      'form.gbpUrl': 'Google Business URL',
+      'form.gbpUrl': 'Google Business Info',
       'form.gbpUrlHint': 'Google Maps link, business name, or address',
       'form.needType': 'Service Type',
       'form.selectPlaceholder': 'Select',
@@ -1376,6 +1415,7 @@
       'form.successTitle': 'Request received!',
       'form.successDesc': 'We\'ll send the initial analysis to your inbox within 2-3 business days.',
       'form.error': 'An error occurred. Please try again or contact us directly.',
+      'form.turnstileError': 'Please complete the verification first',
       'footer.faq': 'FAQ',
       'footer.cta': 'Free Audit',
       'footer.copyright': '&copy; 2026 GBP SEO Optimization. All rights reserved.',
@@ -1492,6 +1532,14 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        /* Cloudflare Turnstile validation */
+        var turnstileRes = document.querySelector('[name="cf-turnstile-response"]');
+        var cfToken = turnstileRes ? turnstileRes.value : '';
+        if (!cfToken) {
+          alert(t('form.turnstileError'));
+          return;
+        }
+
         var btn = form.querySelector('.form-submit');
         btn.disabled = true;
         btn.textContent = t('form.submitting');
@@ -1500,11 +1548,12 @@
           name: document.getElementById('name').value,
           email: document.getElementById('email').value,
           instagram: document.getElementById('instagram').value,
-          gbpUrl: document.getElementById('gbp-url').value,
+          gbpInfo: document.getElementById('gbp-info').value,
           needType: document.getElementById('need-type').value,
           companySize: document.getElementById('company-size').value,
           budget: document.getElementById('budget').value,
           description: document.getElementById('description').value,
+          cfTurnstileToken: cfToken,
           /* Hidden fields — UTM & page tracking */
           utmSource: utmSource,
           utmMedium: utmMedium,
@@ -1516,7 +1565,6 @@
         var N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL';
 
         if (N8N_WEBHOOK_URL.indexOf('YOUR_') === 0) {
-          /* Placeholder: just show success */
           fields.classList.add('hidden');
           success.classList.add('show');
           return;
@@ -1533,6 +1581,7 @@
         }).catch(function () {
           btn.disabled = false;
           btn.textContent = t('form.submit');
+          if (window.turnstile) turnstile.reset();
           alert(t('form.error'));
         });
       });
