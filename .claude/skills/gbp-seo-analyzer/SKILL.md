@@ -316,7 +316,6 @@ Google Maps 短網址（maps.app.goo.gl）會被 robots.txt 擋住，`web_fetch`
 
 **14 天跟進預告（`.followup-notice`）**：位於 about-section 之後、Footer 之前
 - 標題：「14 天後我們會回來看看你的進步！」
-- 說明：「我們會在 14 天後重新分析你的商家檔案，寄送 Before / After 對比報告，看看哪些地方改善了。」
 - 語氣溫暖，傳達關心而非推銷
 - 淺綠底色，與行動時間軸呼應
 
