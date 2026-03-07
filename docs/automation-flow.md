@@ -8,36 +8,36 @@ sequenceDiagram
     participant LP as Landing Page
     participant CF as Cloudflare Turnstile
     participant N8N as n8n Webhook
-    participant DB as 資料儲存<br>(Google Sheets / DB)
+    participant DB as 資料儲存<br>Google Sheets / DB
     participant Email as Email Service
-    participant CC as Claude Code<br>(Skills & Agents)
-    participant Report as 報告產出<br>(PDF / HTML)
+    participant CC as Claude Code<br>Skills & Agents
+    participant Report as 報告產出<br>PDF / HTML
 
     %% ===== Phase 1: 表單提交 =====
     Note over User, LP: Phase 1 — 表單提交
-    User->>LP: 填寫表單（稱呼、Email、商家資訊）
+    User->>LP: 填寫表單 — 稱呼、Email、商家資訊
     LP->>CF: 驗證 Turnstile token
     CF-->>LP: 驗證通過
-    LP->>N8N: POST webhook（表單資料 + UTM）
+    LP->>N8N: POST webhook — 表單資料 + UTM
     N8N-->>LP: 200 OK
     LP-->>User: 顯示「已收到你的需求！」
 
     %% ===== Phase 2: 確認信 =====
     Note over N8N, Email: Phase 2 — 確認信
-    N8N->>DB: 儲存表單資料（建立工單）
+    N8N->>DB: 儲存表單資料 — 建立工單
     N8N->>Email: 寄送確認信
     Email-->>User: 「已收到您的需求，報告製作中，<br>完成後將寄送至您的信箱」
 
     %% ===== Phase 3: 報告產生 =====
     Note over N8N, Report: Phase 3 — 自動化報告產生
-    N8N->>CC: 觸發 Claude Code<br>傳入商家資訊（名稱/地址/Maps連結）
+    N8N->>CC: 觸發 Claude Code<br>傳入商家資訊 — 名稱/地址/Maps連結
     activate CC
-    CC->>CC: 執行 GBP 分析 Skill<br>① 抓取商家檔案資料
-    CC->>CC: ② 基本資訊完整度評分
-    CC->>CC: ③ 評論分析評分
-    CC->>CC: ④ 照片與視覺內容評分
-    CC->>CC: ⑤ 描述與關鍵字策略評分
-    CC->>CC: ⑥ 產生優化建議與行動方案
+    CC->>CC: 執行 GBP 分析 Skill<br>1. 抓取商家檔案資料
+    CC->>CC: 2. 基本資訊完整度評分
+    CC->>CC: 3. 評論分析評分
+    CC->>CC: 4. 照片與視覺內容評分
+    CC->>CC: 5. 描述與關鍵字策略評分
+    CC->>CC: 6. 產生優化建議與行動方案
     CC->>Report: 輸出分析報告
     deactivate CC
     Report-->>N8N: 報告檔案就緒
@@ -45,26 +45,26 @@ sequenceDiagram
     %% ===== Phase 4: 交付報告 =====
     Note over N8N, User: Phase 4 — 交付報告
     N8N->>DB: 更新工單狀態：已完成
-    N8N->>Email: 寄送報告信（附報告連結/附件）
+    N8N->>Email: 寄送報告信 — 附報告連結/附件
     Email-->>User: 「您的 GBP 健檢報告已完成！」
 
     %% ===== Phase 5: 用戶執行優化 =====
     Note over User, Report: Phase 5 — 用戶拿到報告、開始行動
-    User->>Report: 閱讀完整報告（含評分 + 具體步驟）
-    Report-->>User: 報告中段 CTA：<br>「想了解如何運用 AI 分析你的商家？」<br>→ 預約 1 小時 AI 諮詢 NT$4,000（導向 Potaly 官網）
+    User->>Report: 閱讀完整報告 — 含評分 + 具體步驟
+    Report-->>User: 報告中段 CTA：<br>「想了解如何運用 AI 分析你的商家？」<br>→ 預約 1 小時 AI 諮詢 NT$4,000 — 導向 Potaly 官網
     Report-->>User: 報告底部預告：<br>「14 天後我們會回來看看你的進步！」
 
     %% ===== Phase 6: 14 天後跟進 =====
     Note over N8N, User: Phase 6 — 14 天自動跟進
     N8N->>CC: 排程觸發：重新分析同一商家
     activate CC
-    CC->>CC: 執行 GBP 分析（與 14 天前相同流程）
-    CC->>Report: 產出對比報告（Before / After）
+    CC->>CC: 執行 GBP 分析 — 與 14 天前相同流程
+    CC->>Report: 產出對比報告 — Before / After
     deactivate CC
     N8N->>Email: 寄送跟進信 + 對比報告
-    Email-->>User: 「14 天過去了，來看看你的商家有什麼變化！」<br>附對比報告（分數變化 + 哪些改善了 + 哪些還沒動）
+    Email-->>User: 「14 天過去了，來看看你的商家有什麼變化！」<br>附對比報告 — 分數變化 + 哪些改善了 + 哪些還沒動
 
-    %% ===== Phase 7: 轉換（依用戶狀態） =====
+    %% ===== Phase 7: 轉換 — 依用戶狀態 =====
     Note over User, N8N: Phase 7 — 自然轉換
     alt 有改善 → 強化動機
         Report-->>User: 「你的評分從 52 → 68！繼續優化？」<br>CTA：訂閱月度追蹤 NT$3,000/月
