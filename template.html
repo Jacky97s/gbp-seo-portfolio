@@ -2331,6 +2331,11 @@
           body: JSON.stringify(data)
         }).then(function (res) {
           if (!res.ok) throw new Error(res.status);
+          form.reset();
+          document.getElementById('place-id').value = '';
+          document.getElementById('place-name').value = '';
+          document.getElementById('place-address').value = '';
+          if (window.turnstile) turnstile.reset();
           fields.classList.add('hidden');
           success.classList.add('show');
         }).catch(function () {
@@ -2427,6 +2432,11 @@
           body: JSON.stringify(data)
         }).then(function (res) {
           if (!res.ok) throw new Error(res.status);
+          wlForm.reset();
+          document.getElementById('wl-place-id').value = '';
+          document.getElementById('wl-place-name').value = '';
+          document.getElementById('wl-place-address').value = '';
+          if (window.turnstile) turnstile.reset('#wl-turnstile');
           wlFields.classList.add('hidden');
           wlSuccess.classList.add('show');
         }).catch(function () {
