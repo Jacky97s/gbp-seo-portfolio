@@ -1,0 +1,8 @@
+{
+    "mcpServers": {
+        "google-maps": {
+            "type": "http",
+            "url": "http://localhost:3123/mcp"
+        }
+    }
+}

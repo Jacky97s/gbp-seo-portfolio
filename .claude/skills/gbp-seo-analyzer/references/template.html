@@ -64,44 +64,12 @@
   .hero-creator a { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.8); font-family:var(--font-mono); font-size:0.8rem; text-decoration:none; padding:6px 16px; border-radius:var(--radius-full); border:1px solid rgba(255,255,255,0.2); transition:all 0.25s; letter-spacing:0.02em; }
   .hero-creator a:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.35); color:white; }
 
-  /* ===== ABOUT / CTA ===== */
-  .about-section { background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-primary-light) 60%,#1B4D6E 100%); border-radius:var(--radius-lg); padding:var(--space-2xl); margin-bottom:var(--space-xl); position:relative; overflow:hidden; color:white; }
-  .about-section::before { content:''; position:absolute; top:-40%; right:-15%; width:400px; height:400px; background:radial-gradient(circle,rgba(0,201,167,0.12) 0%,transparent 70%); border-radius:50%; }
-  .about-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:var(--space-xl); align-items:center; }
-  @media(max-width:768px){ .about-inner { grid-template-columns:1fr; } }
-  .about-content {}
-  .about-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-accent); margin-bottom:var(--space-md); display:flex; align-items:center; gap:8px; }
-  .about-label::before { content:''; width:24px; height:2px; background:var(--color-accent); }
-  .about-name { font-family:var(--font-display); font-size:clamp(1.4rem,3vw,1.8rem); font-weight:900; margin-bottom:var(--space-md); letter-spacing:-0.02em; }
-  .about-desc { font-size:0.95rem; line-height:1.8; color:rgba(255,255,255,0.75); margin-bottom:var(--space-lg); }
-  .about-cta { display:flex; flex-direction:column; gap:var(--space-md); }
-  .about-cta-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.5); margin-bottom:var(--space-xs); }
-  .cta-card { display:flex; align-items:center; gap:var(--space-md); padding:var(--space-md) var(--space-lg); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-md); text-decoration:none; color:white; transition:all 0.25s; }
-  .cta-card:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25); transform:translateY(-2px); }
-  .cta-card-icon { width:44px; height:44px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
-  .cta-card-text { flex:1; }
-  .cta-card-title { font-family:var(--font-display); font-weight:700; font-size:0.95rem; margin-bottom:2px; }
-  .cta-card-desc { font-size:0.8rem; color:rgba(255,255,255,0.55); }
-  .cta-card-arrow { font-size:1.2rem; color:rgba(255,255,255,0.3); transition:all 0.2s; }
-  .cta-card:hover .cta-card-arrow { color:var(--color-accent); transform:translateX(4px); }
-
-  /* ===== [NEW] STICKY NAV ===== */
+  /* ===== STICKY NAV ===== */
   .sticky-nav { position:sticky; top:0; z-index:100; background:rgba(246,248,251,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--color-border); margin:0 calc(-1 * var(--space-lg)); padding:0 var(--space-lg); margin-bottom:var(--space-lg); }
   .sticky-nav-inner { display:flex; gap:var(--space-xs); overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding:var(--space-sm) 0; }
   .sticky-nav-inner::-webkit-scrollbar { display:none; }
   .sticky-nav a { display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:var(--radius-full); font-size:0.8rem; font-weight:500; color:var(--color-text-secondary); text-decoration:none; white-space:nowrap; transition:all 0.2s; border:1px solid transparent; }
   .sticky-nav a:hover { background:var(--color-surface); color:var(--color-text); border-color:var(--color-border); }
-
-  /* ===== [NEW] EXECUTIVE SUMMARY ===== */
-  .exec-summary { background:linear-gradient(135deg,#F0FDFA 0%,#E6FAF5 100%); border:2px solid rgba(0,201,167,0.2); border-radius:var(--radius-lg); padding:var(--space-xl); margin-bottom:var(--space-xl); position:relative; }
-  .exec-summary-badge { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:#059669; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-md); }
-  .exec-summary-text { font-size:1.05rem; line-height:1.8; color:var(--color-text); margin-bottom:var(--space-lg); }
-  .exec-top3 { display:grid; gap:var(--space-sm); }
-  .exec-top3-item { display:flex; align-items:flex-start; gap:var(--space-md); background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); }
-  .exec-top3-num { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:var(--color-accent); color:white; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:0.9rem; }
-  .exec-top3-content { flex:1; }
-  .exec-top3-title { font-weight:600; font-size:0.95rem; }
-  .exec-top3-time { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); margin-top:2px; }
 
   /* ===== DASHBOARD ===== */
   .dashboard { display:grid; grid-template-columns:280px 1fr; gap:var(--space-lg); margin-bottom:var(--space-xl); }
@@ -134,13 +102,47 @@
   .dim-bar { height:6px; background:var(--color-surface-alt); border-radius:var(--radius-full); margin-top:var(--space-sm); overflow:hidden; }
   .dim-bar-fill { height:100%; border-radius:var(--radius-full); animation:slideRight 1s ease-out 0.5s forwards; width:0; }
 
+  /* ===== EXECUTIVE SUMMARY ===== */
+  .exec-summary { background:linear-gradient(135deg,#F0FDFA 0%,#E6FAF5 100%); border:2px solid rgba(0,201,167,0.2); border-radius:var(--radius-lg); padding:var(--space-xl); margin-bottom:var(--space-xl); position:relative; }
+  .exec-summary-badge { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:#059669; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-md); }
+  .exec-summary-text { font-size:1.05rem; line-height:1.8; color:var(--color-text); margin-bottom:var(--space-lg); }
+  .exec-do-now { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); border-left:4px solid var(--color-score-poor); }
+  .exec-do-now-label { font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--color-score-poor); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-sm); }
+  .exec-do-now-title { font-weight:700; font-size:1.05rem; margin-bottom:var(--space-xs); }
+  .exec-do-now-time { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); }
+  .exec-good-news { margin-top:var(--space-lg); padding:var(--space-md) var(--space-lg); background:var(--color-surface); border-radius:var(--radius-md); border-left:4px solid var(--color-score-excellent); font-size:0.95rem; color:var(--color-text-secondary); line-height:1.7; }
+
+  /* ===== COMPETITOR SECTION ===== */
+  .compete-table-wrap { overflow-x:auto; margin-bottom:var(--space-lg); }
+  .compete-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+  .compete-table th { background:var(--color-primary); color:white; padding:var(--space-sm) var(--space-md); text-align:left; font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap; }
+  .compete-table th:first-child { border-radius:var(--radius-sm) 0 0 0; }
+  .compete-table th:last-child { border-radius:0 var(--radius-sm) 0 0; }
+  .compete-table td { padding:var(--space-sm) var(--space-md); border-bottom:1px solid var(--color-border); white-space:nowrap; }
+  .compete-table tr:hover { background:var(--color-surface-alt); }
+  .compete-table tr.is-target { background:var(--color-accent-soft); font-weight:600; }
+  .compete-table tr.is-target td { border-bottom-color:rgba(0,201,167,0.3); }
+  .compete-table .rank-num { font-family:var(--font-mono); font-weight:700; color:var(--color-text-muted); }
+  .compete-table .target-marker { color:var(--color-accent); font-weight:700; }
+  .compete-gap-callout { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); border-left:4px solid var(--color-score-fair); font-size:0.9rem; color:var(--color-text-secondary); line-height:1.6; margin-bottom:var(--space-lg); }
+  .keyword-rank { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-md); }
+  .keyword-rank-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-md); display:flex; align-items:center; gap:var(--space-sm); }
+  .keyword-rank-list { list-style:none; display:grid; gap:var(--space-xs); }
+  .keyword-rank-item { display:flex; align-items:center; gap:var(--space-md); padding:var(--space-sm) var(--space-md); border-radius:var(--radius-sm); font-size:0.85rem; }
+  .keyword-rank-item:nth-child(odd) { background:var(--color-surface-alt); }
+  .keyword-rank-item.is-target { background:var(--color-accent-soft); font-weight:600; }
+  .keyword-rank-pos { font-family:var(--font-mono); font-weight:700; min-width:28px; color:var(--color-text-muted); }
+  .keyword-rank-name { flex:1; }
+  .keyword-rank-rating { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); }
+  .keyword-not-found { background:#FEF2F2; border:1px solid rgba(220,38,38,0.2); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); font-size:0.9rem; color:#DC2626; font-weight:500; margin-top:var(--space-sm); }
+
   /* ===== SECTIONS ===== */
   .section { margin-bottom:var(--space-xl); scroll-margin-top:60px; }
   .section-header { display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-lg); flex-wrap:wrap; }
   .section-icon { width:44px; height:44px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
   .section-title { font-family:var(--font-display); font-size:1.35rem; font-weight:700; letter-spacing:-0.01em; }
   .section-score-inline { margin-left:auto; font-family:var(--font-mono); font-size:0.9rem; font-weight:500; padding:4px 12px; border-radius:var(--radius-full); white-space:nowrap; }
-  .section-verdict { width:100%; font-size:0.95rem; color:var(--color-text-secondary); padding:var(--space-md) var(--space-lg); background:var(--color-surface-alt); border-radius:var(--radius-sm); margin-top:calc(-1 * var(--space-sm)); line-height:1.6; border-left:3px solid var(--color-border); }
+  .section-verdict { width:100%; font-size:0.95rem; color:var(--color-text-secondary); padding:var(--space-md) var(--space-lg); background:var(--color-surface-alt); border-radius:var(--radius-sm); margin-top:calc(-1 * var(--space-sm)); line-height:1.6; border-left:3px solid var(--color-border); margin-bottom:var(--space-lg); }
 
   /* ===== FINDINGS ===== */
   .findings-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-md); margin-bottom:var(--space-lg); }
@@ -151,57 +153,135 @@
   .finding-card.status-fail { border-top-color:var(--color-score-poor); }
   .finding-status { display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:var(--space-sm); }
   .finding-status-dot { width:8px; height:8px; border-radius:50%; }
+  /* Data credibility badge */
+  .finding-source { display:inline-flex; align-items:center; gap:4px; font-size:0.65rem; font-weight:600; padding:2px 8px; border-radius:var(--radius-full); margin-left:var(--space-sm); letter-spacing:0.03em; }
+  .source-verified { background:#DCFCE7; color:#15803D; }
+  .source-cross-checked { background:#DBEAFE; color:#1D4ED8; }
   .finding-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-sm); }
   .finding-detail { font-size:0.875rem; color:var(--color-text-secondary); line-height:1.6; flex:1; }
   .finding-impact { margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px dashed var(--color-border); font-size:0.8rem; color:var(--color-text-secondary); line-height:1.5; display:flex; gap:6px; }
   .finding-impact-icon { flex-shrink:0; }
+  /* Pass items: compact single-line */
+  .finding-card.status-pass .finding-detail { display:none; }
+  .finding-card.status-pass .finding-impact { display:none; }
+  .finding-card.status-pass { padding:var(--space-md) var(--space-lg); }
 
-  /* ===== RECOMMENDATIONS (STEP CARDS) ===== */
-  .rec-card { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-md); }
-  .rec-header { display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-sm); flex-wrap:wrap; }
-  .rec-priority { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:4px 10px; border-radius:var(--radius-full); white-space:nowrap; }
-  .priority-high { background:#FEF2F2; color:#DC2626; }
-  .priority-medium { background:#FFF7ED; color:#D97706; }
-  .priority-low { background:#EFF6FF; color:#2563EB; }
-  .rec-title { font-weight:600; font-size:1rem; }
-  .rec-why { font-size:0.875rem; color:var(--color-text-secondary); line-height:1.7; margin-bottom:var(--space-lg); padding:var(--space-md); background:var(--color-surface-alt); border-radius:var(--radius-sm); }
-  .rec-steps { display:grid; gap:var(--space-md); margin-bottom:var(--space-md); }
-  .rec-step { display:flex; gap:var(--space-md); align-items:flex-start; }
-  .rec-step-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; background:var(--color-primary); color:white; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:0.8rem; margin-top:2px; }
-  .rec-step-content { flex:1; }
-  .rec-step-title { font-weight:600; font-size:0.9rem; margin-bottom:2px; }
-  .rec-step-desc { font-size:0.825rem; color:var(--color-text-secondary); line-height:1.5; }
-  .rec-step-time { font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted); margin-top:3px; }
-  .rec-result { display:flex; align-items:center; gap:var(--space-sm); padding:var(--space-md); background:var(--color-accent-soft); border-radius:var(--radius-sm); font-size:0.875rem; color:#059669; font-weight:500; }
+  /* ===== ACTION PLAN (Impact x Difficulty Matrix) ===== */
+  .action-matrix { display:grid; gap:var(--space-lg); margin-bottom:var(--space-lg); }
+  .action-group { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); }
+  .action-group-header { display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-lg); padding-bottom:var(--space-md); border-bottom:1px solid var(--color-border); }
+  .action-group-badge { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:4px 12px; border-radius:var(--radius-full); white-space:nowrap; }
+  .badge-do-now { background:#FEF2F2; color:#DC2626; }
+  .badge-this-week { background:#FFF7ED; color:#D97706; }
+  .badge-when-free { background:#EFF6FF; color:#2563EB; }
+  .badge-optional { background:#F3F4F6; color:#6B7280; }
+  .action-group-title { font-family:var(--font-display); font-weight:700; font-size:1.05rem; }
+  .action-items { display:grid; gap:var(--space-md); }
+  .action-item { border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-lg); transition:box-shadow 0.2s; }
+  .action-item:hover { box-shadow:var(--shadow-md); }
+  .action-item-header { display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-md); flex-wrap:wrap; }
+  .action-item-title { font-weight:700; font-size:1rem; flex:1; }
+  .action-difficulty { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); white-space:nowrap; }
+  .action-time { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); padding:2px 10px; background:var(--color-surface-alt); border-radius:var(--radius-full); white-space:nowrap; }
+  .action-why { font-size:0.875rem; color:var(--color-text-secondary); line-height:1.6; margin-bottom:var(--space-md); }
+  .action-why cite { font-style:normal; font-size:0.8rem; color:var(--color-text-muted); }
+  .action-steps { display:grid; gap:var(--space-sm); margin-bottom:var(--space-md); }
+  .action-step { display:flex; gap:var(--space-md); align-items:flex-start; font-size:0.875rem; }
+  .action-step-num { flex-shrink:0; width:24px; height:24px; border-radius:50%; background:var(--color-primary); color:white; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:0.75rem; margin-top:2px; }
+  .action-step-text { flex:1; line-height:1.5; color:var(--color-text-secondary); }
+  .action-tiers { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-sm); }
+  @media(max-width:560px){ .action-tiers { grid-template-columns:1fr; } }
+  .action-tier { padding:var(--space-md); border-radius:var(--radius-sm); font-size:0.8rem; line-height:1.5; text-align:center; }
+  .tier-diy { background:#DCFCE7; color:#15803D; }
+  .tier-expert { background:#FEF2F2; color:#DC2626; }
+  .action-result { display:flex; align-items:center; gap:var(--space-sm); padding:var(--space-md); background:var(--color-accent-soft); border-radius:var(--radius-sm); font-size:0.85rem; color:#059669; font-weight:500; margin-top:var(--space-md); }
 
-  /* ===== TIMELINE ===== */
-  .timeline { position:relative; padding-left:36px; }
-  .timeline::before { content:''; position:absolute; left:15px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,var(--color-accent),var(--color-border)); }
-  .timeline-phase { position:relative; margin-bottom:var(--space-xl); }
-  .timeline-dot { position:absolute; left:-36px; top:4px; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; color:white; z-index:1; }
-  .timeline-phase-title { font-family:var(--font-display); font-size:1.1rem; font-weight:700; margin-bottom:var(--space-xs); }
-  .timeline-phase-period { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); margin-bottom:var(--space-md); }
-  .timeline-progress { font-size:0.8rem; color:var(--color-text-muted); margin-bottom:var(--space-sm); font-family:var(--font-mono); }
-  .timeline-actions { display:flex; flex-direction:column; gap:var(--space-sm); }
-  .timeline-action { background:var(--color-surface); border-radius:var(--radius-sm); padding:var(--space-md); box-shadow:var(--shadow-sm); font-size:0.875rem; display:flex; align-items:flex-start; gap:var(--space-sm); line-height:1.5; cursor:pointer; transition:background 0.15s; user-select:none; }
-  .timeline-action:hover { background:var(--color-surface-alt); }
-  .timeline-action-check { flex-shrink:0; width:20px; height:20px; border:2px solid var(--color-border); border-radius:4px; margin-top:1px; display:flex; align-items:center; justify-content:center; transition:all 0.2s; font-size:0; }
-  .timeline-action.done .timeline-action-check { background:var(--color-accent); border-color:var(--color-accent); font-size:0.7rem; color:white; }
-  .timeline-action.done span { text-decoration:line-through; color:var(--color-text-muted); }
+  /* ===== APPENDIX: SCORING MATRIX ===== */
+  .scoring-matrix-wrap { overflow-x:auto; margin-bottom:var(--space-lg); }
+  .scoring-matrix { width:100%; border-collapse:collapse; font-size:0.825rem; }
+  .scoring-matrix th { background:var(--color-surface-alt); padding:var(--space-sm) var(--space-md); text-align:left; font-weight:600; font-size:0.75rem; border-bottom:2px solid var(--color-border); }
+  .scoring-matrix td { padding:var(--space-sm) var(--space-md); border-bottom:1px solid var(--color-border); }
+  .scoring-matrix tr:hover { background:var(--color-surface-alt); }
+  .scoring-matrix .score-cell { font-family:var(--font-mono); font-weight:600; text-align:center; }
+  .scoring-matrix .score-pass { color:#059669; }
+  .scoring-matrix .score-partial { color:#D97706; }
+  .scoring-matrix .score-fail { color:#DC2626; }
+  .scoring-formula { background:var(--color-surface-alt); border-radius:var(--radius-md); padding:var(--space-lg); font-family:var(--font-mono); font-size:0.85rem; text-align:center; margin-bottom:var(--space-lg); color:var(--color-text-secondary); }
 
-  /* ===== [NEW] TOOLTIP ===== */
+  /* ===== APPENDIX: TEMPLATES ===== */
+  .copy-template { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-md); }
+  .copy-template-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-md); display:flex; align-items:center; gap:var(--space-sm); }
+  .copy-template-content { background:var(--color-surface-alt); border-radius:var(--radius-sm); padding:var(--space-lg); font-size:0.875rem; line-height:1.8; color:var(--color-text-secondary); white-space:pre-wrap; position:relative; }
+  .copy-btn { position:absolute; top:var(--space-sm); right:var(--space-sm); background:var(--color-primary); color:white; border:none; padding:6px 14px; border-radius:var(--radius-full); font-size:0.75rem; font-family:var(--font-mono); cursor:pointer; transition:all 0.2s; }
+  .copy-btn:hover { background:var(--color-accent); }
+  .copy-btn.copied { background:#059669; }
+
+  /* ===== GLOSSARY (inside appendix) ===== */
+  .glossary { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-lg); }
+  .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-sm); }
+  .glossary-item { display:flex; gap:var(--space-sm); font-size:0.825rem; padding:var(--space-sm) 0; }
+  .glossary-term { font-weight:600; min-width:100px; flex-shrink:0; color:var(--color-primary); }
+  .glossary-def { color:var(--color-text-secondary); line-height:1.5; }
+
+  /* ===== TOOLTIP ===== */
   .term { border-bottom:1px dashed var(--color-text-muted); cursor:help; position:relative; }
   .term .tip { visibility:hidden; opacity:0; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--color-primary); color:white; font-size:0.75rem; font-weight:400; padding:8px 12px; border-radius:var(--radius-sm); white-space:normal; width:240px; line-height:1.5; z-index:200; box-shadow:var(--shadow-lg); pointer-events:none; transition:opacity 0.2s, visibility 0.2s; text-transform:none; letter-spacing:normal; }
   .term .tip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:var(--color-primary); }
   .term:hover .tip, .term:focus .tip { visibility:visible; opacity:1; }
   @media(max-width:768px){ .term .tip { left:0; transform:none; width:200px; } }
 
-  /* ===== [NEW] GLOSSARY ===== */
-  .glossary { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-xl); }
-  .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-sm); }
-  .glossary-item { display:flex; gap:var(--space-sm); font-size:0.825rem; padding:var(--space-sm) 0; }
-  .glossary-term { font-weight:600; min-width:100px; flex-shrink:0; color:var(--color-primary); }
-  .glossary-def { color:var(--color-text-secondary); line-height:1.5; }
+  /* ===== ABOUT / CTA ===== */
+  .about-section { background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-primary-light) 60%,#1B4D6E 100%); border-radius:var(--radius-lg); padding:var(--space-2xl); margin-bottom:var(--space-xl); position:relative; overflow:hidden; color:white; }
+  .about-section::before { content:''; position:absolute; top:-40%; right:-15%; width:400px; height:400px; background:radial-gradient(circle,rgba(0,201,167,0.12) 0%,transparent 70%); border-radius:50%; }
+  .about-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:var(--space-xl); align-items:center; }
+  @media(max-width:768px){ .about-inner { grid-template-columns:1fr; } }
+  .about-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-accent); margin-bottom:var(--space-md); display:flex; align-items:center; gap:8px; }
+  .about-label::before { content:''; width:24px; height:2px; background:var(--color-accent); }
+  .about-name { font-family:var(--font-display); font-size:clamp(1.4rem,3vw,1.8rem); font-weight:900; margin-bottom:var(--space-md); letter-spacing:-0.02em; }
+  .about-desc { font-size:0.95rem; line-height:1.8; color:rgba(255,255,255,0.75); margin-bottom:var(--space-lg); }
+  .about-cta { display:flex; flex-direction:column; gap:var(--space-md); }
+  .about-cta-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.5); margin-bottom:var(--space-xs); }
+  .cta-card { display:flex; align-items:center; gap:var(--space-md); padding:var(--space-md) var(--space-lg); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-md); text-decoration:none; color:white; transition:all 0.25s; }
+  .cta-card:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25); transform:translateY(-2px); }
+  .cta-card-icon { width:44px; height:44px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+  .cta-card-text { flex:1; }
+  .cta-card-title { font-family:var(--font-display); font-weight:700; font-size:0.95rem; margin-bottom:2px; }
+  .cta-card-desc { font-size:0.8rem; color:rgba(255,255,255,0.55); }
+  .cta-card-arrow { font-size:1.2rem; color:rgba(255,255,255,0.3); transition:all 0.2s; }
+  .cta-card:hover .cta-card-arrow { color:var(--color-accent); transform:translateX(4px); }
+
+  /* ===== REPORT CTA BANNER ===== */
+  .report-cta-banner { background:linear-gradient(135deg,#F0FDFA 0%,#E6FAF5 50%,#EFF6FF 100%); border:2px solid rgba(0,201,167,0.25); border-radius:var(--radius-lg); padding:var(--space-xl); margin-bottom:var(--space-xl); text-align:center; }
+  .report-cta-badge { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:#059669; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-md); }
+  .report-cta-title { font-family:var(--font-display); font-size:1.3rem; font-weight:900; margin-bottom:var(--space-sm); letter-spacing:-0.02em; }
+  .report-cta-desc { font-size:0.95rem; color:var(--color-text-secondary); max-width:540px; margin:0 auto var(--space-lg); line-height:1.7; }
+  .report-cta-guarantee { margin-top:var(--space-lg); padding-top:var(--space-md); border-top:1px solid rgba(0,201,167,0.15); font-size:0.8rem; color:var(--color-text-muted); }
+
+  /* Service Tier Cards */
+  .service-tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-md); margin-bottom:var(--space-md); text-align:left; }
+  @media(max-width:768px){ .service-tiers { grid-template-columns:1fr; } }
+  .service-tier { background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-lg); display:flex; flex-direction:column; transition:transform 0.2s, box-shadow 0.2s; }
+  .service-tier:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .service-tier-highlight { border-color:var(--color-accent); border-width:2px; position:relative; background:linear-gradient(180deg,#F0FDFA 0%,#FFFFFF 100%); }
+  .service-tier-popular { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--color-accent); color:white; font-family:var(--font-mono); font-size:0.7rem; font-weight:700; padding:3px 14px; border-radius:var(--radius-full); letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; }
+  .service-tier-icon { font-size:1.5rem; margin-bottom:var(--space-sm); }
+  .service-tier-name { font-family:var(--font-display); font-weight:800; font-size:1.05rem; margin-bottom:var(--space-xs); }
+  .service-tier-price { font-family:var(--font-mono); font-size:0.85rem; color:var(--color-accent); font-weight:600; margin-bottom:var(--space-md); }
+  .service-tier-list { list-style:none; flex:1; margin-bottom:var(--space-lg); }
+  .service-tier-list li { font-size:0.8rem; color:var(--color-text-secondary); padding:4px 0; display:flex; align-items:flex-start; gap:6px; line-height:1.5; }
+  .service-tier-list li::before { content:'✓'; color:var(--color-accent); font-weight:700; flex-shrink:0; }
+  .service-tier-btn { display:block; text-align:center; padding:10px 20px; border-radius:var(--radius-full); font-family:var(--font-display); font-size:0.85rem; font-weight:700; text-decoration:none; transition:all 0.25s; }
+  .service-tier-btn-outline { background:transparent; color:var(--color-text-secondary); border:1px solid var(--color-border); }
+  .service-tier-btn-outline:hover { border-color:var(--color-accent); color:var(--color-accent); }
+  .service-tier-btn-primary { background:var(--color-accent); color:white; border:1px solid var(--color-accent); }
+  .service-tier-btn-primary:hover { background:#00B294; transform:translateY(-1px); box-shadow:var(--shadow-sm); }
+  .service-tier-btn-dark { background:var(--color-primary); color:white; border:1px solid var(--color-primary); }
+  .service-tier-btn-dark:hover { background:var(--color-primary-light); transform:translateY(-1px); box-shadow:var(--shadow-sm); }
+
+  /* Highlighted CTA card in about section */
+  .cta-card-highlight { background:rgba(0,201,167,0.1)!important; border-color:rgba(0,201,167,0.3)!important; }
+  .cta-card-highlight:hover { background:rgba(0,201,167,0.18)!important; border-color:rgba(0,201,167,0.5)!important; }
+  .cta-card-highlight .cta-card-title { color:var(--color-accent); }
 
   /* ===== FOOTER ===== */
   .report-footer { text-align:center; padding:var(--space-xl) 0 var(--space-lg); border-top:1px solid var(--color-border); margin-top:var(--space-xl); }
@@ -222,6 +302,7 @@
     .section { break-inside:avoid; }
     .animate-in { animation:none!important; opacity:1!important; }
     .term .tip { display:none; }
+    .report-cta-banner { break-inside:avoid; }
   }
 </style>
 </head>
@@ -257,20 +338,21 @@
     </div>
   </header>
 
-  <!-- ========== [NEW] STICKY NAV ========== -->
+  <!-- ========== 2. STICKY NAV ========== -->
   <nav class="sticky-nav">
     <div class="sticky-nav-inner">
       <a href="#summary">📌 摘要</a>
+      <a href="#sec-compete">🏆 競爭態勢</a>
       <a href="#sec-basic">📋 基本資訊</a>
       <a href="#sec-review">💬 評論</a>
       <a href="#sec-photo">📸 照片</a>
       <a href="#sec-keyword">🔑 關鍵字</a>
-      <a href="#sec-timeline">🗓 行動計畫</a>
-      <a href="#sec-glossary">📖 名詞解釋</a>
+      <a href="#sec-action">🎯 行動計畫</a>
+      <a href="#sec-appendix">📎 附錄</a>
     </div>
   </nav>
 
-  <!-- ========== 2. SCORE DASHBOARD ========== -->
+  <!-- ========== 3. SCORE DASHBOARD ========== -->
   <section class="dashboard animate-in">
     <div class="total-score-card">
       <div class="score-ring">
@@ -329,37 +411,104 @@
     </div>
   </section>
 
-  <!-- ========== [NEW] EXECUTIVE SUMMARY ========== -->
+  <!-- ========== 4. EXECUTIVE SUMMARY (30 秒摘要) ========== -->
   <section class="exec-summary animate-in" id="summary">
     <div class="exec-summary-badge">📌 30 秒看懂這份報告</div>
     <div class="exec-summary-text">{{執行摘要白話文}}</div>
-    <div class="exec-top3">
-      <div class="exec-top3-item">
-        <div class="exec-top3-num">1</div>
-        <div class="exec-top3-content">
-          <div class="exec-top3-title">{{最優先事項一}}</div>
-          <div class="exec-top3-time">⏱ {{預估時間一}}</div>
-        </div>
-      </div>
-      <div class="exec-top3-item">
-        <div class="exec-top3-num">2</div>
-        <div class="exec-top3-content">
-          <div class="exec-top3-title">{{最優先事項二}}</div>
-          <div class="exec-top3-time">⏱ {{預估時間二}}</div>
-        </div>
-      </div>
-      <div class="exec-top3-item">
-        <div class="exec-top3-num">3</div>
-        <div class="exec-top3-content">
-          <div class="exec-top3-title">{{最優先事項三}}</div>
-          <div class="exec-top3-time">⏱ {{預估時間三}}</div>
-        </div>
-      </div>
+    <div class="exec-do-now">
+      <div class="exec-do-now-label">🔴 最該先做的 1 件事</div>
+      <div class="exec-do-now-title">{{最優先事項}}</div>
+      <div class="exec-do-now-time">⏱ {{預估時間}}</div>
+    </div>
+    <div class="exec-good-news">
+      ✅ <strong>好消息：</strong>{{好消息摘要}}
     </div>
   </section>
 
+  <!-- ========== 5. COMPETITIVE LANDSCAPE (競爭態勢) ========== -->
+  <section class="section animate-in" id="sec-compete">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FFF7ED">🏆</div>
+      <h2 class="section-title">競爭態勢：方圓 5km 同業比較</h2>
+    </div>
+    <div class="section-verdict">💡 {{競爭態勢一句話結論}}</div>
 
-  <!-- ========== 3a. 面向一：商家基本資訊 ========== -->
+    <!-- 5km Competitor Table -->
+    <div class="compete-table-wrap">
+      <table class="compete-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>商家</th>
+            <th>評分</th>
+            <th>評論數</th>
+            <th>距離</th>
+            <th>有網站</th>
+            <th>照片數</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 動態產生競品列，目標商家用 class="is-target" 標記 -->
+          {{競品表格列}}
+          <!--
+          範例格式：
+          <tr>
+            <td class="rank-num">1</td>
+            <td>競品 A</td>
+            <td>4.6</td>
+            <td>389</td>
+            <td>0.8km</td>
+            <td>✅</td>
+            <td>10</td>
+          </tr>
+          <tr class="is-target">
+            <td class="rank-num target-marker">★</td>
+            <td><strong>{{商家名稱}}</strong></td>
+            <td><strong>{{評分}}</strong></td>
+            <td><strong>{{評論數}}</strong></td>
+            <td>--</td>
+            <td><strong>{{有無網站}}</strong></td>
+            <td><strong>{{照片數}}</strong></td>
+          </tr>
+          -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Gap Callout -->
+    <div class="compete-gap-callout">
+      ⚡ {{競品差距一句話}} <!-- 例：「你的照片數在 20 家中排倒數第 3」 -->
+    </div>
+
+    <!-- Keyword Ranking -->
+    {{關鍵字排名區塊}}
+    <!--
+    範例格式：每個關鍵字一個 .keyword-rank 區塊
+
+    <div class="keyword-rank">
+      <div class="keyword-rank-title">🔍 搜尋「中壢鹹酥雞」前 10 名</div>
+      <ol class="keyword-rank-list">
+        <li class="keyword-rank-item">
+          <span class="keyword-rank-pos">1</span>
+          <span class="keyword-rank-name">某鹹酥雞 A</span>
+          <span class="keyword-rank-rating">⭐ 4.6 · 389 則</span>
+        </li>
+        <li class="keyword-rank-item is-target">
+          <span class="keyword-rank-pos">5</span>
+          <span class="keyword-rank-name">★ {{商家名稱}}</span>
+          <span class="keyword-rank-rating">⭐ {{評分}} · {{評論數}} 則</span>
+        </li>
+      </ol>
+    </div>
+
+    若目標商家不在前 10 名：
+    <div class="keyword-not-found">
+      ⚠️ 搜尋「{{關鍵字}}」前 10 名中找不到您的商家
+    </div>
+    -->
+  </section>
+
+  <!-- ========== 6a. 面向一：商家基本資訊 ========== -->
   <section class="section animate-in" id="sec-basic">
     <div class="section-header">
       <div class="section-icon" style="background:{{面向一底色}}">📋</div>
@@ -368,15 +517,42 @@
     </div>
     <div class="section-verdict">💡 {{面向一一句話結論}}</div>
     <div class="findings-grid">
-      <!-- 依據分析結果動態產生 finding-card，每張必須包含 finding-impact -->
       {{面向一_finding_cards}}
-    </div>
-    <div class="rec-card">
-      {{面向一_rec_card}}
+      <!--
+      每張 finding-card 必須包含 .finding-source 標籤：
+
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">電話已設定</div>
+      </div>
+
+      <div class="finding-card status-fail">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 未通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">未設定網站連結</div>
+        <div class="finding-detail">API 回傳 websiteUri 為空值。缺少網站連結意味著消費者無法從 Google 地圖直接前往您的官網。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 根據 Birdeye 2025，完整的商家檔案比未完成的多 80% 搜尋曝光</div>
+      </div>
+
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 部分通過
+          <span class="finding-source source-cross-checked">交叉比對</span>
+        </div>
+        <div class="finding-title">NAP 部分不一致</div>
+        <div class="finding-detail">Google 地圖上的電話與 iFoodie 上的電話不同。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 不一致的 NAP 可能影響搜尋排名約 28%（SQ Magazine 2024）</div>
+      </div>
+      -->
     </div>
   </section>
 
-  <!-- ========== 3b. 面向二：評論分析 ========== -->
+  <!-- ========== 6b. 面向二：評論分析 ========== -->
   <section class="section animate-in" id="sec-review">
     <div class="section-header">
       <div class="section-icon" style="background:{{面向二底色}}">💬</div>
@@ -387,12 +563,9 @@
     <div class="findings-grid">
       {{面向二_finding_cards}}
     </div>
-    <div class="rec-card">
-      {{面向二_rec_card}}
-    </div>
   </section>
 
-  <!-- ========== 3c. 面向三：照片與視覺 ========== -->
+  <!-- ========== 6c. 面向三：照片與視覺 ========== -->
   <section class="section animate-in" id="sec-photo">
     <div class="section-header">
       <div class="section-icon" style="background:{{面向三底色}}">📸</div>
@@ -403,12 +576,9 @@
     <div class="findings-grid">
       {{面向三_finding_cards}}
     </div>
-    <div class="rec-card">
-      {{面向三_rec_card}}
-    </div>
   </section>
 
-  <!-- ========== 3d. 面向四：描述與關鍵字 ========== -->
+  <!-- ========== 6d. 面向四：描述與關鍵字 ========== -->
   <section class="section animate-in" id="sec-keyword">
     <div class="section-header">
       <div class="section-icon" style="background:{{面向四底色}}">🔑</div>
@@ -419,68 +589,192 @@
     <div class="findings-grid">
       {{面向四_finding_cards}}
     </div>
-    <div class="rec-card">
-      {{面向四_rec_card}}
+  </section>
+
+  <!-- ========== 7. ACTION PLAN (影響力 × 難度矩陣) ========== -->
+  <section class="section animate-in" id="sec-action">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--color-accent-soft)">🎯</div>
+      <h2 class="section-title">行動計畫</h2>
+    </div>
+
+    <div class="action-matrix">
+      <!-- 🔴 立刻做 (max 1 item) -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-do-now">🔴 立刻做</span>
+          <span class="action-group-title">高影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+          {{立刻做_action_items}}
+          <!--
+          範例格式：
+
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">填入商家描述</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 10 分鐘</span>
+            </div>
+            <div class="action-why">
+              商家描述是 Google 判斷您的商家「在做什麼」的重要依據。目前您的描述欄位為空白，等於放棄了一張免費的廣告位。
+              <cite>— 根據 SQ Magazine 2024，關鍵字豐富的描述可提升 Local Pack 能見度 31%</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">登入 Google 商家檔案後台 → 點選「資訊」→ 找到「商家描述」</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">複製下方範本，貼上並修改為您的實際內容</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">按「儲存」，約 1-3 天內生效</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>照著上面步驟，10 分鐘搞定</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>包含在 SEO 優化服務中</div>
+            </div>
+            <div class="action-result">📈 預期效果：搜尋曝光增加，Local Pack 能見度 +31%</div>
+          </div>
+          -->
+        </div>
+      </div>
+
+      <!-- 🟡 本週做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-this-week">🟡 本週做</span>
+          <span class="action-group-title">高影響力 + 需要時間 / 中影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+          {{本週做_action_items}}
+        </div>
+      </div>
+
+      <!-- 🔵 有空再做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-when-free">🔵 有空再做</span>
+          <span class="action-group-title">中影響力 + 需要時間 / 低影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+          {{有空再做_action_items}}
+        </div>
+      </div>
+
+      <!-- ⚪ 可以不做 (optional, only include if there are items) -->
+      {{可以不做_section}}
+      <!--
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-optional">⚪ 可以不做</span>
+          <span class="action-group-title">低影響力 + 需要時間</span>
+        </div>
+        <div class="action-items">
+          {{可以不做_action_items}}
+        </div>
+      </div>
+      -->
     </div>
   </section>
 
-  <!-- ========== 4. ACTION TIMELINE ========== -->
-  <section class="section animate-in" id="sec-timeline">
+  <!-- ========== 8. APPENDIX ========== -->
+  <section class="section animate-in" id="sec-appendix">
     <div class="section-header">
-      <div class="section-icon" style="background:var(--color-accent-soft)">🗓</div>
-      <h2 class="section-title">行動時間軸</h2>
+      <div class="section-icon" style="background:var(--color-surface-alt)">📎</div>
+      <h2 class="section-title">附錄</h2>
     </div>
-    <div class="timeline">
-      <div class="timeline-phase">
-        <div class="timeline-dot" style="background:#FF6B6B">1</div>
-        <div class="timeline-phase-title">立即行動</div>
-        <div class="timeline-phase-period">第 1-2 週</div>
-        <div class="timeline-progress" data-phase="1">已完成 0 / {{階段一項目數}} 項</div>
-        <div class="timeline-actions" data-phase="1">
-          {{階段一_action_items}}
-        </div>
-      </div>
-      <div class="timeline-phase">
-        <div class="timeline-dot" style="background:#FFB74D">2</div>
-        <div class="timeline-phase-title">短期優化</div>
-        <div class="timeline-phase-period">第 3-4 週</div>
-        <div class="timeline-progress" data-phase="2">已完成 0 / {{階段二項目數}} 項</div>
-        <div class="timeline-actions" data-phase="2">
-          {{階段二_action_items}}
-        </div>
-      </div>
-      <div class="timeline-phase">
-        <div class="timeline-dot" style="background:#00C9A7">3</div>
-        <div class="timeline-phase-title">持續經營</div>
-        <div class="timeline-phase-period">每月定期執行</div>
-        <div class="timeline-progress" data-phase="3">已完成 0 / {{階段三項目數}} 項</div>
-        <div class="timeline-actions" data-phase="3">
-          {{階段三_action_items}}
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ========== [NEW] GLOSSARY ========== -->
-  <section class="section animate-in" id="sec-glossary">
-    <div class="section-header">
-      <div class="section-icon" style="background:var(--color-surface-alt)">📖</div>
-      <h2 class="section-title">名詞小辭典</h2>
+    <!-- 8a. Scoring Matrix -->
+    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:var(--space-md)">A. 評分計算方式</h3>
+    <div class="scoring-formula">
+      總分 = 基本資訊（25%） + 評論（30%） + 照片（20%） + 描述與關鍵字（25%）<br>
+      <span style="font-size:0.75rem;color:var(--color-text-muted)">權重依據：Whitespark 2026 Local Search Ranking Factors</span>
     </div>
+    <div class="scoring-matrix-wrap">
+      <table class="scoring-matrix">
+        <thead>
+          <tr>
+            <th>面向</th>
+            <th>檢查項</th>
+            <th>滿分</th>
+            <th>得分</th>
+            <th>資料來源</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{評分矩陣列}}
+          <!--
+          範例格式：
+          <tr>
+            <td rowspan="9">商家基本資訊（25%）</td>
+            <td>商家名稱與招牌一致</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-pass">10</td>
+            <td>API displayName</td>
+          </tr>
+          <tr>
+            <td>網站連結已設定</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-fail">0</td>
+            <td>API websiteUri</td>
+          </tr>
+          -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 8b. Copy-paste Templates -->
+    <h3 style="font-size:1.05rem;font-weight:700;margin:var(--space-xl) 0 var(--space-md)">B. 直接複製範本</h3>
+    {{copy_paste_templates}}
+    <!--
+    範例格式：
+
+    <div class="copy-template">
+      <div class="copy-template-title">📝 商家描述範本</div>
+      <div class="copy-template-content" id="tmpl-desc">
+        {{商家描述範本內容}}
+        <button class="copy-btn" onclick="copyTemplate('tmpl-desc')">複製</button>
+      </div>
+    </div>
+
+    <div class="copy-template">
+      <div class="copy-template-title">💬 正面評論回覆範本</div>
+      <div class="copy-template-content" id="tmpl-reply-pos">
+        {{正面回覆範本內容}}
+        <button class="copy-btn" onclick="copyTemplate('tmpl-reply-pos')">複製</button>
+      </div>
+    </div>
+
+    <div class="copy-template">
+      <div class="copy-template-title">💬 負面評論回覆範本</div>
+      <div class="copy-template-content" id="tmpl-reply-neg">
+        {{負面回覆範本內容}}
+        <button class="copy-btn" onclick="copyTemplate('tmpl-reply-neg')">複製</button>
+      </div>
+    </div>
+    -->
+
+    <!-- 8c. Glossary -->
+    <h3 style="font-size:1.05rem;font-weight:700;margin:var(--space-xl) 0 var(--space-md)">C. 名詞小辭典</h3>
     <div class="glossary">
       <div class="glossary-grid">
-        <div class="glossary-item"><span class="glossary-term">Google 商家檔案</span><span class="glossary-def">您在 Google 地圖上的店家頁面，包含地址、電話、評論、照片等。消費者搜尋附近店家時看到的就是這個。以前常簡稱 GBP。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Google 商家檔案</span><span class="glossary-def">您在 Google 地圖上的店家頁面，包含地址、電話、評論、照片等。消費者搜尋附近店家時看到的就是這個。</span></div>
         <div class="glossary-item"><span class="glossary-term">SEO</span><span class="glossary-def">搜尋引擎優化（Search Engine Optimization），讓您的商家在 Google 搜尋結果中排名更前面的技巧。</span></div>
+        <div class="glossary-item"><span class="glossary-term">NAP 一致性</span><span class="glossary-def">Name（商家名稱）、Address（地址）、Phone（電話）在所有網路平台上要一模一樣，Google 才會信任你的資料。</span></div>
         <div class="glossary-item"><span class="glossary-term">關鍵字</span><span class="glossary-def">消費者在 Google 搜尋時輸入的詞彙，例如「台中咖啡廳」「手沖咖啡推薦」。</span></div>
         <div class="glossary-item"><span class="glossary-term">Google 貼文</span><span class="glossary-def">商家檔案中的免費發文功能，類似 Facebook 貼文，會直接出現在 Google 搜尋結果中。</span></div>
-        <div class="glossary-item"><span class="glossary-term">服務區域型商家</span><span class="glossary-def">Google 商家檔案的一種設定，適合沒有實體店面的商家。設定後地址不會公開顯示，但可設定服務範圍。</span></div>
-        <div class="glossary-item"><span class="glossary-term">Google 商家成效（Insights）</span><span class="glossary-def">Google 商家檔案後台的數據分析頁面，可以看到搜尋曝光次數、點擊次數、來電次數等數據。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Local Pack</span><span class="glossary-def">Google 搜尋結果頁上方出現的地圖 + 前三名商家的區塊，是在地 SEO 最重要的曝光位置。</span></div>
         {{其他相關術語}}
       </div>
     </div>
   </section>
 
-  <!-- ========== ABOUT & CTA ========== -->
+  <!-- ========== 9. ABOUT & CTA ========== -->
   <section class="about-section animate-in">
     <div class="about-inner">
       <div class="about-content">
@@ -499,12 +793,20 @@
         </div>
       </div>
       <div class="about-cta">
-        <div class="about-cta-label">想了解更多？</div>
-        <a class="cta-card" href="https://gbp-seo.devfromzero.xyz" target="_blank" rel="noopener">
-          <div class="cta-card-icon" style="background:rgba(0,201,167,0.15)">🌐</div>
+        <div class="about-cta-label">需要幫忙執行？</div>
+        <a class="cta-card cta-card-highlight" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(0,201,167,0.2)">🚀</div>
           <div class="cta-card-text">
-            <div class="cta-card-title">Google 商家 SEO 優化服務</div>
-            <div class="cta-card-desc">gbp-seo.devfromzero.xyz — 查看完整服務方案與成功案例</div>
+            <div class="cta-card-title">專業代操服務</div>
+            <div class="cta-card-desc">沒時間自己動手？交給我們從頭到尾幫你執行所有優化，私訊了解方案與報價</div>
+          </div>
+          <div class="cta-card-arrow">→</div>
+        </a>
+        <a class="cta-card" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(0,201,167,0.15)">📊</div>
+          <div class="cta-card-text">
+            <div class="cta-card-title">免費索取新報告</div>
+            <div class="cta-card-desc">想重新分析？到官網免費申請最新健檢報告</div>
           </div>
           <div class="cta-card-arrow">→</div>
         </a>
@@ -520,12 +822,62 @@
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
+  <!-- ========== 10. SERVICE CTA ========== -->
+  <section class="report-cta-banner animate-in">
+    <div class="report-cta-badge">🚀 下一步行動</div>
+    <div class="report-cta-title">選擇最適合你的優化方式</div>
+    <div class="report-cta-desc">不管是自己動手、找人討論、還是全部交給我們，都有對應方案讓你的商家排名更上一層樓。</div>
+    <div class="service-tiers">
+      <!-- Tier 1: DIY -->
+      <div class="service-tier">
+        <div class="service-tier-icon">📋</div>
+        <div class="service-tier-name">自己動手</div>
+        <div class="service-tier-price">免費</div>
+        <ul class="service-tier-list">
+          <li>照著本報告的行動計畫執行</li>
+          <li>使用附錄的 copy-paste 範本</li>
+          <li>90 天後免費申請新報告追蹤成效</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-outline" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">免費索取新報告</a>
+      </div>
+      <!-- Tier 2: Consultation -->
+      <div class="service-tier">
+        <div class="service-tier-icon">💬</div>
+        <div class="service-tier-name">1 對 1 諮詢</div>
+        <div class="service-tier-price">預約討論</div>
+        <ul class="service-tier-list">
+          <li>針對報告內容深度解說</li>
+          <li>依你的產業量身調整策略</li>
+          <li>回答所有 GBP 優化疑問</li>
+          <li>提供客製化關鍵字建議</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-primary" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">💬 私訊預約</a>
+      </div>
+      <!-- Tier 3: Done-for-you -->
+      <div class="service-tier service-tier-highlight">
+        <div class="service-tier-popular">最省時</div>
+        <div class="service-tier-icon">🚀</div>
+        <div class="service-tier-name">專業代操</div>
+        <div class="service-tier-price">客製報價</div>
+        <ul class="service-tier-list">
+          <li>專人執行報告所有優化項目</li>
+          <li>商家描述撰寫 + 關鍵字佈局</li>
+          <li>照片策略規劃 + 上傳優化</li>
+          <li>評論回覆範本 + 管理策略</li>
+          <li>Google 貼文定期代發</li>
+          <li>90 天成效追蹤報告</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-dark" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">🚀 了解方案</a>
+      </div>
+    </div>
+    <div class="report-cta-guarantee">🛡️ 90 天見效承諾 — 照著報告執行 90 天，若搜尋曝光次數沒有提升，免費提供第二次深度分析</div>
+  </section>
+
+  <!-- ========== 11. FOOTER ========== -->
   <footer class="report-footer">
     <p class="footer-date">報告產出日期：{{分析日期}}</p>
     <p class="footer-disclaimer">
-      本報告基於 Google Maps 公開資訊與 Google Places API 資料進行分析。部分指標（如照片確切數量、後台成效數據、商家回覆率）需商家提供後台存取權限方可精確評估。
-      標示「無法偵測」的項目建議至後台手動確認。分析結果僅供參考，實際搜尋排名受多重因素影響。
+      本報告基於 Google Places API (New) 回傳的真實數據進行分析。標示「已驗證」的項目為 API 直接回傳資料；標示「交叉比對」為多平台驗證結果。報告僅呈現可驗證的項目，分析結果僅供參考，實際搜尋排名受多重因素影響。
     </p>
     <div class="footer-brand">
       <div class="footer-brand-text">Created by <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener" style="color:var(--color-accent);text-decoration:none;font-weight:600;">@dev.from.zero</a></div>
@@ -540,22 +892,31 @@
 
 </div>
 
-<!-- ===== [NEW] Interactive Checkbox JS ===== -->
+<!-- ===== Interactive JS ===== -->
 <script>
-function toggleCheck(el) {
-  el.classList.toggle('done');
-  // Update progress text
-  const phase = el.closest('.timeline-actions').dataset.phase;
-  const actions = el.closest('.timeline-actions').querySelectorAll('.timeline-action');
-  const doneCount = el.closest('.timeline-actions').querySelectorAll('.timeline-action.done').length;
-  const total = actions.length;
-  const progressEl = document.querySelector(`.timeline-progress[data-phase="${phase}"]`);
-  if (progressEl) {
-    progressEl.textContent = `已完成 ${doneCount} / ${total} 項`;
-    if (doneCount === total) progressEl.style.color = '#059669';
-    else progressEl.style.color = '';
-  }
+// Copy template to clipboard
+function copyTemplate(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.innerText.replace('複製','').replace('已複製','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.querySelector('.copy-btn');
+    if (btn) {
+      btn.textContent = '已複製';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 2000);
+    }
+  });
 }
+
+// Init bar width on load
+document.addEventListener('DOMContentLoaded', () => {
+  // Animate dim-bar fills
+  document.querySelectorAll('.dim-bar-fill').forEach(el => {
+    const w = el.style.getPropertyValue('--bar-width');
+    if (w) setTimeout(() => { el.style.width = w; }, 500);
+  });
+});
 </script>
 </body>
 </html>
