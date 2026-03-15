@@ -2197,13 +2197,7 @@
           submittedAt: new Date().toISOString()
         };
 
-        var N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL';
-
-        if (N8N_WEBHOOK_URL.indexOf('YOUR_') === 0) {
-          fields.classList.add('hidden');
-          success.classList.add('show');
-          return;
-        }
+        var N8N_WEBHOOK_URL = 'https://jacky97s-n8n.zeabur.app/webhook/gbp-seo-form';
 
         fetch(N8N_WEBHOOK_URL, {
           method: 'POST',
