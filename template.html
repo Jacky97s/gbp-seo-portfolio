@@ -1483,6 +1483,66 @@
       }
     }
 
+    /* ===== Waitlist Modal ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(32, 33, 36, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 440px;
+      padding: 36px;
+      position: relative;
+      animation: scaleIn 0.25s ease-out;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-card > p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
     /* ===== Google Places Autocomplete ===== */
     .pac-container {
       font-family: var(--font);
@@ -1855,7 +1915,7 @@
                 <li data-i18n="services.t2F6">30 天見效承諾</li>
               </ul>
               <div class="service-card-actions">
-                <a class="service-card-btn service-card-btn-dark" href="https://calendly.com/YOUR_CALENDLY" target="_blank" rel="noopener" data-i18n="services.t2Btn">加入等候名單</a>
+                <button type="button" class="service-card-btn service-card-btn-dark" id="waitlist-open" data-i18n="services.t2Btn">加入等候名單</button>
                 <button type="button" class="service-detail-toggle" aria-label="了解更多">了解更多</button>
               </div>
             </div>
@@ -1880,7 +1940,7 @@
                   <p>曝光次數、搜尋排名變化、評論趨勢等數據，讓你清楚看到投資回報。</p>
                 </div>
               </div>
-              <a class="service-card-btn service-card-btn-dark" href="https://calendly.com/YOUR_CALENDLY" target="_blank" rel="noopener">加入等候名單</a>
+              <button type="button" class="service-card-btn service-card-btn-dark waitlist-open-btn">加入等候名單</button>
             </div>
           </div>
         </div>
@@ -2002,6 +2062,49 @@
     </section>
   </main>
 
+  <!-- ===== Waitlist Modal ===== -->
+  <div class="modal-overlay" id="waitlist-modal">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="waitlist-close" aria-label="關閉">&times;</button>
+      <h3 data-i18n="waitlist.title">加入專業代操等候名單</h3>
+      <p data-i18n="waitlist.subtitle">名額有限，留下資料搶先預約</p>
+      <form id="waitlist-form">
+        <div class="form-fields" id="waitlist-fields">
+          <div class="form-group">
+            <label for="wl-name" data-i18n="form.name">稱呼</label>
+            <input type="text" id="wl-name" name="name" placeholder="您的稱呼" data-i18n-placeholder="form.namePlaceholder" required>
+          </div>
+          <div class="form-group">
+            <label for="wl-email" data-i18n="form.email">Email</label>
+            <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="wl-gbp" data-i18n="form.gbpUrl">Google 商家資訊</label>
+            <input type="text" id="wl-gbp" name="gbpInfo" placeholder="輸入店家名稱搜尋..." data-i18n-placeholder="form.gbpPlaceholder" required autocomplete="off">
+            <div class="form-hint" data-i18n="form.gbpUrlHint">輸入店家名稱即可搜尋，或貼上 Google Maps 連結</div>
+            <input type="hidden" id="wl-place-id" name="placeId">
+            <input type="hidden" id="wl-place-name" name="placeName">
+            <input type="hidden" id="wl-place-address" name="placeAddress">
+          </div>
+          <div class="form-group">
+            <label for="wl-note"><span data-i18n="waitlist.noteLabel">補充說明</span><span class="form-optional" data-i18n="form.optional">（選填）</span></label>
+            <textarea id="wl-note" name="note" rows="3" placeholder="目前遇到的問題、期望達成的目標..." data-i18n-placeholder="waitlist.notePlaceholder"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit" data-i18n="waitlist.submit">送出申請</button>
+        </div>
+        <div class="form-success" id="waitlist-success">
+          <div class="form-success-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <h3 data-i18n="waitlist.successTitle">已加入等候名單！</h3>
+          <p data-i18n="waitlist.successDesc">名額開放時會第一時間通知你！</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="container">
@@ -2108,7 +2211,14 @@
       'card.preview': '報告預覽',
       'card.viewReport': '查看報告',
       'empty.text': '成為第一個獲得免費健檢報告的商家',
-      'empty.cta': '免費索取報告'
+      'empty.cta': '免費索取報告',
+      'waitlist.title': '加入專業代操等候名單',
+      'waitlist.subtitle': '名額有限，留下資料搶先預約',
+      'waitlist.noteLabel': '補充說明',
+      'waitlist.notePlaceholder': '目前遇到的問題、期望達成的目標...',
+      'waitlist.submit': '送出申請',
+      'waitlist.successTitle': '已加入等候名單！',
+      'waitlist.successDesc': '名額開放時會第一時間通知你！'
     },
   };
   </script>
@@ -2136,18 +2246,33 @@
       /* ===== Google Places Autocomplete ===== */
       async function initPlacesAutocomplete() {
         var { Autocomplete } = await google.maps.importLibrary('places');
-        var input = document.getElementById('gbp-info');
-        var autocomplete = new Autocomplete(input, {
+        var opts = {
           types: ['establishment'],
           fields: ['place_id', 'name', 'formatted_address', 'rating', 'user_ratings_total', 'business_status'],
           componentRestrictions: { country: 'tw' }
-        });
-        autocomplete.addListener('place_changed', function () {
-          var place = autocomplete.getPlace();
+        };
+
+        /* CTA form autocomplete */
+        var ctaInput = document.getElementById('gbp-info');
+        var ctaAc = new Autocomplete(ctaInput, opts);
+        ctaAc.addListener('place_changed', function () {
+          var place = ctaAc.getPlace();
           if (place && place.place_id) {
             document.getElementById('place-id').value = place.place_id;
             document.getElementById('place-name').value = place.name || '';
             document.getElementById('place-address').value = place.formatted_address || '';
+          }
+        });
+
+        /* Waitlist modal autocomplete */
+        var wlInput = document.getElementById('wl-gbp');
+        var wlAc = new Autocomplete(wlInput, opts);
+        wlAc.addListener('place_changed', function () {
+          var place = wlAc.getPlace();
+          if (place && place.place_id) {
+            document.getElementById('wl-place-id').value = place.place_id;
+            document.getElementById('wl-place-name').value = place.name || '';
+            document.getElementById('wl-place-address').value = place.formatted_address || '';
           }
         });
       }
@@ -2238,6 +2363,65 @@
       document.querySelectorAll('.service-detail-close').forEach(function (btn) {
         btn.addEventListener('click', function () {
           btn.closest('.service-card-detail').classList.remove('show');
+        });
+      });
+
+      /* ===== Waitlist Modal ===== */
+      var wlModal = document.getElementById('waitlist-modal');
+      var wlForm = document.getElementById('waitlist-form');
+      var wlFields = document.getElementById('waitlist-fields');
+      var wlSuccess = document.getElementById('waitlist-success');
+
+      function openWaitlist() { wlModal.classList.add('show'); }
+      function closeWaitlist() {
+        wlModal.classList.remove('show');
+        /* Reset if already submitted */
+        wlFields.classList.remove('hidden');
+        wlSuccess.classList.remove('show');
+      }
+
+      document.getElementById('waitlist-open').addEventListener('click', openWaitlist);
+      document.querySelectorAll('.waitlist-open-btn').forEach(function (b) {
+        b.addEventListener('click', openWaitlist);
+      });
+      document.getElementById('waitlist-close').addEventListener('click', closeWaitlist);
+      wlModal.addEventListener('click', function (e) {
+        if (e.target === wlModal) closeWaitlist();
+      });
+
+      wlForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = wlForm.querySelector('.form-submit');
+        btn.disabled = true;
+        btn.textContent = t('form.submitting');
+
+        var data = {
+          name: document.getElementById('wl-name').value,
+          email: document.getElementById('wl-email').value,
+          gbpInfo: document.getElementById('wl-gbp').value,
+          placeId: document.getElementById('wl-place-id').value,
+          placeName: document.getElementById('wl-place-name').value,
+          placeAddress: document.getElementById('wl-place-address').value,
+          note: document.getElementById('wl-note').value,
+          utmSource: utmSource,
+          utmMedium: utmMedium,
+          utmCampaign: utmCampaign,
+          refUrl: window.location.href,
+          submittedAt: new Date().toISOString()
+        };
+
+        fetch('https://jacky97s-n8n.zeabur.app/webhook/gbp-seo-waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).then(function (res) {
+          if (!res.ok) throw new Error(res.status);
+          wlFields.classList.add('hidden');
+          wlSuccess.classList.add('show');
+        }).catch(function () {
+          btn.disabled = false;
+          btn.textContent = t('waitlist.submit');
+          alert(t('form.error'));
         });
       });
 
