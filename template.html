@@ -2090,6 +2090,7 @@
             <label for="wl-note"><span data-i18n="waitlist.noteLabel">補充說明</span><span class="form-optional" data-i18n="form.optional">（選填）</span></label>
             <textarea id="wl-note" name="note" rows="3" placeholder="目前遇到的問題、期望達成的目標..." data-i18n-placeholder="waitlist.notePlaceholder"></textarea>
           </div>
+          <div class="cf-turnstile" id="wl-turnstile" data-sitekey="0x4AAAAAACl4rs-G2afDAzBg" data-theme="light"></div>
           <button type="submit" class="btn btn-primary form-submit" data-i18n="waitlist.submit">送出申請</button>
         </div>
         <div class="form-success" id="waitlist-success">
@@ -2391,6 +2392,15 @@
 
       wlForm.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        /* Cloudflare Turnstile validation */
+        var wlTurnstileRes = wlForm.querySelector('[name="cf-turnstile-response"]');
+        var wlCfToken = wlTurnstileRes ? wlTurnstileRes.value : '';
+        if (!wlCfToken) {
+          alert(t('form.turnstileError'));
+          return;
+        }
+
         var btn = wlForm.querySelector('.form-submit');
         btn.disabled = true;
         btn.textContent = t('form.submitting');
@@ -2403,6 +2413,7 @@
           placeName: document.getElementById('wl-place-name').value,
           placeAddress: document.getElementById('wl-place-address').value,
           note: document.getElementById('wl-note').value,
+          cfTurnstileToken: wlCfToken,
           utmSource: utmSource,
           utmMedium: utmMedium,
           utmCampaign: utmCampaign,
@@ -2421,6 +2432,7 @@
         }).catch(function () {
           btn.disabled = false;
           btn.textContent = t('waitlist.submit');
+          if (window.turnstile) turnstile.reset('#wl-turnstile');
           alert(t('form.error'));
         });
       });
