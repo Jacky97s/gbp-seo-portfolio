@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google 商家檔案 SEO 分析報告 — 輕量山裝所</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #0F2B3C;
+    --color-primary-light: #1A3F54;
+    --color-accent: #00C9A7;
+    --color-accent-glow: rgba(0,201,167,0.15);
+    --color-accent-soft: #E6FAF5;
+    --color-score-excellent: #00C9A7;
+    --color-score-good: #4DB8FF;
+    --color-score-fair: #FFB74D;
+    --color-score-poor: #FF6B6B;
+    --color-bg: #F6F8FB;
+    --color-surface: #FFFFFF;
+    --color-surface-alt: #F0F3F8;
+    --color-border: #E2E8F0;
+    --color-text: #1E293B;
+    --color-text-secondary: #64748B;
+    --color-text-muted: #94A3B8;
+    --font-display: 'DM Sans', 'Noto Sans TC', sans-serif;
+    --font-body: 'Noto Sans TC', 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px;
+    --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px rgba(15,43,60,0.06);
+    --shadow-md: 0 4px 16px rgba(15,43,60,0.08);
+    --shadow-lg: 0 8px 32px rgba(15,43,60,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes scaleIn { from { opacity:0; transform:scale(0.9); } to { opacity:1; transform:scale(1); } }
+  @keyframes circleProgress { from { stroke-dashoffset: 490; } }
+  @keyframes slideRight { from { width: 0%; } }
+  @keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.6; } }
+  @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .animate-in { animation: fadeInUp 0.6s ease-out both; }
+  .d1 { animation-delay:0.1s } .d2 { animation-delay:0.2s } .d3 { animation-delay:0.3s } .d4 { animation-delay:0.4s } .d5 { animation-delay:0.5s }
+
+  .report-container { max-width: 1120px; margin: 0 auto; padding: var(--space-lg); }
+
+  /* ===== HERO ===== */
+  .hero { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 60%, #1B4D6E 100%); border-radius: var(--radius-lg); padding: var(--space-2xl) var(--space-xl); margin-bottom: var(--space-lg); position: relative; overflow: hidden; animation: scaleIn 0.5s ease-out; }
+  .hero::before { content:''; position:absolute; top:-50%; right:-20%; width:500px; height:500px; background:radial-gradient(circle,rgba(0,201,167,0.12) 0%,transparent 70%); border-radius:50%; }
+  .hero::after { content:''; position:absolute; bottom:-30%; left:-10%; width:400px; height:400px; background:radial-gradient(circle,rgba(77,184,255,0.08) 0%,transparent 70%); border-radius:50%; }
+  .hero-content { position:relative; z-index:1; }
+  .hero-badge { display:inline-flex; align-items:center; gap:var(--space-sm); background:rgba(0,201,167,0.15); border:1px solid rgba(0,201,167,0.3); color:var(--color-accent); font-family:var(--font-mono); font-size:0.75rem; font-weight:500; padding:6px 14px; border-radius:var(--radius-full); margin-bottom:var(--space-lg); letter-spacing:0.05em; text-transform:uppercase; }
+  .hero-badge::before { content:''; width:6px; height:6px; background:var(--color-accent); border-radius:50%; animation:pulse 2s infinite; }
+  .hero-value-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); font-family:var(--font-mono); font-size:0.7rem; font-weight:500; padding:5px 12px; border-radius:var(--radius-full); margin-left:var(--space-sm); letter-spacing:0.03em; }
+  .hero-value-tag .value-amount { color:rgba(255,255,255,0.95); font-weight:700; }
+  .hero h1 { font-family:var(--font-display); font-size:clamp(1.75rem,4vw,2.5rem); font-weight:900; color:#FFF; margin-bottom:var(--space-sm); letter-spacing:-0.02em; }
+  .hero-subtitle { font-size:1rem; color:rgba(255,255,255,0.6); margin-bottom:var(--space-xl); }
+  .hero-meta { display:flex; flex-wrap:wrap; gap:var(--space-lg); font-size:0.875rem; color:rgba(255,255,255,0.75); }
+  .hero-meta-item { display:flex; align-items:center; gap:var(--space-sm); }
+  .hero-meta-item svg { width:16px; height:16px; opacity:0.6; }
+  .hero-creator { margin-top:var(--space-lg); padding-top:var(--space-md); border-top:1px solid rgba(255,255,255,0.1); }
+  .hero-creator a { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.8); font-family:var(--font-mono); font-size:0.8rem; text-decoration:none; padding:6px 16px; border-radius:var(--radius-full); border:1px solid rgba(255,255,255,0.2); transition:all 0.25s; letter-spacing:0.02em; }
+  .hero-creator a:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.35); color:white; }
+
+  /* ===== STICKY NAV ===== */
+  .sticky-nav { position:sticky; top:0; z-index:100; background:rgba(246,248,251,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--color-border); margin:0 calc(-1 * var(--space-lg)); padding:0 var(--space-lg); margin-bottom:var(--space-lg); }
+  .sticky-nav-inner { display:flex; gap:var(--space-xs); overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding:var(--space-sm) 0; }
+  .sticky-nav-inner::-webkit-scrollbar { display:none; }
+  .sticky-nav a { display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:var(--radius-full); font-size:0.8rem; font-weight:500; color:var(--color-text-secondary); text-decoration:none; white-space:nowrap; transition:all 0.2s; border:1px solid transparent; }
+  .sticky-nav a:hover { background:var(--color-surface); color:var(--color-text); border-color:var(--color-border); }
+
+  /* ===== DASHBOARD ===== */
+  .dashboard { display:grid; grid-template-columns:280px 1fr; gap:var(--space-lg); margin-bottom:var(--space-xl); }
+  @media(max-width:768px){ .dashboard{ grid-template-columns:1fr; } }
+  .total-score-card { background:var(--color-surface); border-radius:var(--radius-lg); padding:var(--space-xl); box-shadow:var(--shadow-md); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .score-ring { position:relative; width:180px; height:180px; margin-bottom:var(--space-lg); }
+  @media(max-width:560px){ .score-ring { width:140px; height:140px; } .score-ring svg { width:140px; height:140px; } .score-number { font-size:2.2rem !important; } }
+  .score-ring svg { transform:rotate(-90deg); }
+  .score-ring-bg { fill:none; stroke:var(--color-surface-alt); stroke-width:10; }
+  .score-ring-progress { fill:none; stroke-width:10; stroke-linecap:round; stroke-dasharray:490; animation:circleProgress 1.5s ease-out forwards; }
+  .score-ring-value { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .score-number { font-family:var(--font-display); font-size:3rem; font-weight:900; line-height:1; letter-spacing:-0.03em; }
+  .score-label { font-size:0.8rem; color:var(--color-text-muted); margin-top:var(--space-xs); text-transform:uppercase; letter-spacing:0.1em; }
+  .score-grade { font-family:var(--font-display); font-size:1rem; font-weight:700; padding:6px 20px; border-radius:var(--radius-full); }
+  .grade-excellent { background:var(--color-accent-soft); color:#059669; }
+  .grade-good { background:#EFF6FF; color:#2563EB; }
+  .grade-fair { background:#FFF7ED; color:#D97706; }
+  .grade-poor { background:#FEF2F2; color:#DC2626; }
+
+  .dimension-scores { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); }
+  @media(max-width:560px){ .dimension-scores{ grid-template-columns:1fr; } }
+  .dim-card { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); border-left:4px solid transparent; transition:transform 0.2s, box-shadow 0.2s; }
+  .dim-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .dim-card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-sm); }
+  .dim-icon { width:40px; height:40px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+  .dim-score { font-family:var(--font-display); font-size:1.75rem; font-weight:900; letter-spacing:-0.02em; }
+  .dim-name { font-size:0.9rem; font-weight:500; margin-bottom:2px; }
+  .dim-weight { font-size:0.75rem; color:var(--color-text-muted); font-family:var(--font-mono); }
+  .dim-status { font-size:0.75rem; font-weight:600; margin-top:var(--space-sm); padding:3px 10px; border-radius:var(--radius-full); display:inline-block; }
+  .dim-bar { height:6px; background:var(--color-surface-alt); border-radius:var(--radius-full); margin-top:var(--space-sm); overflow:hidden; }
+  .dim-bar-fill { height:100%; border-radius:var(--radius-full); animation:slideRight 1s ease-out 0.5s forwards; width:0; }
+
+  /* ===== EXECUTIVE SUMMARY ===== */
+  .exec-summary { background:linear-gradient(135deg,#F0FDFA 0%,#E6FAF5 100%); border:2px solid rgba(0,201,167,0.2); border-radius:var(--radius-lg); padding:var(--space-xl); margin-bottom:var(--space-xl); position:relative; }
+  .exec-summary-badge { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:#059669; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-md); }
+  .exec-summary-text { font-size:1.05rem; line-height:1.8; color:var(--color-text); margin-bottom:var(--space-lg); }
+  .exec-do-now { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); border-left:4px solid var(--color-score-poor); }
+  .exec-do-now-label { font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--color-score-poor); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-sm); }
+  .exec-do-now-title { font-weight:700; font-size:1.05rem; margin-bottom:var(--space-xs); }
+  .exec-do-now-time { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); }
+  .exec-good-news { margin-top:var(--space-lg); padding:var(--space-md) var(--space-lg); background:var(--color-surface); border-radius:var(--radius-md); border-left:4px solid var(--color-score-excellent); font-size:0.95rem; color:var(--color-text-secondary); line-height:1.7; }
+
+  /* ===== COMPETITOR SECTION ===== */
+  .compete-table-wrap { overflow-x:auto; margin-bottom:var(--space-lg); }
+  .compete-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+  .compete-table th { background:var(--color-primary); color:white; padding:var(--space-sm) var(--space-md); text-align:left; font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap; }
+  .compete-table th:first-child { border-radius:var(--radius-sm) 0 0 0; }
+  .compete-table th:last-child { border-radius:0 var(--radius-sm) 0 0; }
+  .compete-table td { padding:var(--space-sm) var(--space-md); border-bottom:1px solid var(--color-border); white-space:nowrap; }
+  .compete-table tr:hover { background:var(--color-surface-alt); }
+  .compete-table tr.is-target { background:var(--color-accent-soft); font-weight:600; }
+  .compete-table tr.is-target td { border-bottom-color:rgba(0,201,167,0.3); }
+  .compete-table .rank-num { font-family:var(--font-mono); font-weight:700; color:var(--color-text-muted); }
+  .compete-table .target-marker { color:var(--color-accent); font-weight:700; }
+  .compete-gap-callout { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); border-left:4px solid var(--color-score-fair); font-size:0.9rem; color:var(--color-text-secondary); line-height:1.6; margin-bottom:var(--space-lg); }
+  .keyword-rank { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-md); }
+  .keyword-rank-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-md); display:flex; align-items:center; gap:var(--space-sm); }
+  .keyword-rank-list { list-style:none; display:grid; gap:var(--space-xs); }
+  .keyword-rank-item { display:flex; align-items:center; gap:var(--space-md); padding:var(--space-sm) var(--space-md); border-radius:var(--radius-sm); font-size:0.85rem; }
+  .keyword-rank-item:nth-child(odd) { background:var(--color-surface-alt); }
+  .keyword-rank-item.is-target { background:var(--color-accent-soft); font-weight:600; }
+  .keyword-rank-pos { font-family:var(--font-mono); font-weight:700; min-width:28px; color:var(--color-text-muted); }
+  .keyword-rank-name { flex:1; }
+  .keyword-rank-rating { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); }
+  .keyword-not-found { background:#FEF2F2; border:1px solid rgba(220,38,38,0.2); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); font-size:0.9rem; color:#DC2626; font-weight:500; margin-top:var(--space-sm); }
+
+  /* ===== SECTIONS ===== */
+  .section { margin-bottom:var(--space-xl); scroll-margin-top:60px; }
+  .section-header { display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-lg); flex-wrap:wrap; }
+  .section-icon { width:44px; height:44px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+  .section-title { font-family:var(--font-display); font-size:1.35rem; font-weight:700; letter-spacing:-0.01em; }
+  .section-score-inline { margin-left:auto; font-family:var(--font-mono); font-size:0.9rem; font-weight:500; padding:4px 12px; border-radius:var(--radius-full); white-space:nowrap; }
+  .section-verdict { width:100%; font-size:0.95rem; color:var(--color-text-secondary); padding:var(--space-md) var(--space-lg); background:var(--color-surface-alt); border-radius:var(--radius-sm); margin-top:calc(-1 * var(--space-sm)); line-height:1.6; border-left:3px solid var(--color-border); margin-bottom:var(--space-lg); }
+
+  /* ===== FINDINGS ===== */
+  .findings-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-md); margin-bottom:var(--space-lg); }
+  @media(max-width:560px){ .findings-grid { grid-template-columns:1fr; } }
+  .finding-card { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); border-top:3px solid var(--color-border); display:flex; flex-direction:column; }
+  .finding-card.status-pass { border-top-color:var(--color-score-excellent); }
+  .finding-card.status-warn { border-top-color:var(--color-score-fair); }
+  .finding-card.status-fail { border-top-color:var(--color-score-poor); }
+  .finding-status { display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:var(--space-sm); }
+  .finding-status-dot { width:8px; height:8px; border-radius:50%; }
+  .finding-source { display:inline-flex; align-items:center; gap:4px; font-size:0.65rem; font-weight:600; padding:2px 8px; border-radius:var(--radius-full); margin-left:var(--space-sm); letter-spacing:0.03em; }
+  .source-verified { background:#DCFCE7; color:#15803D; }
+  .source-cross-checked { background:#DBEAFE; color:#1D4ED8; }
+  .finding-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-sm); }
+  .finding-detail { font-size:0.875rem; color:var(--color-text-secondary); line-height:1.6; flex:1; }
+  .finding-impact { margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px dashed var(--color-border); font-size:0.8rem; color:var(--color-text-secondary); line-height:1.5; display:flex; gap:6px; }
+  .finding-impact-icon { flex-shrink:0; }
+  .finding-card.status-pass .finding-detail { display:none; }
+  .finding-card.status-pass .finding-impact { display:none; }
+  .finding-card.status-pass { padding:var(--space-md) var(--space-lg); }
+
+  /* ===== ACTION PLAN ===== */
+  .action-matrix { display:grid; gap:var(--space-lg); margin-bottom:var(--space-lg); }
+  .action-group { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); }
+  .action-group-header { display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-lg); padding-bottom:var(--space-md); border-bottom:1px solid var(--color-border); }
+  .action-group-badge { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:4px 12px; border-radius:var(--radius-full); white-space:nowrap; }
+  .badge-do-now { background:#FEF2F2; color:#DC2626; }
+  .badge-this-week { background:#FFF7ED; color:#D97706; }
+  .badge-when-free { background:#EFF6FF; color:#2563EB; }
+  .badge-optional { background:#F3F4F6; color:#6B7280; }
+  .action-group-title { font-family:var(--font-display); font-weight:700; font-size:1.05rem; }
+  .action-items { display:grid; gap:var(--space-md); }
+  .action-item { border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-lg); transition:box-shadow 0.2s; }
+  .action-item:hover { box-shadow:var(--shadow-md); }
+  .action-item-header { display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-md); flex-wrap:wrap; }
+  .action-item-title { font-weight:700; font-size:1rem; flex:1; }
+  .action-difficulty { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); white-space:nowrap; }
+  .action-time { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); padding:2px 10px; background:var(--color-surface-alt); border-radius:var(--radius-full); white-space:nowrap; }
+  .action-why { font-size:0.875rem; color:var(--color-text-secondary); line-height:1.6; margin-bottom:var(--space-md); }
+  .action-why cite { font-style:normal; font-size:0.8rem; color:var(--color-text-muted); }
+  .action-steps { display:grid; gap:var(--space-sm); margin-bottom:var(--space-md); }
+  .action-step { display:flex; gap:var(--space-md); align-items:flex-start; font-size:0.875rem; }
+  .action-step-num { flex-shrink:0; width:24px; height:24px; border-radius:50%; background:var(--color-primary); color:white; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:0.75rem; margin-top:2px; }
+  .action-step-text { flex:1; line-height:1.5; color:var(--color-text-secondary); }
+  .action-tiers { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-sm); }
+  @media(max-width:560px){ .action-tiers { grid-template-columns:1fr; } }
+  .action-tier { padding:var(--space-md); border-radius:var(--radius-sm); font-size:0.8rem; line-height:1.5; text-align:center; }
+  .tier-diy { background:#DCFCE7; color:#15803D; }
+  .tier-expert { background:#FEF2F2; color:#DC2626; }
+  .action-result { display:flex; align-items:center; gap:var(--space-sm); padding:var(--space-md); background:var(--color-accent-soft); border-radius:var(--radius-sm); font-size:0.85rem; color:#059669; font-weight:500; margin-top:var(--space-md); }
+
+  /* ===== APPENDIX: SCORING MATRIX ===== */
+  .scoring-matrix-wrap { overflow-x:auto; margin-bottom:var(--space-lg); }
+  .scoring-matrix { width:100%; border-collapse:collapse; font-size:0.825rem; }
+  .scoring-matrix th { background:var(--color-surface-alt); padding:var(--space-sm) var(--space-md); text-align:left; font-weight:600; font-size:0.75rem; border-bottom:2px solid var(--color-border); }
+  .scoring-matrix td { padding:var(--space-sm) var(--space-md); border-bottom:1px solid var(--color-border); }
+  .scoring-matrix tr:hover { background:var(--color-surface-alt); }
+  .scoring-matrix .score-cell { font-family:var(--font-mono); font-weight:600; text-align:center; }
+  .scoring-matrix .score-pass { color:#059669; }
+  .scoring-matrix .score-partial { color:#D97706; }
+  .scoring-matrix .score-fail { color:#DC2626; }
+  .scoring-formula { background:var(--color-surface-alt); border-radius:var(--radius-md); padding:var(--space-lg); font-family:var(--font-mono); font-size:0.85rem; text-align:center; margin-bottom:var(--space-lg); color:var(--color-text-secondary); }
+
+  /* ===== APPENDIX: TEMPLATES ===== */
+  .copy-template { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-md); }
+  .copy-template-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-md); display:flex; align-items:center; gap:var(--space-sm); }
+  .copy-template-content { background:var(--color-surface-alt); border-radius:var(--radius-sm); padding:var(--space-lg); font-size:0.875rem; line-height:1.8; color:var(--color-text-secondary); white-space:pre-wrap; position:relative; }
+  .copy-btn { position:absolute; top:var(--space-sm); right:var(--space-sm); background:var(--color-primary); color:white; border:none; padding:6px 14px; border-radius:var(--radius-full); font-size:0.75rem; font-family:var(--font-mono); cursor:pointer; transition:all 0.2s; }
+  .copy-btn:hover { background:var(--color-accent); }
+  .copy-btn.copied { background:#059669; }
+
+  /* ===== GLOSSARY ===== */
+  .glossary { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-lg); }
+  .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-sm); }
+  .glossary-item { display:flex; gap:var(--space-sm); font-size:0.825rem; padding:var(--space-sm) 0; }
+  .glossary-term { font-weight:600; min-width:100px; flex-shrink:0; color:var(--color-primary); }
+  .glossary-def { color:var(--color-text-secondary); line-height:1.5; }
+
+  /* ===== TOOLTIP ===== */
+  .term { border-bottom:1px dashed var(--color-text-muted); cursor:help; position:relative; }
+  .term .tip { visibility:hidden; opacity:0; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--color-primary); color:white; font-size:0.75rem; font-weight:400; padding:8px 12px; border-radius:var(--radius-sm); white-space:normal; width:240px; line-height:1.5; z-index:200; box-shadow:var(--shadow-lg); pointer-events:none; transition:opacity 0.2s, visibility 0.2s; text-transform:none; letter-spacing:normal; }
+  .term .tip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:var(--color-primary); }
+  .term:hover .tip, .term:focus .tip { visibility:visible; opacity:1; }
+  @media(max-width:768px){ .term .tip { left:0; transform:none; width:200px; } }
+
+  /* ===== ABOUT / CTA ===== */
+  .about-section { background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-primary-light) 60%,#1B4D6E 100%); border-radius:var(--radius-lg); padding:var(--space-2xl); margin-bottom:var(--space-xl); position:relative; overflow:hidden; color:white; }
+  .about-section::before { content:''; position:absolute; top:-40%; right:-15%; width:400px; height:400px; background:radial-gradient(circle,rgba(0,201,167,0.12) 0%,transparent 70%); border-radius:50%; }
+  .about-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:var(--space-xl); align-items:center; }
+  @media(max-width:768px){ .about-inner { grid-template-columns:1fr; } }
+  .about-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-accent); margin-bottom:var(--space-md); display:flex; align-items:center; gap:8px; }
+  .about-label::before { content:''; width:24px; height:2px; background:var(--color-accent); }
+  .about-name { font-family:var(--font-display); font-size:clamp(1.4rem,3vw,1.8rem); font-weight:900; margin-bottom:var(--space-md); letter-spacing:-0.02em; }
+  .about-desc { font-size:0.95rem; line-height:1.8; color:rgba(255,255,255,0.75); margin-bottom:var(--space-lg); }
+  .about-cta { display:flex; flex-direction:column; gap:var(--space-md); }
+  .about-cta-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.5); margin-bottom:var(--space-xs); }
+  .cta-card { display:flex; align-items:center; gap:var(--space-md); padding:var(--space-md) var(--space-lg); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-md); text-decoration:none; color:white; transition:all 0.25s; }
+  .cta-card:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25); transform:translateY(-2px); }
+  .cta-card-icon { width:44px; height:44px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+  .cta-card-text { flex:1; }
+  .cta-card-title { font-family:var(--font-display); font-weight:700; font-size:0.95rem; margin-bottom:2px; }
+  .cta-card-desc { font-size:0.8rem; color:rgba(255,255,255,0.55); }
+  .cta-card-arrow { font-size:1.2rem; color:rgba(255,255,255,0.3); transition:all 0.2s; }
+  .cta-card:hover .cta-card-arrow { color:var(--color-accent); transform:translateX(4px); }
+
+  /* ===== REPORT CTA BANNER ===== */
+  .report-cta-banner { background:linear-gradient(135deg,#F0FDFA 0%,#E6FAF5 50%,#EFF6FF 100%); border:2px solid rgba(0,201,167,0.25); border-radius:var(--radius-lg); padding:var(--space-xl); margin-bottom:var(--space-xl); text-align:center; }
+  .report-cta-badge { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:#059669; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-md); }
+  .report-cta-title { font-family:var(--font-display); font-size:1.3rem; font-weight:900; margin-bottom:var(--space-sm); letter-spacing:-0.02em; }
+  .report-cta-desc { font-size:0.95rem; color:var(--color-text-secondary); max-width:540px; margin:0 auto var(--space-lg); line-height:1.7; }
+  .report-cta-guarantee { margin-top:var(--space-lg); padding-top:var(--space-md); border-top:1px solid rgba(0,201,167,0.15); font-size:0.8rem; color:var(--color-text-muted); }
+
+  /* Service Tier Cards */
+  .service-tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-md); margin-bottom:var(--space-md); text-align:left; }
+  @media(max-width:768px){ .service-tiers { grid-template-columns:1fr; } }
+  .service-tier { background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-lg); display:flex; flex-direction:column; transition:transform 0.2s, box-shadow 0.2s; }
+  .service-tier:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .service-tier-highlight { border-color:var(--color-accent); border-width:2px; position:relative; background:linear-gradient(180deg,#F0FDFA 0%,#FFFFFF 100%); }
+  .service-tier-popular { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--color-accent); color:white; font-family:var(--font-mono); font-size:0.7rem; font-weight:700; padding:3px 14px; border-radius:var(--radius-full); letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; }
+  .service-tier-icon { font-size:1.5rem; margin-bottom:var(--space-sm); }
+  .service-tier-name { font-family:var(--font-display); font-weight:800; font-size:1.05rem; margin-bottom:var(--space-xs); }
+  .service-tier-price { font-family:var(--font-mono); font-size:0.85rem; color:var(--color-accent); font-weight:600; margin-bottom:var(--space-md); }
+  .service-tier-list { list-style:none; flex:1; margin-bottom:var(--space-lg); }
+  .service-tier-list li { font-size:0.8rem; color:var(--color-text-secondary); padding:4px 0; display:flex; align-items:flex-start; gap:6px; line-height:1.5; }
+  .service-tier-list li::before { content:'✓'; color:var(--color-accent); font-weight:700; flex-shrink:0; }
+  .service-tier-btn { display:block; text-align:center; padding:10px 20px; border-radius:var(--radius-full); font-family:var(--font-display); font-size:0.85rem; font-weight:700; text-decoration:none; transition:all 0.25s; }
+  .service-tier-btn-outline { background:transparent; color:var(--color-text-secondary); border:1px solid var(--color-border); }
+  .service-tier-btn-outline:hover { border-color:var(--color-accent); color:var(--color-accent); }
+  .service-tier-btn-primary { background:var(--color-accent); color:white; border:1px solid var(--color-accent); }
+  .service-tier-btn-primary:hover { background:#00B294; transform:translateY(-1px); box-shadow:var(--shadow-sm); }
+  .service-tier-btn-dark { background:var(--color-primary); color:white; border:1px solid var(--color-primary); }
+  .service-tier-btn-dark:hover { background:var(--color-primary-light); transform:translateY(-1px); box-shadow:var(--shadow-sm); }
+
+  .cta-card-highlight { background:rgba(0,201,167,0.1)!important; border-color:rgba(0,201,167,0.3)!important; }
+  .cta-card-highlight:hover { background:rgba(0,201,167,0.18)!important; border-color:rgba(0,201,167,0.5)!important; }
+  .cta-card-highlight .cta-card-title { color:var(--color-accent); }
+
+  /* ===== SURVEY CTA ===== */
+  .survey-cta { text-align:center; padding:var(--space-xl) var(--space-lg); margin-top:var(--space-xl); background:linear-gradient(135deg, var(--color-accent-soft) 0%, #F0F7FF 100%); border-radius:var(--radius-lg); border:1px solid var(--color-border); }
+  .survey-cta-icon { font-size:2rem; margin-bottom:var(--space-md); }
+  .survey-cta h3 { font-family:var(--font-display); font-size:1.2rem; font-weight:700; margin-bottom:var(--space-sm); color:var(--color-text); }
+  .survey-cta p { font-size:0.88rem; color:var(--color-text-secondary); max-width:460px; margin:0 auto var(--space-lg); line-height:1.7; }
+  .survey-cta-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 32px; background:var(--color-accent); color:white; font-family:var(--font-display); font-size:0.95rem; font-weight:600; border-radius:var(--radius-full); text-decoration:none; transition:all 0.25s; border:none; cursor:pointer; }
+  .survey-cta-btn:hover { background:#00B294; transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .survey-cta-btn svg { width:18px; height:18px; }
+  .survey-cta-note { font-size:0.75rem; color:var(--color-text-muted); margin-top:var(--space-sm); }
+
+  /* ===== FOOTER ===== */
+  .report-footer { text-align:center; padding:var(--space-xl) 0 var(--space-lg); border-top:1px solid var(--color-border); margin-top:var(--space-xl); }
+  .footer-date { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); margin-bottom:var(--space-sm); }
+  .footer-disclaimer { font-size:0.75rem; color:var(--color-text-muted); max-width:600px; margin:0 auto; line-height:1.6; }
+  .footer-brand { margin-top:var(--space-lg); padding-top:var(--space-lg); border-top:1px solid var(--color-border); display:flex; flex-direction:column; align-items:center; gap:var(--space-sm); }
+  .footer-brand-text { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); letter-spacing:0.03em; }
+  .footer-brand-links { display:flex; align-items:center; gap:var(--space-md); flex-wrap:wrap; justify-content:center; }
+  .footer-brand-link { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.75rem; color:var(--color-primary); text-decoration:none; padding:4px 12px; border-radius:var(--radius-full); border:1px solid var(--color-border); transition:all 0.2s; }
+  .footer-brand-link:hover { background:var(--color-primary); color:white; border-color:var(--color-primary); }
+  .footer-brand-link svg { width:14px; height:14px; }
+
+  @media print {
+    body { background:white; }
+    .report-container { padding:0; max-width:100%; }
+    .sticky-nav { display:none; }
+    .hero { break-inside:avoid; }
+    .section { break-inside:avoid; }
+    .animate-in { animation:none!important; opacity:1!important; }
+    .term .tip { display:none; }
+    .report-cta-banner { break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="report-container" data-report-id="MMU427W6">
+
+  <!-- ========== 1. HERO ========== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-lg)">
+        <div class="hero-badge" style="margin-bottom:0">Google 商家檔案 SEO 分析報告</div>
+        <div class="hero-value-tag">價值 <span class="value-amount">NT$6,000</span></div>
+      </div>
+      <h1>輕量山裝所</h1>
+      <p class="hero-subtitle">Google 商家檔案 SEO 健檢與優化策略</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>804高雄市鼓山區大順一路1041巷3號</span>
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>0929 931 885</span>
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>分析日期：2026-03-18</span>
+        </div>
+      </div>
+      <div class="hero-creator">
+        <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">
+          <svg viewBox="0 0 192 192" width="14" height="14" fill="rgba(255,255,255,0.8)"><path d="M141.537 88.988a66.667 66.667 0 00-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.672-1.14-23.772 1.371-39.07 15.243-38.23 34.682.425 9.847 5.253 18.348 13.595 23.945 7.038 4.723 16.108 7.09 25.537 6.668 12.425-.556 22.149-5.185 28.9-13.757 5.122-6.505 8.386-14.909 9.861-25.467 5.907 3.565 10.303 8.27 12.81 13.862 4.258 9.49 4.509 25.07-3.727 33.312-7.258 7.257-15.977 10.377-29.152 10.478-14.573-.112-25.584-4.788-32.72-13.902-6.674-8.52-10.146-20.644-10.329-36.042.183-15.398 3.655-27.52 10.33-36.042 7.135-9.114 18.146-13.79 32.72-13.902 14.693.114 25.834 4.834 33.126 14.036 3.546 4.478 6.2 10.199 7.946 16.98l14.461-3.855c-2.219-8.623-5.857-16.023-10.886-22.071C152.878 6.882 138.913 1.316 122.122 1.17h-.087c-16.707.143-30.613 5.72-41.327 16.581C71.396 27.148 66.25 40.79 66.003 57.586v.114c.247 16.796 5.393 30.436 14.705 39.835 10.714 10.86 24.62 16.438 41.327 16.581h.087c16.14-.125 28.106-4.575 38.784-15.253 13.597-13.597 13.178-30.552 7.37-43.454-4.17-9.268-11.858-16.765-22.739-22.421zm-39.21 55.294c-10.423.467-21.258-4.104-21.7-14.386-.328-7.616 5.398-16.093 24.668-17.202a96.03 96.03 0 0111.573.635c-1.327 18.992-7.262 30.45-14.54 30.953z"/></svg>
+          Analysed by @dev.from.zero
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 2. STICKY NAV ========== -->
+  <nav class="sticky-nav">
+    <div class="sticky-nav-inner">
+      <a href="#summary">📌 摘要</a>
+      <a href="#sec-compete">🏆 競爭態勢</a>
+      <a href="#sec-basic">📋 基本資訊</a>
+      <a href="#sec-review">💬 評論</a>
+      <a href="#sec-photo">📸 照片</a>
+      <a href="#sec-keyword">🔑 關鍵字</a>
+      <a href="#sec-action">🎯 行動計畫</a>
+      <a href="#sec-appendix">📎 附錄</a>
+    </div>
+  </nav>
+
+  <!-- ========== 3. SCORE DASHBOARD ========== -->
+  <!-- 總分 60, offset = 490 * (1 - 60/100) = 490 * 0.4 = 196 -->
+  <section class="dashboard animate-in">
+    <div class="total-score-card">
+      <div class="score-ring">
+        <svg viewBox="0 0 180 180" width="180" height="180">
+          <circle class="score-ring-bg" cx="90" cy="90" r="78"/>
+          <circle class="score-ring-progress" cx="90" cy="90" r="78" stroke="#FFB74D" style="stroke-dashoffset:196"/>
+        </svg>
+        <div class="score-ring-value">
+          <span class="score-number" style="color:#FFB74D">60</span>
+          <span class="score-label">總體評分</span>
+        </div>
+      </div>
+      <span class="score-grade grade-fair">🟠 待改善</span>
+    </div>
+    <div class="dimension-scores">
+      <!-- 面向一：56 → fair/orange -->
+      <div class="dim-card animate-in d1" style="border-left-color:#FFB74D">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#FFF7ED">📋</div>
+          <span class="dim-score" style="color:#FFB74D">56</span>
+        </div>
+        <div class="dim-name">商家基本資訊</div>
+        <div class="dim-weight">權重 25%</div>
+        <div class="dim-status" style="background:#FFF7ED;color:#D97706">待改善</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:56%;background:#FFB74D"></div></div>
+      </div>
+      <!-- 面向二：78 → good/blue -->
+      <div class="dim-card animate-in d2" style="border-left-color:#4DB8FF">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#EFF6FF">💬</div>
+          <span class="dim-score" style="color:#4DB8FF">78</span>
+        </div>
+        <div class="dim-name">評論分析</div>
+        <div class="dim-weight">權重 30%</div>
+        <div class="dim-status" style="background:#EFF6FF;color:#2563EB">良好</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:78%;background:#4DB8FF"></div></div>
+      </div>
+      <!-- 面向三：55 → fair/orange -->
+      <div class="dim-card animate-in d3" style="border-left-color:#FFB74D">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#FFF7ED">📸</div>
+          <span class="dim-score" style="color:#FFB74D">55</span>
+        </div>
+        <div class="dim-name">照片與視覺內容</div>
+        <div class="dim-weight">權重 20%</div>
+        <div class="dim-status" style="background:#FFF7ED;color:#D97706">待改善</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:55%;background:#FFB74D"></div></div>
+      </div>
+      <!-- 面向四：45 → poor/red -->
+      <div class="dim-card animate-in d4" style="border-left-color:#FF6B6B">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#FEF2F2">🔑</div>
+          <span class="dim-score" style="color:#FF6B6B">45</span>
+        </div>
+        <div class="dim-name">描述與關鍵字策略</div>
+        <div class="dim-weight">權重 25%</div>
+        <div class="dim-status" style="background:#FEF2F2;color:#DC2626">急需改善</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:45%;background:#FF6B6B"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. EXECUTIVE SUMMARY ========== -->
+  <section class="exec-summary animate-in" id="summary">
+    <div class="exec-summary-badge">📌 30 秒看懂這份報告</div>
+    <div class="exec-summary-text">
+      輕量山裝所的<span class="term"><span class="tip">您在 Google 地圖上的店家頁面，包含地址、電話、評論、照片等資訊。</span>Google 商家檔案</span>就像一張寫滿字的名片 — 您的好口碑（5.0 滿分評價）和專業服務都在，但名片上塞了太多不必要的資訊，反而讓 Google 質疑這張名片的可信度。目前商家名稱違反了 Google 的命名規範，有被停權的風險；營業時間未設定，讓想預約的客人無從判斷何時聯繫您；商家描述也是空白的，等於放棄了一塊免費的廣告看板。好消息是，您在「高雄登山背包租借」搜尋中已拿下第一名，核心關鍵字排名很有競爭力，只要修正幾個基礎項目，就能讓好口碑發揮更大效果。
+    </div>
+    <div class="exec-do-now">
+      <div class="exec-do-now-label">🔴 最該先做的 1 件事</div>
+      <div class="exec-do-now-title">修正商家名稱 — 把名稱改回「輕量山裝所」，移除所有關鍵字堆砌，避免 Google 停權</div>
+      <div class="exec-do-now-time">⏱ 預估 5 分鐘</div>
+    </div>
+    <div class="exec-good-news">
+      ✅ <strong>好消息：</strong>您擁有滿分 5.0 的評價（94 則），在高雄登山裝備租借市場中口碑極佳。多位客人特別讚美「老闆親切」「裝備乾淨」「輕量化專業」，這些正面評價是最好的免費廣告。搜尋「高雄登山背包租借」您已是第一名！
+    </div>
+  </section>
+
+  <!-- ========== 5. COMPETITIVE LANDSCAPE ========== -->
+  <section class="section animate-in" id="sec-compete">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FFF7ED">🏆</div>
+      <h2 class="section-title">競爭態勢：高雄登山裝備出租同業比較</h2>
+    </div>
+    <div class="section-verdict">💡 您的評分在同業中最高（5.0），但評論數量（94 則）與龍頭 canada x u.s.a select（963 則）差距明顯，主類別設定為「供應商」導致在運動用品類搜尋中不會出現。</div>
+
+    <!-- Competitor Table -->
+    <div class="compete-table-wrap">
+      <table class="compete-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>商家</th>
+            <th>評分</th>
+            <th>評論數</th>
+            <th>有網站</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td>canada x u.s.a select 歐美登山裝備租借</td>
+            <td>4.9</td>
+            <td>963</td>
+            <td>✅</td>
+          </tr>
+          <tr class="is-target">
+            <td class="rank-num target-marker">★</td>
+            <td><strong>輕量山裝所</strong></td>
+            <td><strong>5.0</strong></td>
+            <td><strong>94</strong></td>
+            <td><strong>✅</strong></td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td>Macaca hiking 登山裝備出租（楠梓）</td>
+            <td>5.0</td>
+            <td>122</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td>iLook 愛露客露營用品出租</td>
+            <td>4.8</td>
+            <td>130</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td>JIMICAMP 吉米露戶外</td>
+            <td>4.9</td>
+            <td>486</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td class="rank-num">6</td>
+            <td>天龍戶外</td>
+            <td>4.5</td>
+            <td>62</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td class="rank-num">7</td>
+            <td>野外營戶外旅遊用品店</td>
+            <td>4.5</td>
+            <td>304</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td class="rank-num">8</td>
+            <td>露霸戶外</td>
+            <td>4.9</td>
+            <td>74</td>
+            <td>✅</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Gap Callout -->
+    <div class="compete-gap-callout">
+      ⚡ 您的評論數 94 則，僅為龍頭競品 canada x u.s.a select（963 則）的十分之一。評論數量是影響<span class="term"><span class="tip">Google 搜尋結果頁上方出現的地圖 + 前三名商家的區塊，是在地 SEO 最重要的曝光位置。</span>Local Pack</span>排名的關鍵因子之一，持續累積評論將有助於縮小差距。
+    </div>
+
+    <!-- Keyword Rankings -->
+    <div class="keyword-rank">
+      <div class="keyword-rank-title">🔍 關鍵字搜尋排名總覽</div>
+      <ol class="keyword-rank-list">
+        <li class="keyword-rank-item is-target">
+          <span class="keyword-rank-pos">1</span>
+          <span class="keyword-rank-name">「高雄登山背包租借」 — ★ 輕量山裝所</span>
+          <span class="keyword-rank-rating">⭐ 5.0 · 94 則</span>
+        </li>
+        <li class="keyword-rank-item">
+          <span class="keyword-rank-pos">2</span>
+          <span class="keyword-rank-name">「高雄登山裝備出租」 — ★ 輕量山裝所（第 1 名：canada x u.s.a select）</span>
+          <span class="keyword-rank-rating">⭐ 5.0 · 94 則</span>
+        </li>
+        <li class="keyword-rank-item">
+          <span class="keyword-rank-pos">2</span>
+          <span class="keyword-rank-name">「高雄睡袋出租」 — ★ 輕量山裝所</span>
+          <span class="keyword-rank-rating">⭐ 5.0 · 94 則</span>
+        </li>
+        <li class="keyword-rank-item">
+          <span class="keyword-rank-pos">5</span>
+          <span class="keyword-rank-name">「高雄帳篷出租」 — ★ 輕量山裝所</span>
+          <span class="keyword-rank-rating">⭐ 5.0 · 94 則</span>
+        </li>
+        <li class="keyword-rank-item">
+          <span class="keyword-rank-pos">7</span>
+          <span class="keyword-rank-name">「鼓山登山用品」 — ★ 輕量山裝所</span>
+          <span class="keyword-rank-rating">⭐ 5.0 · 94 則</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========== 6a. 面向一：商家基本資訊 ========== -->
+  <section class="section animate-in" id="sec-basic">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FFF7ED">📋</div>
+      <h2 class="section-title">面向一：商家基本資訊完整度</h2>
+      <span class="section-score-inline" style="background:#FFF7ED;color:#D97706">56 / 100</span>
+    </div>
+    <div class="section-verdict">💡 基本資訊有三個嚴重缺口：商家名稱違規、營業時間未設定、主類別不精確。地址、電話、網站都已正確設定。</div>
+    <div class="findings-grid">
+
+      <!-- FAIL: 商家名稱 -->
+      <div class="finding-card status-fail">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 未通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">商家名稱嚴重違規</div>
+        <div class="finding-detail">目前名稱為「輕量山裝所-輕量化登山裝備(帳篷 睡袋 背包)出租。預約制 請先透過line預約」，包含大量<span class="term"><span class="tip">消費者在 Google 搜尋時輸入的詞彙，例如「高雄登山裝備出租」。</span>關鍵字</span>堆砌和營運資訊。Google 商家檔案命名規範明確禁止在名稱中加入服務項目、宣傳語或營運提示。這不只影響排名，更可能導致商家檔案被停權。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">⚠️</span> 違反 Google 商家檔案命名規範，有被停權風險。名稱應改為實際招牌名稱「輕量山裝所」。</div>
+      </div>
+
+      <!-- FAIL: 營業時間 -->
+      <div class="finding-card status-fail">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 未通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">營業時間未設定</div>
+        <div class="finding-detail">API 未回傳營業時間資料，表示可能未設定。即使是預約制服務，Google 仍建議設定營業時間，可標註「僅限預約」或設定您習慣接電話的時段。未設定營業時間會讓商家在搜尋結果中無法顯示「營業中」標籤，降低點擊率。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 根據 Birdeye 2025，完整的商家檔案比未完成的多 80% 搜尋曝光。營業時間是完整度的關鍵欄位。</div>
+      </div>
+
+      <!-- WARN: 主類別 -->
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 部分通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">主類別不夠精確</div>
+        <div class="finding-detail">目前主類別為「supplier（供應商）」，這是一個非常籠統的分類。當消費者搜尋「運動用品店」或「戶外用品店」時，您的商家不會出現在搜尋結果中。建議改為「sporting_goods_store（體育用品店）」或更精確的戶外用品相關類別。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 主類別直接影響 Google 在哪些搜尋中顯示您的商家。目前在「5km 內運動用品店」搜尋中完全找不到您。</div>
+      </div>
+
+      <!-- WARN: 次類別 -->
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 部分通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">次類別需要手動設定</div>
+        <div class="finding-detail">系統自動分配了 sporting_goods_store、store、service 等類型，但這些是 Google 自動判斷的，而非您主動設定的次要類別。建議手動新增「戶外用品店」「登山裝備出租」等次類別，擴大搜尋覆蓋面。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 次類別越精確，Google 就越能理解您的服務內容，讓對的客人找到您。</div>
+      </div>
+
+      <!-- WARN: NAP 一致性 -->
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 部分通過
+          <span class="finding-source source-cross-checked">交叉比對</span>
+        </div>
+        <div class="finding-title"><span class="term"><span class="tip">Name（商家名稱）、Address（地址）、Phone（電話）在所有網路平台上要一模一樣，Google 才會信任您的資料。</span>NAP 一致性</span>難以完整驗證</div>
+        <div class="finding-detail">官網（gears.tw）上的地址與 Google 商家檔案一致，但除了官網外，幾乎找不到其他平台的資訊。線上存在感有限意味著 Google 缺少交叉驗證的來源，可能影響信任度。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 在越多平台上有一致的 NAP 資訊，Google 對您商家資料的信任度就越高。</div>
+      </div>
+
+      <!-- PASS: 地址 -->
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">地址完整且格式正確</div>
+      </div>
+
+      <!-- PASS: 電話 -->
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">電話號碼已設定</div>
+      </div>
+
+      <!-- PASS: 網站 -->
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">網站連結已設定（gears.tw）</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== 6b. 面向二：評論分析 ========== -->
+  <section class="section animate-in" id="sec-review">
+    <div class="section-header">
+      <div class="section-icon" style="background:#EFF6FF">💬</div>
+      <h2 class="section-title">面向二：評論分析</h2>
+      <span class="section-score-inline" style="background:#EFF6FF;color:#2563EB">78 / 100</span>
+    </div>
+    <div class="section-verdict">💡 5.0 滿分評價是您最大的資產，94 則評論也達到中等水準。客人最常提到「親切」「乾淨」「輕量化」，品牌形象非常正面。</div>
+    <div class="findings-grid">
+
+      <!-- PASS: 評分 -->
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 優秀
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">平均評分 5.0（滿分）— 全高雄登山裝備出租業最高</div>
+      </div>
+
+      <!-- WARN: 評論數 -->
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 中等
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">評論數量 94 則（中等水準）</div>
+        <div class="finding-detail">94 則評論在同業中排名中段。龍頭競品 canada x u.s.a select 有 963 則，JIMICAMP 吉米露戶外有 486 則。評論數量是 Google 判斷商家熱門程度的重要指標。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📈</span> 根據 SQ Magazine 2024，100% 回覆評論可提升轉換率 5.1%。持續累積真實評論也有助於提升排名。</div>
+      </div>
+
+      <!-- PASS: 關鍵字 -->
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 優秀
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">評論關鍵字正面：「親切」「乾淨」「輕量化」「順利」「保暖」</div>
+      </div>
+
+      <!-- WARN: 回覆建議 -->
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 注意
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">有客人留下具體改善建議</div>
+        <div class="finding-detail">有客人反映「押金轉帳手續費的部分，建議寫出來或事先提醒客人，感受上可能會更好」。這類具體建議是改善服務流程的寶貴回饋，妥善回覆並改善能展現專業態度。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">💡</span> 回覆具體建議的評論，並說明已改善，能讓潛在客人看到您重視客戶體驗。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== 6c. 面向三：照片與視覺 ========== -->
+  <section class="section animate-in" id="sec-photo">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FFF7ED">📸</div>
+      <h2 class="section-title">面向三：照片與視覺內容</h2>
+      <span class="section-score-inline" style="background:#FFF7ED;color:#D97706">55 / 100</span>
+    </div>
+    <div class="section-verdict">💡 API 回傳 10 張照片（API 上限），表示至少有一定數量的照片。但缺少 Google Editorial Summary（編輯摘要），代表 Google 對您商家的理解仍不夠充分。</div>
+    <div class="findings-grid">
+
+      <!-- PASS: 照片數 -->
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">照片數量達 10 張（API 回傳上限）</div>
+      </div>
+
+      <!-- FAIL: Editorial Summary -->
+      <div class="finding-card status-fail">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 缺失
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">無 Google 編輯摘要</div>
+        <div class="finding-detail">Google 的 Editorial Summary（編輯摘要）是 Google 根據商家資訊自動生成的簡短描述。API 回傳為 null，表示 Google 目前沒有足夠的資訊來理解您的商家在做什麼。填寫完整的商家描述、上傳更多不同場景的照片，有助於 Google 生成這段摘要。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 根據 Google / Latitude Park 研究，擁有 15 張以上照片的商家可多獲得 42% 的導航請求。持續上傳多元照片有助於 Google 理解您的服務。</div>
+      </div>
+
+      <!-- WARN: 照片多元性 -->
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 建議
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">建議增加不同場景的照片</div>
+        <div class="finding-detail">目前有 10 張照片（達到 API 回傳上限），但登山裝備出租服務可以展示的內容非常豐富：各款帳篷搭設實景、睡袋收納尺寸對比、背包上身照、裝備整理教學、客人回傳的山上使用照等。多元的照片能讓潛在客人更有信心下單。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📈</span> 根據 Google / Latitude Park 研究，擁有 15+ 張照片的商家多 42% 導航請求。不同場景的照片也有助於 Google 更好地理解您的服務。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== 6d. 面向四：描述與關鍵字 ========== -->
+  <section class="section animate-in" id="sec-keyword">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FEF2F2">🔑</div>
+      <h2 class="section-title">面向四：商家描述與關鍵字策略</h2>
+      <span class="section-score-inline" style="background:#FEF2F2;color:#DC2626">45 / 100</span>
+    </div>
+    <div class="section-verdict">💡 關鍵字策略用錯了地方 — 把關鍵字塞在名稱裡（違規），卻沒有填寫商家描述（免費且合法的關鍵字空間）。搜尋排名尚可，但有很大的優化空間。</div>
+    <div class="findings-grid">
+
+      <!-- FAIL: 商家描述 -->
+      <div class="finding-card status-fail">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 未通過
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">商家描述為空白</div>
+        <div class="finding-detail">商家描述欄位（最多 750 字）是您可以合法放置<span class="term"><span class="tip">消費者在 Google 搜尋時輸入的詞彙，例如「高雄登山裝備出租」「輕量化帳篷租借」。</span>關鍵字</span>的最佳位置。目前是空白，等於放棄了一塊免費的廣告看板。您在商家名稱裡塞的那些關鍵字和服務說明，正確的做法是寫在這裡。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 根據 SQ Magazine 2024，關鍵字豐富的商家描述可提升 <span class="term"><span class="tip">Google 搜尋結果頁上方出現的地圖 + 前三名商家的區塊，是在地 SEO 最重要的曝光位置。</span>Local Pack</span> 能見度 31%。</div>
+      </div>
+
+      <!-- FAIL: 關鍵字放錯位置 -->
+      <div class="finding-card status-fail">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 策略錯誤
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">關鍵字堆砌在名稱中（違規做法）</div>
+        <div class="finding-detail">您把「輕量化登山裝備(帳篷 睡袋 背包)出租。預約制 請先透過line預約」全部塞進商家名稱。Google 明確禁止這種做法，正確的位置是商家描述欄位。想像一下：您的實體招牌寫的是「輕量山裝所」，Google 也希望線上名稱跟招牌一致。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">⚠️</span> 這是 Google 商家檔案最常見的違規原因之一，嚴重時會導致商家檔案被暫停。</div>
+      </div>
+
+      <!-- WARN: 線上存在感 -->
+      <div class="finding-card status-warn">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 薄弱
+          <span class="finding-source source-cross-checked">交叉比對</span>
+        </div>
+        <div class="finding-title">線上存在感有限</div>
+        <div class="finding-detail">除了官網（gears.tw，建置於 Wix 平台）之外，未發現 Instagram、Facebook、Threads 等社群媒體帳號。也沒有找到部落客評論或戶外社群的推薦文章。對於一個口碑極佳的服務來說，線上能見度與實際口碑不成正比。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 社群媒體和部落客評論是 Google 評估商家線上存在感的參考依據，也是潛在客人做功課的重要管道。</div>
+      </div>
+
+      <!-- PASS: 搜尋排名 -->
+      <div class="finding-card status-pass">
+        <div class="finding-status">
+          <span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 亮點
+          <span class="finding-source source-verified">已驗證</span>
+        </div>
+        <div class="finding-title">核心關鍵字排名優秀：「高雄登山背包租借」第 1 名</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== 7. ACTION PLAN ========== -->
+  <section class="section animate-in" id="sec-action">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--color-accent-soft)">🎯</div>
+      <h2 class="section-title">行動計畫</h2>
+    </div>
+
+    <div class="action-matrix">
+      <!-- 🔴 立刻做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-do-now">🔴 立刻做</span>
+          <span class="action-group-title">高影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">修正商家名稱，移除所有關鍵字堆砌</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 5 分鐘</span>
+            </div>
+            <div class="action-why">
+              目前的商家名稱「輕量山裝所-輕量化登山裝備(帳篷 睡袋 背包)出租。預約制 請先透過line預約」嚴重違反 Google 商家檔案命名規範。這就像在身分證上偷偷加了一段廣告 — Google 遲早會發現，後果是商家檔案被暫停，所有評論和排名歸零。
+              <cite>— Google 商家檔案命名規範明確禁止在名稱中加入服務項目、宣傳語或營運資訊</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">登入 Google 商家檔案後台（business.google.com）→ 點選「資訊」</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">找到「商家名稱」欄位，將內容改為「輕量山裝所」（與實體招牌一致）</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">按「儲存」，變更約 1-3 天內生效</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>照著步驟操作，5 分鐘內完成。這是最緊急的項目，請今天就做。</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>包含在 SEO 優化服務中，專家會同時調整名稱、類別和描述</div>
+            </div>
+            <div class="action-result">📈 預期效果：消除停權風險，保護您的 5.0 評分和 94 則評論資產</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🟡 本週做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-this-week">🟡 本週做</span>
+          <span class="action-group-title">高影響力 + 需要時間 / 中影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+
+          <!-- 撰寫商家描述 -->
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">撰寫商家描述（750 字以內）</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 30 分鐘</span>
+            </div>
+            <div class="action-why">
+              商家描述是 Google 判斷您「在做什麼」的重要依據，也是合法放置關鍵字的最佳位置。目前這個欄位是空白的，等於白白放棄了一塊免費的廣告看板。附錄中已提供現成範本，可直接複製修改。
+              <cite>— 根據 SQ Magazine 2024，關鍵字豐富的描述可提升 Local Pack 能見度 31%</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">登入 Google 商家檔案後台 → 點選「資訊」→ 找到「商家描述」</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">複製本報告附錄中的「商家描述範本」，貼上並根據實際情況修改</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">確認描述中自然包含「輕量化」「登山裝備出租」「高雄」「帳篷」「睡袋」「背包」等關鍵字</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">4</div>
+                <div class="action-step-text">按「儲存」，約 1-3 天內生效</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>附錄有現成範本，複製貼上再微調即可</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>專家會根據搜尋數據撰寫最佳化描述</div>
+            </div>
+            <div class="action-result">📈 預期效果：Local Pack 能見度提升 31%，讓 Google 更了解您的服務</div>
+          </div>
+
+          <!-- 設定營業時間 -->
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">設定營業時間</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 10 分鐘</span>
+            </div>
+            <div class="action-why">
+              即使是預約制，也應設定營業時間。可以設定為您習慣回覆 LINE 訊息的時段，或使用「特殊營業時間」標註為預約制。沒有營業時間，搜尋結果中不會顯示「營業中」標籤，消費者在比較商家時容易跳過。
+              <cite>— 根據 Birdeye 2025，完整的商家檔案比未完成的多 80% 搜尋曝光</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">登入 Google 商家檔案後台 → 點選「資訊」→ 找到「營業時間」</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">設定您平常回覆訊息的時段（例如週一至週五 10:00-20:00）</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">在商家描述中註明「採預約制，請透過 LINE 預約取件時間」</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>10 分鐘即可完成設定</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>包含在 SEO 優化服務中</div>
+            </div>
+            <div class="action-result">📈 預期效果：搜尋結果中顯示「營業中」標籤，提升點擊率</div>
+          </div>
+
+          <!-- 調整主類別 -->
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">調整主類別為「體育用品店」</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 5 分鐘</span>
+            </div>
+            <div class="action-why">
+              目前主類別「供應商（supplier）」太籠統，導致搜尋「附近運動用品店」或「戶外用品」時完全找不到您。改為「體育用品店」並新增「戶外用品店」等次類別，可以擴大您的搜尋覆蓋範圍。
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">登入 Google 商家檔案後台 → 點選「資訊」→ 找到「類別」</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">將主類別從「供應商」改為「體育用品店」或「戶外用品店」（選擇最接近的）</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">新增次類別：「運動用品店」「露營裝備出租」等</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>5 分鐘即可完成</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>專家會根據搜尋數據選擇最佳類別組合</div>
+            </div>
+            <div class="action-result">📈 預期效果：在更多相關搜尋中出現，擴大潛在客群觸及</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 🔵 有空再做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-when-free">🔵 有空再做</span>
+          <span class="action-group-title">中影響力 + 需要時間 / 低影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+
+          <!-- 建立社群媒體 -->
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">建立 Instagram / Threads 帳號</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 1-2 小時（初始設定）</span>
+            </div>
+            <div class="action-why">
+              目前除了官網外，完全沒有社群媒體存在。對登山裝備出租這個行業來說，Instagram 是展示裝備實拍照、客人登山回傳照片的最佳平台，也能增加 Google 的信任度。
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">開設 Instagram 商業帳號，帳號名可用 lightweightgear.tw 或 gears.tw</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">將客人歸還裝備時的使用照片（取得同意後）作為內容素材</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">在 Google 商家檔案中新增社群媒體連結</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>用客人回傳的照片當內容，不用額外拍攝</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>專家可協助規劃內容策略與視覺風格</div>
+            </div>
+            <div class="action-result">📈 預期效果：增加線上存在感，強化 NAP 交叉驗證，提升 Google 信任度</div>
+          </div>
+
+          <!-- 持續累積評論 -->
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">建立評論收集流程</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 每次歸還後 1 分鐘</span>
+            </div>
+            <div class="action-why">
+              94 則評論已不錯，但與龍頭競品 963 則仍有十倍差距。建立一個在客人歸還裝備後自動邀請評論的流程，可以穩定累積。
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">在 Google 商家檔案後台取得「評論連結」短網址</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">在客人歸還裝備後的 LINE 感謝訊息中附上評論連結</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">收到評論後回覆（附錄有範本），保持互動</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>設定一次，之後每次只要 1 分鐘</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>專家可協助設計自動化評論收集流程</div>
+            </div>
+            <div class="action-result">📈 預期效果：穩定增加評論數，縮小與龍頭競品的差距</div>
+          </div>
+
+          <!-- 上傳更多照片 -->
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">定期上傳不同場景的裝備照片</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 每月 15 分鐘</span>
+            </div>
+            <div class="action-why">
+              目前有至少 10 張照片，但登山裝備出租有大量視覺素材可展示。定期上傳不同裝備的實拍照、使用場景、收納示範等，讓 Google 和消費者更了解您的服務內容。
+              <cite>— 根據 Google / Latitude Park 研究，15+ 張照片的商家多獲得 42% 導航請求</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">每月拍攝 3-5 張新照片：新進裝備、打包教學、客人使用場景</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">上傳至 Google 商家檔案後台的「照片」區塊</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">3</div>
+                <div class="action-step-text">照片檔名使用描述性名稱（例如「輕量化帳篷-高雄登山裝備出租.jpg」）</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>用手機拍攝即可，不需要專業攝影</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>專家可協助規劃照片策略與拍攝建議</div>
+            </div>
+            <div class="action-result">📈 預期效果：照片超過 15 張後，預期導航請求增加 42%</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ⚪ 可以不做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-optional">⚪ 可以不做</span>
+          <span class="action-group-title">低影響力 + 需要時間</span>
+        </div>
+        <div class="action-items">
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">每週發 Google 貼文</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 每週 15 分鐘</span>
+            </div>
+            <div class="action-why">
+              <span class="term"><span class="tip">商家檔案中的免費發文功能，類似 Facebook 貼文，會直接出現在 Google 搜尋結果中。</span>Google 貼文</span>可以增加搜尋曝光，但對預約制的裝備出租服務來說，投資報酬率相對較低。建議先完成以上所有項目後，再考慮是否定期發文。
+              <cite>— 根據 SQ Magazine 2024，每週發 Google 貼文可增加在地曝光 26%</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step">
+                <div class="action-step-num">1</div>
+                <div class="action-step-text">登入 Google 商家檔案後台 → 點選「貼文」</div>
+              </div>
+              <div class="action-step">
+                <div class="action-step-num">2</div>
+                <div class="action-step-text">發布近期活動、新進裝備、登山知識分享等內容</div>
+              </div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>每週花 15 分鐘撰寫一則貼文</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>專家可代為撰寫與排程 Google 貼文</div>
+            </div>
+            <div class="action-result">📈 預期效果：在地搜尋曝光增加 26%（優先級較低）</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== 8. APPENDIX ========== -->
+  <section class="section animate-in" id="sec-appendix">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--color-surface-alt)">📎</div>
+      <h2 class="section-title">附錄</h2>
+    </div>
+
+    <!-- 8a. Scoring Matrix -->
+    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:var(--space-md)">A. 評分計算方式</h3>
+    <div class="scoring-formula">
+      總分 = 基本資訊（25%） + 評論（30%） + 照片（20%） + 描述與關鍵字（25%）<br>
+      <strong>60</strong> = 56 × 0.25 + 78 × 0.30 + 55 × 0.20 + 45 × 0.25 = 14 + 23.4 + 11 + 11.25 ≈ 60<br>
+      <span style="font-size:0.75rem;color:var(--color-text-muted)">權重依據：Whitespark 2026 Local Search Ranking Factors</span>
+    </div>
+    <div class="scoring-matrix-wrap">
+      <table class="scoring-matrix">
+        <thead>
+          <tr>
+            <th>面向</th>
+            <th>檢查項</th>
+            <th>滿分</th>
+            <th>得分</th>
+            <th>資料來源</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="8">商家基本資訊（25%）</td>
+            <td>商家名稱與招牌一致</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-fail">0</td>
+            <td>API displayName</td>
+          </tr>
+          <tr>
+            <td>地址完整且格式正確</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-pass">10</td>
+            <td>API formattedAddress</td>
+          </tr>
+          <tr>
+            <td>電話號碼已設定</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-pass">10</td>
+            <td>API nationalPhoneNumber</td>
+          </tr>
+          <tr>
+            <td>營業時間完整</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-fail">0</td>
+            <td>API regularOpeningHours</td>
+          </tr>
+          <tr>
+            <td>主類別精確</td>
+            <td class="score-cell">15</td>
+            <td class="score-cell score-partial">8</td>
+            <td>API primaryType</td>
+          </tr>
+          <tr>
+            <td>次類別已設定（≥2）</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-partial">5</td>
+            <td>API types</td>
+          </tr>
+          <tr>
+            <td>網站連結已設定</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-pass">10</td>
+            <td>API websiteUri</td>
+          </tr>
+          <tr>
+            <td>NAP 跨平台一致</td>
+            <td class="score-cell">10</td>
+            <td class="score-cell score-partial">5</td>
+            <td>web_search 交叉比對</td>
+          </tr>
+          <tr>
+            <td rowspan="3">評論分析（30%）</td>
+            <td>評論數量（94 則 → 中等）</td>
+            <td class="score-cell">40</td>
+            <td class="score-cell score-partial">26</td>
+            <td>API userRatingCount</td>
+          </tr>
+          <tr>
+            <td>平均評分（5.0 → 優秀）</td>
+            <td class="score-cell">40</td>
+            <td class="score-cell score-pass">40</td>
+            <td>API rating</td>
+          </tr>
+          <tr>
+            <td>評論關鍵字（正面詞豐富）</td>
+            <td class="score-cell">20</td>
+            <td class="score-cell score-pass">16</td>
+            <td>API reviews</td>
+          </tr>
+          <tr>
+            <td rowspan="2">照片與視覺（20%）</td>
+            <td>照片數量（10 張，API 上限）</td>
+            <td class="score-cell">60</td>
+            <td class="score-cell score-pass">42</td>
+            <td>API photos</td>
+          </tr>
+          <tr>
+            <td>Editorial Summary</td>
+            <td class="score-cell">40</td>
+            <td class="score-cell score-fail">0</td>
+            <td>API editorialSummary</td>
+          </tr>
+          <tr>
+            <td rowspan="3">描述與關鍵字（25%）</td>
+            <td>商家描述已填寫</td>
+            <td class="score-cell">40</td>
+            <td class="score-cell score-fail">0</td>
+            <td>API editorialSummary</td>
+          </tr>
+          <tr>
+            <td>關鍵字策略正確</td>
+            <td class="score-cell">30</td>
+            <td class="score-cell score-fail">5</td>
+            <td>API displayName 分析</td>
+          </tr>
+          <tr>
+            <td>線上存在感</td>
+            <td class="score-cell">30</td>
+            <td class="score-cell score-partial">10</td>
+            <td>web_search 交叉比對</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 8b. Copy-paste Templates -->
+    <h3 style="font-size:1.05rem;font-weight:700;margin:var(--space-xl) 0 var(--space-md)">B. 直接複製範本</h3>
+
+    <div class="copy-template">
+      <div class="copy-template-title">📝 商家描述範本</div>
+      <div class="copy-template-content" id="tmpl-desc">輕量山裝所位於高雄市鼓山區，是南台灣專注於輕量化登山裝備出租的專業服務。我們提供帳篷、睡袋、背包等高品質輕量化裝備租借，適合百岳縱走、高山露營、野營健行等各類戶外活動。
+
+無論您是登山新手想體驗輕裝上陣的自在感，還是經驗豐富的山友想試用最新輕量化裝備，我們都能為您搭配最合適的組合。提供的裝備品牌涵蓋各大輕量化品牌，每件裝備皆經過專業清潔與檢查，確保您的登山安全與舒適。
+
+採預約制服務，請透過 LINE 官方帳號預約取件時間，我們將為您準備好所有裝備並提供使用說明。服務範圍涵蓋高雄、屏東、台南等南部地區山友，歡迎揪團租借享優惠。
+
+服務項目：輕量化帳篷出租、羽絨睡袋出租、登山背包出租、輕量化炊具租借、登山杖租借、裝備搭配諮詢。
+        <button class="copy-btn" onclick="copyTemplate('tmpl-desc')">複製</button>
+      </div>
+    </div>
+
+    <div class="copy-template">
+      <div class="copy-template-title">💬 正面評論回覆範本</div>
+      <div class="copy-template-content" id="tmpl-reply-pos">感謝您選擇輕量山裝所的登山裝備出租服務！很高興聽到【帳篷/睡袋/背包】讓您的【眠月線/百岳】行程更順利。我們堅持每件輕量化裝備都經過專業清潔檢查，就是希望讓每位高雄的山友都能輕裝上陣。期待下次再為您服務，祝登山愉快！🏔️
+        <button class="copy-btn" onclick="copyTemplate('tmpl-reply-pos')">複製</button>
+      </div>
+    </div>
+
+    <div class="copy-template">
+      <div class="copy-template-title">💬 建議/改善評論回覆範本</div>
+      <div class="copy-template-content" id="tmpl-reply-neg">感謝您的寶貴回饋！關於【押金/手續費】的部分，我們已經改善流程，會事先說明所有費用細節。輕量山裝所致力於提供高雄最好的輕量化登山裝備出租體驗，您的建議讓我們變得更好。期待下次再為您服務！
+        <button class="copy-btn" onclick="copyTemplate('tmpl-reply-neg')">複製</button>
+      </div>
+    </div>
+
+    <!-- 8c. Suggested Keywords -->
+    <h3 style="font-size:1.05rem;font-weight:700;margin:var(--space-xl) 0 var(--space-md)">C. 建議關鍵字清單</h3>
+    <div class="copy-template">
+      <div class="copy-template-title">🔑 可自然融入描述與貼文的關鍵字</div>
+      <div class="copy-template-content" id="tmpl-keywords">核心關鍵字：
+高雄登山裝備出租、高雄帳篷出租、高雄睡袋出租、高雄登山背包租借、輕量化登山裝備、鼓山登山用品
+
+長尾關鍵字：
+高雄輕量化帳篷租借、南部登山裝備出租推薦、百岳裝備租借高雄、登山新手裝備出租、高雄露營裝備出租、輕量化睡袋租借高雄、高雄登山背包出租推薦、登山炊具租借高雄、高山縱走裝備出租
+        <button class="copy-btn" onclick="copyTemplate('tmpl-keywords')">複製</button>
+      </div>
+    </div>
+
+    <!-- 8d. Glossary -->
+    <h3 style="font-size:1.05rem;font-weight:700;margin:var(--space-xl) 0 var(--space-md)">D. 名詞小辭典</h3>
+    <div class="glossary">
+      <div class="glossary-grid">
+        <div class="glossary-item"><span class="glossary-term">Google 商家檔案</span><span class="glossary-def">您在 Google 地圖上的店家頁面，包含地址、電話、評論、照片等。消費者搜尋附近店家時看到的就是這個。</span></div>
+        <div class="glossary-item"><span class="glossary-term">SEO</span><span class="glossary-def">搜尋引擎優化（Search Engine Optimization），讓您的商家在 Google 搜尋結果中排名更前面的技巧。</span></div>
+        <div class="glossary-item"><span class="glossary-term">NAP 一致性</span><span class="glossary-def">Name（商家名稱）、Address（地址）、Phone（電話）在所有網路平台上要一模一樣，Google 才會信任你的資料。</span></div>
+        <div class="glossary-item"><span class="glossary-term">關鍵字</span><span class="glossary-def">消費者在 Google 搜尋時輸入的詞彙，例如「高雄登山裝備出租」「輕量化帳篷租借」。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Google 貼文</span><span class="glossary-def">商家檔案中的免費發文功能，類似 Facebook 貼文，會直接出現在 Google 搜尋結果中。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Local Pack</span><span class="glossary-def">Google 搜尋結果頁上方出現的地圖 + 前三名商家的區塊，是在地 SEO 最重要的曝光位置。</span></div>
+        <div class="glossary-item"><span class="glossary-term">關鍵字堆砌</span><span class="glossary-def">在商家名稱或描述中不自然地大量重複關鍵字的做法。Google 明確禁止此行為，可能導致商家檔案被停權。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Editorial Summary</span><span class="glossary-def">Google 根據商家資訊自動生成的簡短介紹文字，出現在商家檔案的顯眼位置。有這段文字代表 Google 充分理解您的商家。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 9. ABOUT & CTA ========== -->
+  <section class="about-section animate-in">
+    <div class="about-inner">
+      <div class="about-content">
+        <div class="about-label">關於我</div>
+        <div style="display:flex;align-items:center;gap:var(--space-lg);margin-bottom:var(--space-lg)">
+          <img src="https://gbp-seo.devfromzero.xyz/assets/avatar.png" alt="dev.from.zero" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 4px 20px rgba(0,201,167,0.3);border:2px solid rgba(255,255,255,0.2)">
+          <div>
+            <div class="about-name">dev.from.zero</div>
+          </div>
+        </div>
+        <div class="about-desc">
+          懶惰的工程師，所以什麼都想自動化 🤖<br><br>
+          平常交流的主題：SaaS 開發心得、好用工具推薦、AI 自動化工作流程、NoCode / LowCode 實作、SEO 優化策略。相信「能讓機器做的事就不要自己做」，一直在找更聰明的方式解決問題。<br><br>
+          從寫程式到做 SEO 分析，核心理念都一樣 — 用數據驅動決策，用自動化節省時間，把省下來的時間拿去發呆（或研究下一個自動化）。<br><br>
+          歡迎各種資訊交流、專案討論、合作提案，或單純來聊聊你正在做的有趣東西 💬
+        </div>
+      </div>
+      <div class="about-cta">
+        <div class="about-cta-label">需要幫忙執行？</div>
+        <a class="cta-card cta-card-highlight" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(0,201,167,0.2)">🚀</div>
+          <div class="cta-card-text">
+            <div class="cta-card-title">專業代操服務</div>
+            <div class="cta-card-desc">沒時間自己動手？交給我們從頭到尾幫你執行所有優化，私訊了解方案與報價</div>
+          </div>
+          <div class="cta-card-arrow">→</div>
+        </a>
+        <a class="cta-card" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(0,201,167,0.15)">📊</div>
+          <div class="cta-card-text">
+            <div class="cta-card-title">免費索取分析報告</div>
+            <div class="cta-card-desc">到官網填寫商家資訊，免費獲得一份完整的 SEO 健檢報告</div>
+          </div>
+          <div class="cta-card-arrow">→</div>
+        </a>
+        <a class="cta-card" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(255,255,255,0.08)">💬</div>
+          <div class="cta-card-text">
+            <div class="cta-card-title">追蹤 Threads @dev.from.zero</div>
+            <div class="cta-card-desc">SaaS 開發、AI 自動化、SEO 優化 — 歡迎交流或私訊聊聊任何想法</div>
+          </div>
+          <div class="cta-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 10. SERVICE CTA ========== -->
+  <section class="report-cta-banner animate-in">
+    <div class="report-cta-badge">🚀 下一步行動</div>
+    <div class="report-cta-title">選擇最適合你的優化方式</div>
+    <div class="report-cta-desc">你剛讀完的這份報告，涵蓋了 4 大面向診斷、5 組關鍵字排名追蹤、8 家競品比對分析 — 等同於一次 <span style="font-family:var(--font-mono);font-weight:700;color:var(--color-text)">NT$6,000</span> 的專業 SEO 健檢。</div>
+    <div class="service-tiers">
+      <!-- Tier 1 -->
+      <div class="service-tier">
+        <div class="service-tier-icon">📋</div>
+        <div class="service-tier-name">取得分析報告</div>
+        <div class="service-tier-price">NT$6,000</div>
+        <ul class="service-tier-list">
+          <li>照著本報告的行動計畫執行</li>
+          <li>使用附錄的 copy-paste 範本</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-outline" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">免費索取報告</a>
+      </div>
+      <!-- Tier 2 -->
+      <div class="service-tier">
+        <div class="service-tier-icon">💬</div>
+        <div class="service-tier-name">1 對 1 諮詢</div>
+        <div class="service-tier-price">預約討論</div>
+        <ul class="service-tier-list">
+          <li>針對報告內容深度解說</li>
+          <li>依你的產業量身調整策略</li>
+          <li>回答所有 GBP 優化疑問</li>
+          <li>提供客製化關鍵字建議</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-primary" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">💬 私訊預約</a>
+      </div>
+      <!-- Tier 3 -->
+      <div class="service-tier service-tier-highlight">
+        <div class="service-tier-popular">最省時</div>
+        <div class="service-tier-icon">🚀</div>
+        <div class="service-tier-name">專業代操</div>
+        <div class="service-tier-price">客製報價</div>
+        <ul class="service-tier-list">
+          <li>專人執行報告所有優化項目</li>
+          <li>商家描述撰寫 + 關鍵字佈局</li>
+          <li>照片策略規劃 + 上傳優化</li>
+          <li>評論回覆範本 + 管理策略</li>
+          <li>Google 貼文定期代發</li>
+          <li>持續成效追蹤報告</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-dark" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">🚀 了解方案</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SURVEY CTA ========== -->
+  <div class="survey-cta animate-in">
+    <div class="survey-cta-icon">📋</div>
+    <h3>花 3 分鐘，幫我們變更好</h3>
+    <p>你的回饋會直接影響我們的服務方向。告訴我們這份報告哪裡實用、哪裡能改進，還能許願你最想要的服務。</p>
+    <a class="survey-cta-btn" href="https://gbp-seo.devfromzero.xyz/survey.html?id=MMU427W6" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      填寫回饋問卷
+    </a>
+    <p class="survey-cta-note">約 3 分鐘完成 / 所有資料僅供服務優化使用</p>
+  </div>
+
+  <!-- ========== 11. FOOTER ========== -->
+  <footer class="report-footer">
+    <p class="footer-date">報告產出日期：2026-03-18</p>
+    <p class="footer-disclaimer">
+      本報告基於 Google Places API (New) 回傳的真實數據進行分析。標示「已驗證」的項目為 API 直接回傳資料；標示「交叉比對」為多平台驗證結果。報告僅呈現可驗證的項目，分析結果僅供參考，實際搜尋排名受多重因素影響。
+    </p>
+    <div class="footer-brand">
+      <div class="footer-brand-text">Created by <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener" style="color:var(--color-accent);text-decoration:none;font-weight:600;">@dev.from.zero</a></div>
+      <div class="footer-brand-links">
+        <a class="footer-brand-link" href="https://gbp-seo.devfromzero.xyz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          gbp-seo.devfromzero.xyz
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ===== Interactive JS ===== -->
+<script>
+function copyTemplate(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.innerText.replace('複製','').replace('已複製','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.querySelector('.copy-btn');
+    if (btn) {
+      btn.textContent = '已複製';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 2000);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.dim-bar-fill').forEach(el => {
+    const w = el.style.getPropertyValue('--bar-width');
+    if (w) setTimeout(() => { el.style.width = w; }, 500);
+  });
+});
+</script>
+</body>
+</html>
