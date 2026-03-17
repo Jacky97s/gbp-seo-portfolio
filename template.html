@@ -97,7 +97,6 @@
     key: "AIzaSyBJecKkrLfy996btEOIIM2e8KXhDVKeDBU",
     v: "weekly",
     language: "zh-TW",
-    region: "TW",
   });
   </script>
 
@@ -196,7 +195,7 @@
 
     .fade-in.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ===== Navbar ===== */
@@ -1302,6 +1301,25 @@
       margin-left: 4px;
     }
 
+    .form-group select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
+      font-size: 16px;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .form-group select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
+    }
+
     .form-submit {
       width: 100%;
       padding: 15px;
@@ -1587,6 +1605,11 @@
     .pac-matched {
       color: var(--accent);
       font-weight: 700;
+    }
+
+    .pac-container::after {
+      padding: 8px 14px;
+      font-size: 0.72rem;
     }
 
     /* ===== Responsive ===== */
@@ -2031,9 +2054,25 @@
                   <input type="email" id="email" name="email" placeholder="you@example.com" required>
                 </div>
                 <div class="form-group">
+                  <label for="country" data-i18n="form.country">商家所在地區</label>
+                  <select id="country" name="country">
+                    <option value="tw">台灣</option>
+                    <option value="hk">香港</option>
+                    <option value="mo">澳門</option>
+                    <option value="sg">新加坡</option>
+                    <option value="my">馬來西亞</option>
+                    <option value="jp">日本</option>
+                    <option value="kr">韓國</option>
+                    <option value="th">泰國</option>
+                    <option value="vn">越南</option>
+                    <option value="ph">菲律賓</option>
+                    <option value="id">印尼</option>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="gbp-info" data-i18n="form.gbpUrl">Google 商家資訊</label>
                   <input type="text" id="gbp-info" name="gbpInfo" placeholder="輸入店家名稱搜尋..." data-i18n-placeholder="form.gbpPlaceholder" required autocomplete="off">
-                  <div class="form-hint" data-i18n="form.gbpUrlHint">輸入店家名稱即可搜尋，或貼上 Google Maps 連結</div>
+                  <div class="form-hint" data-i18n="form.gbpUrlHint">輸入店家名稱即可搜尋</div>
                   <input type="hidden" id="place-id" name="placeId">
                   <input type="hidden" id="place-name" name="placeName">
                   <input type="hidden" id="place-address" name="placeAddress">
@@ -2079,9 +2118,25 @@
             <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
           </div>
           <div class="form-group">
+            <label for="wl-country" data-i18n="form.country">商家所在地區</label>
+            <select id="wl-country" name="country">
+              <option value="tw">台灣</option>
+              <option value="hk">香港</option>
+              <option value="mo">澳門</option>
+              <option value="sg">新加坡</option>
+              <option value="my">馬來西亞</option>
+              <option value="jp">日本</option>
+              <option value="kr">韓國</option>
+              <option value="th">泰國</option>
+              <option value="vn">越南</option>
+              <option value="ph">菲律賓</option>
+              <option value="id">印尼</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="wl-gbp" data-i18n="form.gbpUrl">Google 商家資訊</label>
             <input type="text" id="wl-gbp" name="gbpInfo" placeholder="輸入店家名稱搜尋..." data-i18n-placeholder="form.gbpPlaceholder" required autocomplete="off">
-            <div class="form-hint" data-i18n="form.gbpUrlHint">輸入店家名稱即可搜尋，或貼上 Google Maps 連結</div>
+            <div class="form-hint" data-i18n="form.gbpUrlHint">輸入店家名稱即可搜尋</div>
             <input type="hidden" id="wl-place-id" name="placeId">
             <input type="hidden" id="wl-place-name" name="placeName">
             <input type="hidden" id="wl-place-address" name="placeAddress">
@@ -2196,7 +2251,7 @@
       'form.optional': '（選填）',
       'form.gbpUrl': 'Google 商家資訊',
       'form.gbpPlaceholder': '輸入店家名稱搜尋...',
-      'form.gbpUrlHint': '輸入店家名稱即可搜尋，或貼上 Google Maps 連結',
+      'form.gbpUrlHint': '輸入店家名稱即可搜尋',
       'form.description': '具體問題描述',
       'form.descPlaceholder': '簡述您目前遇到的問題或想達成的目標...',
       'form.submit': '免費獲取健檢報告',
@@ -2247,34 +2302,57 @@
       /* ===== Google Places Autocomplete ===== */
       async function initPlacesAutocomplete() {
         var { Autocomplete } = await google.maps.importLibrary('places');
-        var opts = {
-          types: ['establishment'],
-          fields: ['place_id', 'name', 'formatted_address', 'rating', 'user_ratings_total', 'business_status'],
-          componentRestrictions: { country: 'tw' }
-        };
+        var baseFields = ['place_id', 'name', 'formatted_address', 'rating', 'user_ratings_total', 'business_status'];
 
-        /* CTA form autocomplete */
-        var ctaInput = document.getElementById('gbp-info');
-        var ctaAc = new Autocomplete(ctaInput, opts);
-        ctaAc.addListener('place_changed', function () {
-          var place = ctaAc.getPlace();
-          if (place && place.place_id) {
-            document.getElementById('place-id').value = place.place_id;
-            document.getElementById('place-name').value = place.name || '';
-            document.getElementById('place-address').value = place.formatted_address || '';
-          }
+        function createAutocomplete(input, country) {
+          return new Autocomplete(input, {
+            types: ['establishment'],
+            fields: baseFields,
+            componentRestrictions: { country: country }
+          });
+        }
+
+        function bindPlaceChanged(ac, ids) {
+          ac.addListener('place_changed', function () {
+            var place = ac.getPlace();
+            if (place && place.place_id) {
+              document.getElementById(ids.placeId).value = place.place_id;
+              document.getElementById(ids.placeName).value = place.name || '';
+              document.getElementById(ids.placeAddress).value = place.formatted_address || '';
+            }
+          });
+        }
+
+        function setupForm(inputId, selectId, hiddenIds) {
+          var input = document.getElementById(inputId);
+          var select = document.getElementById(selectId);
+          var ac = createAutocomplete(input, select.value);
+          bindPlaceChanged(ac, hiddenIds);
+
+          select.addEventListener('change', function () {
+            /* Clear previous input & hidden fields */
+            input.value = '';
+            document.getElementById(hiddenIds.placeId).value = '';
+            document.getElementById(hiddenIds.placeName).value = '';
+            document.getElementById(hiddenIds.placeAddress).value = '';
+            /* Switch country restriction in-place */
+            ac.setComponentRestrictions({ country: select.value });
+            input.focus();
+          });
+        }
+
+        /* CTA form */
+        setupForm('gbp-info', 'country', {
+          placeId: 'place-id',
+          placeName: 'place-name',
+          placeAddress: 'place-address'
         });
 
-        /* Waitlist modal autocomplete */
-        var wlInput = document.getElementById('wl-gbp');
-        var wlAc = new Autocomplete(wlInput, opts);
-        wlAc.addListener('place_changed', function () {
-          var place = wlAc.getPlace();
-          if (place && place.place_id) {
-            document.getElementById('wl-place-id').value = place.place_id;
-            document.getElementById('wl-place-name').value = place.name || '';
-            document.getElementById('wl-place-address').value = place.formatted_address || '';
-          }
+        /* Waitlist modal */
+        setupForm('wl-gbp', 'wl-country', {
+          placeId: 'wl-place-id',
+          placeName: 'wl-place-name',
+          placeAddress: 'wl-place-address'
         });
       }
       initPlacesAutocomplete();
