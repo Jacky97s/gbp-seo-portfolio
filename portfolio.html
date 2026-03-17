@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分析作品集 — GBP SEO 優化服務</title>
+  <meta name="description" content="已完成的 Google 商家檔案 SEO 分析報告，涵蓋餐飲、咖啡廳、民宿等在地商家。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gbp-seo.devfromzero.xyz/portfolio.html">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231C1917'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 110%; scroll-behavior: smooth; }
+    :root {
+      --bg: #F8F9FA;
+      --surface: #F1F3F4;
+      --text: #202124;
+      --text-secondary: #5F6368;
+      --text-muted: #9AA0A6;
+      --accent: #4285F4;
+      --accent-light: #E8F0FE;
+      --accent-hover: #3367D6;
+      --border: #DADCE0;
+      --white: #FFFFFF;
+      --shadow-sm: 0 1px 3px rgba(32,33,36,0.06);
+      --shadow-md: 0 4px 16px rgba(32,33,36,0.08);
+      --shadow-lg: 0 8px 32px rgba(32,33,36,0.10);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --radius-full: 9999px;
+      --font: 'Outfit', 'Noto Sans TC', system-ui, sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 14px 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .navbar.scrolled {
+      border-bottom-color: var(--border);
+      background: rgba(255,255,255,0.95);
+    }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+    .navbar-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.95rem; font-weight: 700; color: var(--text);
+      text-decoration: none; letter-spacing: -0.02em;
+    }
+    .navbar-brand svg { width: 22px; height: 22px; color: var(--accent); }
+    .navbar-actions { display: flex; align-items: center; gap: 12px; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font); font-size: 0.82rem; font-weight: 600;
+      padding: 8px 18px; border-radius: var(--radius-full);
+      border: 1px solid var(--border); background: var(--white);
+      color: var(--text); cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .btn-back:hover { background: var(--surface); border-color: var(--text-muted); box-shadow: var(--shadow-sm); color: var(--text); }
+    .btn-back svg { width: 14px; height: 14px; }
+
+    /* Hero */
+    .portfolio-hero {
+      background: linear-gradient(135deg, #FFFFFF 0%, #E8F0FE 50%, #F8F9FA 100%);
+      padding: 120px 0 64px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .portfolio-hero::before {
+      content: ''; position: absolute; top: -120px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(66,133,244,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .portfolio-hero .container { position: relative; z-index: 1; }
+    .portfolio-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-light); color: var(--accent);
+      font-size: 0.8rem; font-weight: 600;
+      padding: 6px 16px; border-radius: var(--radius-full);
+      letter-spacing: 0.02em; margin-bottom: 24px;
+    }
+    .portfolio-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .portfolio-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+    .portfolio-hero p {
+      font-size: 1rem; color: var(--text-secondary);
+      max-width: 480px; margin: 0 auto; line-height: 1.7;
+    }
+    .portfolio-stats {
+      display: flex; justify-content: center; gap: 40px;
+      margin-top: 36px;
+    }
+    .portfolio-stat-num {
+      font-size: 1.6rem; font-weight: 800; color: var(--accent);
+      letter-spacing: -0.03em; line-height: 1;
+    }
+    .portfolio-stat-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+
+    /* Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 48px 0 96px;
+    }
+
+    /* Card */
+    .report-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .report-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .card-thumb {
+      height: 140px;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .card-thumb-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text-muted); font-size: 0.75rem;
+    }
+    .card-thumb-placeholder svg { width: 36px; height: 36px; opacity: 0.4; }
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+    .card-info { flex: 1; min-width: 0; }
+    .card-name {
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .card-category { font-size: 0.75rem; color: var(--text-muted); }
+    .card-location {
+      font-size: 0.72rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 4px; margin-top: 2px;
+    }
+
+    /* Score Ring */
+    .score-ring-wrapper { flex-shrink: 0; position: relative; width: 52px; height: 52px; }
+    .score-ring-wrapper svg { transform: rotate(-90deg); width: 52px; height: 52px; }
+    .score-ring-bg { fill: none; stroke: var(--surface); stroke-width: 5; }
+    .score-ring-progress {
+      fill: none; stroke-width: 5; stroke-linecap: round;
+      stroke-dasharray: 138; stroke-dashoffset: 138;
+      transition: stroke-dashoffset 1s ease-out;
+    }
+    .score-ring-text {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; font-weight: 800; letter-spacing: -0.03em;
+    }
+
+    /* Tags */
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag {
+      font-size: 0.7rem; font-weight: 500;
+      color: var(--accent); background: var(--accent-light);
+      padding: 2px 10px; border-radius: var(--radius-full);
+    }
+
+    /* Card Button */
+    .card-actions { margin-top: auto; }
+    .btn-report {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      width: 100%; padding: 10px 16px;
+      font-family: var(--font); font-size: 0.82rem; font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: none; background: var(--accent); color: var(--white);
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-report:hover { background: var(--accent-hover); color: var(--white); }
+    .btn-report:active { transform: scale(0.97); }
+    .btn-report svg { width: 14px; height: 14px; }
+
+    /* Footer */
+    .footer {
+      padding: 48px 0; text-align: center;
+      color: var(--text-muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 14px; }
+    .footer-links a { color: var(--text-secondary); font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* Responsive */
+    @media (min-width: 768px) { .container { padding: 0 48px; } }
+    @media (max-width: 900px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      html { font-size: 100%; }
+      .portfolio-hero { padding: 100px 0 48px; }
+      .portfolio-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .portfolio-stats { gap: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        GBP SEO
+      </a>
+      <div class="navbar-actions">
+        <a href="/" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+          回首頁
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="portfolio-hero">
+    <div class="container">
+      <div class="portfolio-badge">分析作品集</div>
+      <h1>已完成的 GBP SEO 分析報告</h1>
+      <p>每一份報告都包含四大面向量化評分與具體優化步驟，幫助商家提升 Google 地圖排名。</p>
+      <div class="portfolio-stats" id="portfolio-stats"></div>
+    </div>
+  </header>
+
+  <!-- Portfolio Grid -->
+  <main class="container">
+    <div class="portfolio-grid" id="portfolio-grid"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-links">
+        <a href="/#services">服務方案</a>
+        <a href="/#faq">常見問題</a>
+        <a href="/#cta">免費健檢</a>
+        <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">Threads</a>
+      </nav>
+      <p>&copy; 2026 GBP SEO 優化服務. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      function scoreColor(score) {
+        if (score >= 80) return '#34A853';
+        if (score >= 60) return '#4285F4';
+        if (score >= 40) return '#FBBC04';
+        return '#EA4335';
+      }
+
+      function scoreOffset(score) {
+        return (138.2 * (1 - score / 100)).toFixed(1);
+      }
+
+      function renderCard(p) {
+        var color = scoreColor(p.score);
+        var offset = scoreOffset(p.score);
+        var tags = p.tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('');
+        return '<div class="report-card">' +
+          '<div class="card-thumb"><div class="card-thumb-placeholder">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>' +
+            '<span>報告預覽</span>' +
+          '</div></div>' +
+          '<div class="card-body">' +
+            '<div class="card-top">' +
+              '<div class="card-info">' +
+                '<div class="card-name" title="' + p.name + '">' + p.name + '</div>' +
+                '<div class="card-category">' + p.category + '</div>' +
+                '<div class="card-location">' +
+                  '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+                  p.location +
+                '</div>' +
+              '</div>' +
+              '<div class="score-ring-wrapper">' +
+                '<svg viewBox="0 0 56 56"><circle class="score-ring-bg" cx="28" cy="28" r="22"/>' +
+                '<circle class="score-ring-progress" cx="28" cy="28" r="22" stroke="' + color + '" style="stroke-dasharray:138.2;stroke-dashoffset:' + offset + '"/></svg>' +
+                '<div class="score-ring-text" style="color:' + color + '">' + p.score + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="card-tags">' + tags + '</div>' +
+            '<div class="card-actions">' +
+              '<a href="' + p.reportUrl + '" target="_blank" class="btn-report">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>' +
+                '查看報告</a>' +
+            '</div>' +
+          '</div></div>';
+      }
+
+      /* Data injected by build script */
+      var projects = /* BUILD:PORTFOLIO_DATA */[{"name":"Yours&Mine 你的我的","category":"餐廳","location":"台灣新北市泰山區","score":80,"tags":["餐廳","泰山","新北"],"reportUrl":"reports/20260317-MMT5JQXM-yours-and-mine.html"},{"name":"清境羊角村鄉村民宿 Giethoorn Taiwan","category":"民宿","location":"南投縣仁愛鄉","score":81,"tags":["民宿","清境","南投"],"reportUrl":"reports/20260317-MMT65G61-giethoorn-taiwan.html"},{"name":"桐生日式可麗餅 台北赤峰店","category":"甜點 / 可麗餅","location":"台北市大同區","score":66,"tags":["甜點","台北","赤峰街"],"reportUrl":"reports/20260317-MMTQMHM6-kiryu-crepe-taipei.html"},{"name":"Le buno Café 台南新光三越新天地 the matcha tokyo","category":"咖啡廳","location":"台南市中西區","score":67,"tags":["咖啡廳","台南","新光三越"],"reportUrl":"reports/20260317-MMTRZKXQ-le-buno-cafe-tainan.html"},{"name":"初鍋物私廚True Shabu（預約制）","category":"火鍋 / 預約制","location":"台中市西區","score":72,"tags":["火鍋","台中","預約制"],"reportUrl":"reports/20260317-MMTSRGET-true-shabu-taichung.html"},{"name":"Calmhere Caffe","category":"咖啡廳","location":"台灣宜蘭縣礁溪鄉","score":75,"tags":["咖啡廳","礁溪","甜點"],"reportUrl":"reports/20260317-MMTTRACA-calmhere-caffe.html"}]/* /BUILD:PORTFOLIO_DATA */;
+
+      var grid = document.getElementById('portfolio-grid');
+      grid.innerHTML = projects.map(renderCard).join('');
+
+      /* Stats */
+      var total = projects.length;
+      var avgScore = total ? Math.round(projects.reduce(function (sum, p) { return sum + p.score; }, 0) / total) : 0;
+      var categories = [];
+      projects.forEach(function (p) {
+        var cat = p.category.split('/')[0].trim();
+        if (categories.indexOf(cat) === -1) categories.push(cat);
+      });
+
+      document.getElementById('portfolio-stats').innerHTML =
+        '<div><div class="portfolio-stat-num">' + total + '</div><div class="portfolio-stat-label">份報告</div></div>' +
+        '<div><div class="portfolio-stat-num">' + avgScore + '</div><div class="portfolio-stat-label">平均分數</div></div>' +
+        '<div><div class="portfolio-stat-num">' + categories.length + '</div><div class="portfolio-stat-label">商家類型</div></div>';
+
+      /* Animate score rings */
+      setTimeout(function () {
+        var rings = document.querySelectorAll('.score-ring-progress');
+        rings.forEach(function (el) {
+          var target = el.style.strokeDashoffset;
+          el.style.strokeDashoffset = '138.2';
+          requestAnimationFrame(function () {
+            el.style.strokeDashoffset = target;
+          });
+        });
+      }, 100);
+
+      /* Navbar scroll */
+      var navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
