@@ -21,7 +21,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate projects.json from reports
+        run: node scripts/build-projects.js
+      - name: Build index.html
         run: python3 build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
