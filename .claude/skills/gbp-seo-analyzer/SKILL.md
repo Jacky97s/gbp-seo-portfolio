@@ -252,7 +252,7 @@ web_search("商家名稱 instagram facebook")  → 社群經營狀況
 | 7    | 行動計畫         | `.section#sec-action`   | 影響力×難度矩陣 + 每個行動只出現一次             |
 | 8    | 附錄             | `.section#sec-appendix` | 評分矩陣 + copy-paste 範本 + 名詞解釋             |
 | 9    | 自我介紹 + CTA   | `.about-section`        | 個人介紹 + CTA 卡片                               |
-| 10   | 服務方案 CTA     | `.report-cta-banner`    | 三層服務 tier（自己動手/諮詢/專業代操）+ 30天見效承諾 |
+| 10   | 服務方案 CTA     | `.report-cta-banner`    | 三層服務 tier（取得分析報告/諮詢/專業代操）+ 價值錨定 NT$6,000 |
 | 11   | Footer           | `.report-footer`        | 日期 + 免責聲明 + 品牌                            |
 
 #### 與舊結構的關鍵差異
@@ -283,7 +283,7 @@ web_search("商家名稱 instagram facebook")  → 社群經營狀況
 
 **自我介紹 + CTA（`.about-section`）**：位於附錄之後
 
-- 左側：頭像 + 名稱「dev.from.zero」+ 簡介（「懶惰的工程師」開頭）
+- 左側：頭像（使用 `https://gbp-seo.devfromzero.xyz/assets/avatar.png`）+ 名稱「dev.from.zero」+ 簡介（「懶惰的工程師」開頭）
 - 右側：CTA 卡片（語氣用「需要幫忙執行？」而非「購買服務」）
   - 🌐 Google 商家 SEO 優化服務 → `https://gbp-seo.devfromzero.xyz`
   - 💬 追蹤 Threads @dev.from.zero → `https://www.threads.com/@dev.from.zero`
@@ -292,14 +292,13 @@ web_search("商家名稱 instagram facebook")  → 社群經營狀況
 **服務方案 CTA**（`.report-cta-banner`）：位於 About 之後，含三層服務方案
 - 標題：「選擇最適合你的優化方式」
 - 三層服務 tier cards（`.service-tiers` grid）：
-  1. **自己動手**（免費）— 照報告執行 + 30 天後免費申請新報告 → `https://gbp-seo.devfromzero.xyz/#cta`
+  1. **取得分析報告**（NT$6,000）— 照報告執行 + 使用附錄範本 → `https://gbp-seo.devfromzero.xyz/#cta`
   2. **1 對 1 諮詢**（預約討論）— 深度解說 + 量身策略 + 客製化關鍵字 → `https://www.threads.com/@dev.from.zero`
-  3. **專業代操**（客製報價，標「最省時」）— 全方位代操：描述撰寫、照片優化、評論管理、Google 貼文代發、30 天成效追蹤 → `https://www.threads.com/@dev.from.zero`
-- 底部：30 天見效承諾（與 landing page 一致）
+  3. **專業代操**（客製報價，標「最省時」）— 全方位代操：描述撰寫、照片優化、評論管理、Google 貼文代發、持續成效追蹤 → `https://www.threads.com/@dev.from.zero`
 
 **About section CTA cards**：3 張卡片
 - 🚀 專業代操服務（`.cta-card-highlight`，綠色高亮邊框）→ Threads 私訊
-- 📊 免費索取新報告 → `https://gbp-seo.devfromzero.xyz/#cta`
+- 📊 免費索取分析報告 → `https://gbp-seo.devfromzero.xyz/#cta`
 - 💬 追蹤 Threads → `https://www.threads.com/@dev.from.zero`
 
 **Footer**：「Created by @dev.from.zero」+ 網站按鈕
@@ -335,7 +334,7 @@ web_search("商家名稱 instagram facebook")  → 社群經營狀況
 - 表格按評分或熱門度排序
 - 一句話點出差距：「你的照片數在 20 家中排倒數第 3」
 
-**UX-6 — 重新分析 CTA**：報告尾端提供明確 CTA，引導用戶預約諮詢或免費索取新報告，含 30 天見效承諾
+**UX-6 — 價值錨定 + CTA**：Hero 區顯示「價值 NT$6,000」標籤；Service CTA 區描述報告涵蓋的分析量等同 NT$6,000 專業健檢；Tier 1「取得分析報告」定價 NT$6,000
 **UX-7 — 手機體驗優化**（保留）
 
 #### 每面向區塊固定結構

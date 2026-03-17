@@ -55,6 +55,8 @@
   .hero-content { position:relative; z-index:1; }
   .hero-badge { display:inline-flex; align-items:center; gap:var(--space-sm); background:rgba(0,201,167,0.15); border:1px solid rgba(0,201,167,0.3); color:var(--color-accent); font-family:var(--font-mono); font-size:0.75rem; font-weight:500; padding:6px 14px; border-radius:var(--radius-full); margin-bottom:var(--space-lg); letter-spacing:0.05em; text-transform:uppercase; }
   .hero-badge::before { content:''; width:6px; height:6px; background:var(--color-accent); border-radius:50%; animation:pulse 2s infinite; }
+  .hero-value-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); font-family:var(--font-mono); font-size:0.7rem; font-weight:500; padding:5px 12px; border-radius:var(--radius-full); margin-left:var(--space-sm); letter-spacing:0.03em; }
+  .hero-value-tag .value-amount { color:rgba(255,255,255,0.95); font-weight:700; }
   .hero h1 { font-family:var(--font-display); font-size:clamp(1.75rem,4vw,2.5rem); font-weight:900; color:#FFF; margin-bottom:var(--space-sm); letter-spacing:-0.02em; }
   .hero-subtitle { font-size:1rem; color:rgba(255,255,255,0.6); margin-bottom:var(--space-xl); }
   .hero-meta { display:flex; flex-wrap:wrap; gap:var(--space-lg); font-size:0.875rem; color:rgba(255,255,255,0.75); }
@@ -312,7 +314,10 @@
   <!-- ========== 1. HERO ========== -->
   <header class="hero">
     <div class="hero-content">
-      <div class="hero-badge">Google 商家檔案 SEO 分析報告</div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-lg)">
+        <div class="hero-badge" style="margin-bottom:0">Google 商家檔案 SEO 分析報告</div>
+        <div class="hero-value-tag">價值 <span class="value-amount">NT$6,000</span></div>
+      </div>
       <h1>{{商家名稱}}</h1>
       <p class="hero-subtitle">Google 商家檔案 SEO 健檢與優化策略</p>
       <div class="hero-meta">
@@ -780,7 +785,7 @@
       <div class="about-content">
         <div class="about-label">關於我</div>
         <div style="display:flex;align-items:center;gap:var(--space-lg);margin-bottom:var(--space-lg)">
-          <img src="https://instagram.frmq1-1.fna.fbcdn.net/v/t51.2885-19/419831399_800393041922108_6190901554941837167_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_ht=instagram.frmq1-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=Bt1bGO9_eucQ7kNvwEn8eQZ&edm=AAZTMJEBAAAA&ccb=7-5&oh=00_AfwJ-o67ZFKG7g9rTxs43Vspx5Z6MeiP7-I6fNCNLMeyxA&oe=69ABEB61&_nc_sid=49cb7f" alt="dev.from.zero" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 4px 20px rgba(0,201,167,0.3);border:2px solid rgba(255,255,255,0.2)">
+          <img src="https://gbp-seo.devfromzero.xyz/assets/avatar.png" alt="dev.from.zero" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 4px 20px rgba(0,201,167,0.3);border:2px solid rgba(255,255,255,0.2)">
           <div>
             <div class="about-name">dev.from.zero</div>
           </div>
@@ -805,8 +810,8 @@
         <a class="cta-card" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">
           <div class="cta-card-icon" style="background:rgba(0,201,167,0.15)">📊</div>
           <div class="cta-card-text">
-            <div class="cta-card-title">免費索取新報告</div>
-            <div class="cta-card-desc">想重新分析？到官網免費申請最新健檢報告</div>
+            <div class="cta-card-title">免費索取分析報告</div>
+            <div class="cta-card-desc">到官網填寫商家資訊，免費獲得一份完整的 SEO 健檢報告</div>
           </div>
           <div class="cta-card-arrow">→</div>
         </a>
@@ -826,19 +831,18 @@
   <section class="report-cta-banner animate-in">
     <div class="report-cta-badge">🚀 下一步行動</div>
     <div class="report-cta-title">選擇最適合你的優化方式</div>
-    <div class="report-cta-desc">不管是自己動手、找人討論、還是全部交給我們，都有對應方案讓你的商家排名更上一層樓。</div>
+    <div class="report-cta-desc">你剛讀完的這份報告，涵蓋了 4 大面向診斷、8 組關鍵字排名追蹤、20 家競品比對分析 — 等同於一次 <span style="font-family:var(--font-mono);font-weight:700;color:var(--color-text)">NT$6,000</span> 的專業 SEO 健檢。</div>
     <div class="service-tiers">
       <!-- Tier 1: DIY -->
       <div class="service-tier">
         <div class="service-tier-icon">📋</div>
-        <div class="service-tier-name">自己動手</div>
-        <div class="service-tier-price">免費</div>
+        <div class="service-tier-name">取得分析報告</div>
+        <div class="service-tier-price">NT$6,000</div>
         <ul class="service-tier-list">
           <li>照著本報告的行動計畫執行</li>
           <li>使用附錄的 copy-paste 範本</li>
-          <li>90 天後免費申請新報告追蹤成效</li>
         </ul>
-        <a class="service-tier-btn service-tier-btn-outline" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">免費索取新報告</a>
+        <a class="service-tier-btn service-tier-btn-outline" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">免費索取報告</a>
       </div>
       <!-- Tier 2: Consultation -->
       <div class="service-tier">
@@ -865,12 +869,11 @@
           <li>照片策略規劃 + 上傳優化</li>
           <li>評論回覆範本 + 管理策略</li>
           <li>Google 貼文定期代發</li>
-          <li>90 天成效追蹤報告</li>
+          <li>持續成效追蹤報告</li>
         </ul>
         <a class="service-tier-btn service-tier-btn-dark" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">🚀 了解方案</a>
       </div>
     </div>
-    <div class="report-cta-guarantee">🛡️ 90 天見效承諾 — 照著報告執行 90 天，若搜尋曝光次數沒有提升，免費提供第二次深度分析</div>
   </section>
 
   <!-- ========== 11. FOOTER ========== -->
