@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBP SEO 服務回饋問卷 — 3 分鐘幫我們變更好</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231C1917'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>">
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 110%;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #F8F9FA;
+      --surface: #F1F3F4;
+      --text: #202124;
+      --text-secondary: #5F6368;
+      --text-muted: #9AA0A6;
+      --accent: #4285F4;
+      --accent-light: #E8F0FE;
+      --accent-hover: #3367D6;
+      --border: #DADCE0;
+      --white: #FFFFFF;
+      --success: #059669;
+      --success-light: #E6FAF5;
+      --shadow-sm: 0 1px 3px rgba(32, 33, 36, 0.06);
+      --shadow-md: 0 4px 16px rgba(32, 33, 36, 0.08);
+      --shadow-lg: 0 8px 32px rgba(32, 33, 36, 0.10);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --radius-full: 9999px;
+      --font: 'Outfit', 'Noto Sans TC', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Hero ===== */
+    .survey-hero {
+      background: linear-gradient(135deg, #FFFFFF 0%, #E8F0FE 50%, #F8F9FA 100%);
+      padding: 120px 0 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .survey-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(66, 133, 244, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .survey-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .survey-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+
+    .survey-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .survey-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .survey-hero p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 8px;
+      line-height: 1.7;
+    }
+
+    .survey-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    /* ===== Progress ===== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--accent);
+      z-index: 200;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    /* ===== Survey Sections ===== */
+    .survey-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      margin-bottom: 20px;
+    }
+
+    .survey-section-header {
+      margin-bottom: 28px;
+    }
+
+    .survey-section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .survey-section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .survey-section-header p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ===== Question ===== */
+    .question {
+      margin-bottom: 28px;
+    }
+
+    .question:last-child {
+      margin-bottom: 0;
+    }
+
+    .question-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .question-label .required {
+      color: #DC2626;
+      margin-left: 2px;
+    }
+
+    .question-hint {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    /* Radio & Checkbox */
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-group.horizontal {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .option-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .option-item.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .option-item input[type="radio"],
+    .option-item input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .option-group.horizontal .option-item {
+      flex: 0 0 auto;
+      padding: 10px 18px;
+    }
+
+    /* Scale */
+    .scale-group {
+      display: flex;
+      gap: 0;
+      margin-top: 4px;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .scale-labels span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .scale-item {
+      flex: 1;
+      text-align: center;
+    }
+
+    .scale-item input {
+      display: none;
+    }
+
+    .scale-item label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .scale-item:first-child label {
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    }
+
+    .scale-item:last-child label {
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .scale-item:not(:first-child) label {
+      border-left: none;
+    }
+
+    .scale-item input:checked+label {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .scale-item label:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* Text inputs */
+    .survey-input,
+    .survey-textarea,
+    .survey-select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .survey-input:focus,
+    .survey-textarea:focus,
+    .survey-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
+    }
+
+    .survey-input::placeholder,
+    .survey-textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .survey-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .survey-select {
+      cursor: pointer;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ===== Submit ===== */
+    .survey-submit-section {
+      text-align: center;
+      padding: 40px 0 80px;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 16px 48px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: var(--accent);
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent-hover);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.97);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .submit-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* ===== Success State ===== */
+    .survey-success {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .survey-success.show {
+      display: block;
+    }
+
+    .survey-success-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--success-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--success);
+    }
+
+    .survey-success h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .survey-success p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ===== Footer ===== */
+    .survey-footer {
+      text-align: center;
+      padding: 32px 0;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .survey-footer a {
+      color: var(--text-secondary);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 600px) {
+      html {
+        font-size: 100%;
+      }
+
+      .survey-hero {
+        padding: 100px 0 48px;
+      }
+
+      .survey-section {
+        padding: 24px 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-item label {
+        height: 40px;
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- ===== Hero ===== -->
+  <header class="survey-hero">
+    <div class="container">
+      <div class="survey-badge">GBP SEO 服務回饋</div>
+      <h1>你的意見，<br>決定我們下一步</h1>
+      <p>感謝你使用 GBP SEO 分析服務。花 3 分鐘告訴我們哪裡做得好、哪裡能更好，順便許願你最想要的服務。</p>
+      <div class="survey-meta">約 3 分鐘完成 / 共 6 個段落 / 所有資料僅供服務優化使用</div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 32px;">
+    <form id="survey-form">
+
+      <!-- ===== Section 1: 基本資料 ===== -->
+      <div class="survey-section" data-section="1">
+        <div class="survey-section-header">
+          <div class="survey-section-num">1</div>
+          <h2>關於你的商家</h2>
+          <p>讓我們了解你的背景，才能給出更貼合的建議</p>
+        </div>
+
+        <div class="question">
+          <label class="question-label">你的商家類型是？<span class="required">*</span></label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="radio" name="business_type" value="餐飲（餐廳/咖啡廳/飲料店）" required>
+              <span>餐飲（餐廳 / 咖啡廳 / 飲料店）</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="business_type" value="零售（服飾/雜貨/選物店）">
+              <span>零售（服飾 / 雜貨 / 選物店）</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="business_type" value="美容美體（美甲/美髮/SPA）">
+              <span>美容美體（美甲 / 美髮 / SPA）</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="business_type" value="醫療保健（診所/藥局/牙醫）">
+              <span>醫療保健（診所 / 藥局 / 牙醫）</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="business_type" value="住宿旅遊（民宿/旅館/旅行社）">
+              <span>住宿旅遊（民宿 / 旅館 / 旅行社）</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="business_type" value="專業服務（工作室/顧問/教育）">
+              <span>專業服務（工作室 / 顧問 / 教育）</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="business_type" value="other">
+              <span>其他：<input type="text" class="survey-input" name="business_type_other"
+                  placeholder="請填寫" style="display:inline;width:auto;padding:4px 10px;margin-left:8px;font-size:0.85rem;"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">商家營運多久了？<span class="required">*</span></label>
+          <div class="option-group horizontal">
+            <label class="option-item">
+              <input type="radio" name="years" value="未滿1年" required>
+              <span>未滿 1 年</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="years" value="1-3年">
+              <span>1 - 3 年</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="years" value="3-5年">
+              <span>3 - 5 年</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="years" value="5年以上">
+              <span>5 年以上</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">目前誰在管理你的 Google 商家檔案？</label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="radio" name="manager" value="老闆自己來">
+              <span>老闆自己來</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="manager" value="店內員工兼顧">
+              <span>店內員工兼顧</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="manager" value="外包給行銷公司/自由工作者">
+              <span>外包給行銷公司 / 自由工作者</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="manager" value="沒人在管">
+              <span>沒人在管（設定完就沒動過）</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Section 2: 報告回饋 ===== -->
+      <div class="survey-section" data-section="2">
+        <div class="survey-section-header">
+          <div class="survey-section-num">2</div>
+          <h2>報告品質回饋</h2>
+          <p>告訴我們分析報告哪裡做得好、哪裡可以改進</p>
+        </div>
+
+        <div class="question">
+          <label class="question-label">收到報告後，你的第一個感覺是？<span class="required">*</span></label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="radio" name="first_impression" value="超出預期，很專業" required>
+              <span>超出預期，很專業</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="first_impression" value="內容實用，符合期待">
+              <span>內容實用，符合期待</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="first_impression" value="看起來不錯，但還沒仔細看">
+              <span>看起來不錯，但還沒仔細看</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="first_impression" value="有點太長/太複雜">
+              <span>有點太長 / 太複雜，不知從何下手</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="first_impression" value="沒有太大感覺">
+              <span>沒有太大感覺</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">報告中哪些段落最有價值？<span class="question-hint">可複選</span></label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="checkbox" name="valuable_sections" value="GBP Score 總分與等級">
+              <span>GBP Score 總分與等級（一眼看出整體狀態）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="valuable_sections" value="四大面向分數拆解">
+              <span>四大面向分數拆解（基本資訊 / 評論 / 照片 / 關鍵字）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="valuable_sections" value="競爭態勢分析">
+              <span>競爭態勢分析（和附近同業比較）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="valuable_sections" value="各面向詳細診斷">
+              <span>各面向詳細診斷（具體問題在哪）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="valuable_sections" value="行動計畫">
+              <span>行動計畫（照著做的步驟拆解）</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">報告的建議容易理解嗎？</label>
+          <div class="scale-labels">
+            <span>完全看不懂</span>
+            <span>非常清楚</span>
+          </div>
+          <div class="scale-group">
+            <div class="scale-item"><input type="radio" name="clarity" value="1" id="clarity-1"><label
+                for="clarity-1">1</label></div>
+            <div class="scale-item"><input type="radio" name="clarity" value="2" id="clarity-2"><label
+                for="clarity-2">2</label></div>
+            <div class="scale-item"><input type="radio" name="clarity" value="3" id="clarity-3"><label
+                for="clarity-3">3</label></div>
+            <div class="scale-item"><input type="radio" name="clarity" value="4" id="clarity-4"><label
+                for="clarity-4">4</label></div>
+            <div class="scale-item"><input type="radio" name="clarity" value="5" id="clarity-5"><label
+                for="clarity-5">5</label></div>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">你有照著報告的建議去執行嗎？</label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="radio" name="executed" value="已經開始做了">
+              <span>已經開始做了</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="executed" value="有計畫但還沒開始">
+              <span>有計畫但還沒開始</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="executed" value="想做但不知道怎麼開始">
+              <span>想做但不知道怎麼開始</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="executed" value="沒有時間處理">
+              <span>沒有時間處理</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="executed" value="覺得不需要">
+              <span>覺得不需要</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Section 3: 痛點 ===== -->
+      <div class="survey-section" data-section="3">
+        <div class="survey-section-header">
+          <div class="survey-section-num">3</div>
+          <h2>你的 Google 商家檔案煩惱</h2>
+          <p>了解你的痛點，我們才能對症下藥</p>
+        </div>
+
+        <div class="question">
+          <label class="question-label">經營 Google 商家檔案時，最困擾你的是？<span class="question-hint">最多選 3 個</span></label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="不知道怎麼寫商家描述">
+              <span>不知道怎麼寫商家描述和關鍵字</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="負面評論不知怎麼回覆">
+              <span>負面評論不知怎麼回覆</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="不知道要上傳什麼照片">
+              <span>不知道要上傳什麼照片、怎麼拍</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="Google貼文不知道發什麼">
+              <span>Google 貼文不知道發什麼內容</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="搜尋排名一直上不去">
+              <span>搜尋排名一直上不去，不知道原因</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="根本沒時間管">
+              <span>知道很重要，但根本沒時間管</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="被惡意修改資訊">
+              <span>曾被競爭對手或路人惡意修改資訊</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pain_points" value="看不懂後台數據">
+              <span>GBP 後台數據看不懂，不知如何追蹤成效</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">你目前最想提升的一件事是？</label>
+          <textarea class="survey-textarea" name="top_goal" rows="3"
+            placeholder="例如：想讓「台北 咖啡廳」搜尋排進前三名、每月多帶 50 組客人..."></textarea>
+        </div>
+      </div>
+
+      <!-- ===== Section 4: 服務許願池 ===== -->
+      <div class="survey-section" data-section="4">
+        <div class="survey-section-header">
+          <div class="survey-section-num">4</div>
+          <h2>服務許願池</h2>
+          <p>如果我們能提供更多服務，你最想要哪些？</p>
+        </div>
+
+        <div class="question">
+          <label class="question-label">以下哪些服務你會想付費使用？<span class="question-hint">可複選，勾越多我們越有動力開發</span></label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="每月排名追蹤報告">
+              <span>每月排名追蹤報告（看到自己進步的軌跡）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="Google貼文代寫代發">
+              <span>Google 貼文代寫代發（每週固定更新）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="評論回覆代操">
+              <span>評論回覆代操（專業、有溫度的回覆範本）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="商家照片拍攝指導">
+              <span>商家照片拍攝指導（教你用手機拍出好照片）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="競爭對手監控">
+              <span>競爭對手監控（對手做了什麼、排名變化）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="多平台整合管理">
+              <span>多平台整合管理（Google + IG + FB 一起顧）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="1對1諮詢">
+              <span>1 對 1 線上諮詢（30 分鐘幫你看問題）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="SEO教學課程">
+              <span>GBP SEO 教學課程（學會自己操作）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="AI自動優化工具">
+              <span>AI 自動優化工具（一鍵產生描述 / 貼文 / 回覆）</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">還有什麼你夢寐以求但市場上找不到的服務？</label>
+          <textarea class="survey-textarea" name="dream_service" rows="3"
+            placeholder="盡情許願，沒有限制..."></textarea>
+        </div>
+      </div>
+
+      <!-- ===== Section 5: 定價驗證 ===== -->
+      <div class="survey-section" data-section="5">
+        <div class="survey-section-header">
+          <div class="survey-section-num">5</div>
+          <h2>價格與付費意願</h2>
+          <p>坦白說就好，你的答案會直接影響我們的定價策略</p>
+        </div>
+
+        <div class="question">
+          <label class="question-label">如果分析報告要收費，你覺得合理的價格是？<span class="required">*</span>
+            <span class="question-hint">目前免費提供的這份報告，在報告上標示價值 NT$6,000</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="radio" name="report_price" value="免費才會用" required>
+              <span>免費才會用</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="report_price" value="NT$500以內">
+              <span>NT$500 以內</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="report_price" value="NT$500-1,500">
+              <span>NT$500 - 1,500</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="report_price" value="NT$1,500-3,000">
+              <span>NT$1,500 - 3,000</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="report_price" value="NT$3,000-6,000">
+              <span>NT$3,000 - 6,000（接近報告標示價值）</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="report_price" value="看內容決定">
+              <span>看內容品質決定，價格不是主要考量</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">專業代操方案 NT$9,800/月，你的感覺是？<span class="required">*</span>
+            <span class="question-hint">含首月完整建置 + 每月貼文代發、評論管理、排名追蹤、成效報告</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="radio" name="managed_price" value="很合理，願意付費" required>
+              <span>很合理，考慮付費</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="managed_price" value="有點貴但能接受">
+              <span>有點貴，但如果能看到成效就能接受</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="managed_price" value="超出預算">
+              <span>超出我的預算</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="managed_price" value="需要更了解服務內容">
+              <span>需要更了解服務內容才能判斷</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="managed_price" value="寧願自己做">
+              <span>寧願自己做，不想外包</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">如果有「輕量版」代操方案，你能接受的月費上限是？</label>
+          <div class="option-group horizontal">
+            <label class="option-item">
+              <input type="radio" name="lite_budget" value="NT$3,000以內">
+              <span>NT$3,000 以內</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="lite_budget" value="NT$3,000-5,000">
+              <span>NT$3,000 - 5,000</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="lite_budget" value="NT$5,000-8,000">
+              <span>NT$5,000 - 8,000</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="lite_budget" value="NT$8,000以上都可以">
+              <span>NT$8,000 以上都可以</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">什麼條件會讓你更願意付費？<span class="question-hint">可複選</span></label>
+          <div class="option-group">
+            <label class="option-item">
+              <input type="checkbox" name="pay_triggers" value="看到明確的成效案例">
+              <span>看到明確的成效案例（排名提升截圖、客流量增加）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pay_triggers" value="有免費試用期">
+              <span>有免費試用期（先體驗再決定）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pay_triggers" value="不滿意可退費">
+              <span>不滿意可退費的保證</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pay_triggers" value="朋友或同業推薦">
+              <span>朋友或同業推薦</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pay_triggers" value="能按月計費隨時取消">
+              <span>能按月計費、隨時取消（不綁約）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="pay_triggers" value="有清楚的ROI計算">
+              <span>有清楚的 ROI 計算（投入多少 vs 帶來多少客人）</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Section 6: 開放回饋 ===== -->
+      <div class="survey-section" data-section="6">
+        <div class="survey-section-header">
+          <div class="survey-section-num">6</div>
+          <h2>最後一題</h2>
+          <p>你的真心話對我們最珍貴</p>
+        </div>
+
+        <div class="question">
+          <label class="question-label">整體來說，你會推薦這個服務給其他商家嗎？</label>
+          <div class="scale-labels">
+            <span>不太可能</span>
+            <span>非常願意</span>
+          </div>
+          <div class="scale-group">
+            <div class="scale-item"><input type="radio" name="nps" value="1" id="nps-1"><label
+                for="nps-1">1</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="2" id="nps-2"><label
+                for="nps-2">2</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="3" id="nps-3"><label
+                for="nps-3">3</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="4" id="nps-4"><label
+                for="nps-4">4</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="5" id="nps-5"><label
+                for="nps-5">5</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="6" id="nps-6"><label
+                for="nps-6">6</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="7" id="nps-7"><label
+                for="nps-7">7</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="8" id="nps-8"><label
+                for="nps-8">8</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="9" id="nps-9"><label
+                for="nps-9">9</label></div>
+            <div class="scale-item"><input type="radio" name="nps" value="10" id="nps-10"><label
+                for="nps-10">10</label></div>
+          </div>
+        </div>
+
+        <div class="question">
+          <label class="question-label">有什麼想對我們說的？</label>
+          <textarea class="survey-textarea" name="feedback" rows="4"
+            placeholder="任何建議、吐槽、鼓勵都歡迎。真心話不會公開，但會被認真對待。"></textarea>
+        </div>
+
+      </div>
+
+      <!-- ===== Submit ===== -->
+      <div class="survey-submit-section" id="submit-section">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAACl4rs-G2afDAzBg" data-theme="light" style="margin-bottom:16px;display:flex;justify-content:center;"></div>
+        <button type="submit" class="btn-submit" id="submit-btn">送出問卷</button>
+        <p class="submit-note">感謝你的寶貴意見，我們會認真對待每一個回饋</p>
+      </div>
+
+    </form>
+
+    <!-- ===== Success ===== -->
+    <div class="survey-success" id="survey-success">
+      <div class="survey-success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+      <h2>感謝你的回饋！</h2>
+      <p>你的意見會直接影響我們的服務方向。如果你留了聯絡資訊，有新服務上線時我們會第一時間通知你。</p>
+    </div>
+  </main>
+
+  <footer class="survey-footer">
+    <div class="container">
+      <p>&copy; 2026 <a href="/">GBP SEO 優化服務</a>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      /* ===== Option item selection visual feedback ===== */
+      document.querySelectorAll('.option-item').forEach(function (item) {
+        var input = item.querySelector('input');
+        if (!input) return;
+
+        input.addEventListener('change', function () {
+          if (input.type === 'radio') {
+            /* Clear siblings */
+            var group = item.closest('.option-group');
+            group.querySelectorAll('.option-item').forEach(function (s) {
+              s.classList.remove('selected');
+            });
+          }
+          if (input.checked) {
+            item.classList.add('selected');
+          } else {
+            item.classList.remove('selected');
+          }
+
+          /* Checkbox max 3 for pain_points */
+          if (input.name === 'pain_points') {
+            var checked = document.querySelectorAll('[name="pain_points"]:checked');
+            if (checked.length >= 3) {
+              document.querySelectorAll('[name="pain_points"]:not(:checked)').forEach(function (cb) {
+                cb.disabled = true;
+                cb.closest('.option-item').style.opacity = '0.5';
+              });
+            } else {
+              document.querySelectorAll('[name="pain_points"]').forEach(function (cb) {
+                cb.disabled = false;
+                cb.closest('.option-item').style.opacity = '1';
+              });
+            }
+          }
+        });
+      });
+
+      /* ===== Progress bar ===== */
+      var sections = document.querySelectorAll('.survey-section');
+      var bar = document.getElementById('progress-bar');
+
+      function updateProgress() {
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+        bar.style.width = pct + '%';
+      }
+
+      window.addEventListener('scroll', updateProgress);
+      updateProgress();
+
+      /* ===== Form submit ===== */
+      var form = document.getElementById('survey-form');
+      var submitSection = document.getElementById('submit-section');
+      var successEl = document.getElementById('survey-success');
+
+      /* Parse query params (id from report link) */
+      var params = new URLSearchParams(window.location.search);
+      var reportId = params.get('id') || '';
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        /* Cloudflare Turnstile validation */
+        var turnstileRes = document.querySelector('[name="cf-turnstile-response"]');
+        var cfToken = turnstileRes ? turnstileRes.value : '';
+        if (!cfToken) {
+          alert('請先完成人機驗證');
+          return;
+        }
+
+        var btn = document.getElementById('submit-btn');
+        btn.disabled = true;
+        btn.textContent = '送出中...';
+
+        /* Collect data */
+        var formData = new FormData(form);
+        var data = {};
+
+        formData.forEach(function (value, key) {
+          if (data[key]) {
+            if (Array.isArray(data[key])) {
+              data[key].push(value);
+            } else {
+              data[key] = [data[key], value];
+            }
+          } else {
+            data[key] = value;
+          }
+        });
+
+        data.reportId = reportId;
+        data.cfTurnstileToken = cfToken;
+        data.submittedAt = new Date().toISOString();
+        data.refUrl = window.location.href;
+
+        /* Send to webhook */
+        var WEBHOOK_URL = 'https://jacky97s-n8n.zeabur.app/webhook/gbp-seo-survey';
+
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).then(function (res) {
+          if (!res.ok) throw new Error(res.status);
+          form.style.display = 'none';
+          submitSection.style.display = 'none';
+          successEl.classList.add('show');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }).catch(function () {
+          btn.disabled = false;
+          btn.textContent = '送出問卷';
+          if (window.turnstile) turnstile.reset();
+          alert('送出時發生錯誤，請稍後再試。');
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
