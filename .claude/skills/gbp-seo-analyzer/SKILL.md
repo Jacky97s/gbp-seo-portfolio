@@ -161,7 +161,7 @@ web_search("商家名稱 instagram facebook")  → 社群經營狀況
 
 #### 面向四：商家描述與關鍵字策略（權重 25%）
 
-- **商家描述**：`editorialSummary` 為 null → 確認無描述；有值 → 分析內容
+- **商家描述**：`editorialSummary` 為 null → 確認無描述；有值 → **在報告中直接顯示 Google 的 Editorial Summary 原文**，並分析其內容是否涵蓋核心關鍵字
 - **在地關鍵字生成**：從商家類型 + 地理位置自動生成 10-15 個關鍵字
 - **Google 貼文**：無法從外部驗證，不列入報告
 - **線上存在感**：從 web_search 結果評估
@@ -253,6 +253,7 @@ web_search("商家名稱 instagram facebook")  → 社群經營狀況
 | 8    | 附錄             | `.section#sec-appendix` | 評分矩陣 + copy-paste 範本 + 名詞解釋             |
 | 9    | 自我介紹 + CTA   | `.about-section`        | 個人介紹 + CTA 卡片                               |
 | 10   | 服務方案 CTA     | `.report-cta-banner`    | 三層服務 tier（取得分析報告/諮詢/專業代操）+ 價值錨定 NT$6,000 |
+| 10.5 | 問卷回饋 CTA     | `.survey-cta`           | 連結至 `survey.html?id={{報告ID}}`，報告ID = 使用者提供的 ID（如 `MMT5JQXK`），同時記錄於 `.report-container[data-report-id]` |
 | 11   | Footer           | `.report-footer`        | 日期 + 免責聲明 + 品牌                            |
 
 #### 與舊結構的關鍵差異
@@ -368,7 +369,11 @@ section.section#sec-{id}
 - 響應式：768px / 560px 斷點
 - 支援列印 `@media print`
 
-將完成的 HTML 檔案儲存到專案根目錄的 `outputs/` 資料夾。
+將完成的 HTML 檔案儲存到專案根目錄的 `reports/` 資料夾，命名格式為 `{YYYYMMDD}-{ID}-{slug}.html`。
+- **YYYYMMDD**：分析日期（如 `20260317`）
+- **ID**：由使用者提供的唯一識別碼（如 `MMT5JQXK`），若使用者未提供則詢問
+- **slug**：商家英文名稱的 URL-friendly 格式（小寫、連字號、去除特殊字元）
+- 範例：`20260318-MMT5JQXK-cafe-nomad-taipei.html`
 
 ---
 
