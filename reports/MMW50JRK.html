@@ -307,6 +307,58 @@
     .term .tip { display:none; }
     .report-cta-banner { break-inside:avoid; }
   }
+
+  /* — 服務討論與諮詢 — */
+  .consult-section {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+    margin-top: var(--space-xl);
+    animation: fadeInUp 0.6s ease-out both;
+  }
+  .consult-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+  .consult-section p {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+  }
+  .consult-qr-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .consult-qr-item {
+    text-align: center;
+  }
+  .consult-qr-item img {
+    width: 140px;
+    height: 140px;
+    border-radius: var(--radius-md);
+    display: block;
+    margin: 0 auto 8px;
+    border: 1px solid var(--color-border);
+  }
+  .consult-qr-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .consult-qr-sub {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+  }
 </style>
 </head>
 <body>
@@ -1332,7 +1384,7 @@ OceanBaby 一直在努力提供更好的產品品質與售後服務，您的意�
           <li>照著本報告的行動計畫執行</li>
           <li>使用附錄的 copy-paste 範本</li>
         </ul>
-        <a class="service-tier-btn service-tier-btn-outline" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">免費索取報告</a>
+        <a class="service-tier-btn service-tier-btn-outline" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">索取報告</a>
       </div>
       <div class="service-tier">
         <div class="service-tier-icon">💬</div>
@@ -1377,6 +1429,24 @@ OceanBaby 一直在努力提供更好的產品品質與售後服務，您的意�
   </div>
 
   <!-- ========== 11. FOOTER ========== -->
+  
+  <!-- 服務討論與諮詢 -->
+  <section class="consult-section">
+    <h3>服務討論與諮詢</h3>
+    <p>歡迎直接加好友詢問</p>
+    <div class="consult-qr-row">
+      <div class="consult-qr-item">
+        <img src="https://gbp-seo.devfromzero.xyz/assets/qr-line.jpg" alt="LINE QR Code">
+        <span class="consult-qr-label">LINE</span>
+        <span class="consult-qr-sub">ID: jacky97s</span>
+      </div>
+      <div class="consult-qr-item">
+        <img src="https://gbp-seo.devfromzero.xyz/assets/qr-whatsapp.jpg" alt="WhatsApp QR Code">
+        <span class="consult-qr-label">WhatsApp</span>
+      </div>
+    </div>
+  </section>
+
   <footer class="report-footer">
     <p class="footer-date">報告產出日期：2026-03-18</p>
     <p class="footer-disclaimer">
