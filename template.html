@@ -247,33 +247,16 @@
       gap: 12px;
     }
 
-    .btn-login {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font);
+    .navbar-link {
       font-size: 0.82rem;
-      font-weight: 600;
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border);
-      background: var(--white);
-      color: var(--text);
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s;
       text-decoration: none;
     }
 
-    .btn-login:hover {
-      background: var(--surface);
-      border-color: var(--text-muted);
-      box-shadow: var(--shadow-sm);
-      color: var(--text);
-    }
-
-    .btn-login svg {
-      width: 16px;
-      height: 16px;
+    .navbar-link:hover {
+      color: var(--accent);
     }
 
     /* ===== Hero ===== */
@@ -1765,8 +1748,9 @@
         GBP SEO
       </a>
       <div class="navbar-actions">
-        <a href="/about.html" class="btn-login">關於我</a>
-        <a href="/contact.html" class="btn-login">聯絡我</a>
+        <a href="/about.html" class="navbar-link">關於我</a>
+        <a href="/contact.html" class="navbar-link">聯絡我</a>
+        <a href="/pricing.html" class="navbar-link">價格</a>
       </div>
     </div>
   </nav>

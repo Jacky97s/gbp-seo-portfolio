@@ -71,10 +71,18 @@
       padding: 0 24px;
     }
 
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 0; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: border-color 0.3s, background 0.3s; }
+    .navbar-inner { max-width: 720px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .navbar-brand svg { width: 22px; height: 22px; color: var(--accent); }
+    .navbar-actions { display: flex; align-items: center; gap: 12px; }
+    .navbar-link { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+    .navbar-link:hover { color: var(--accent); }
+
     /* ===== Hero ===== */
     .survey-hero {
       background: linear-gradient(135deg, #FFFFFF 0%, #E8F0FE 50%, #F8F9FA 100%);
-      padding: 120px 0 64px;
+      padding: 180px 0 64px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -640,7 +648,7 @@
       }
 
       .survey-hero {
-        padding: 100px 0 48px;
+        padding: 160px 0 48px;
       }
 
       .survey-section {
@@ -699,6 +707,20 @@
 </head>
 
 <body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        GBP SEO
+      </a>
+      <div class="navbar-actions">
+        <a href="/about.html" class="navbar-link">關於我</a>
+        <a href="/contact.html" class="navbar-link">聯絡我</a>
+        <a href="/pricing.html" class="navbar-link">價格</a>
+      </div>
+    </div>
+  </nav>
 
   <div class="progress-bar" id="progress-bar"></div>
 
