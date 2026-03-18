@@ -364,10 +364,10 @@
       <div class="score-ring">
         <svg viewBox="0 0 180 180" width="180" height="180">
           <circle class="score-ring-bg" cx="90" cy="90" r="78"/>
-          <circle class="score-ring-progress" cx="90" cy="90" r="78" stroke="#FFB74D" style="stroke-dashoffset:166.6"/>
+          <circle class="score-ring-progress" cx="90" cy="90" r="78" stroke="#FFB74D" style="stroke-dashoffset:176.4"/>
         </svg>
         <div class="score-ring-value">
-          <span class="score-number" style="color:#FFB74D">66</span>
+          <span class="score-number" style="color:#FFB74D">64</span>
           <span class="score-label">總體評分</span>
         </div>
       </div>
@@ -397,12 +397,12 @@
       <div class="dim-card animate-in d3" style="border-left-color:#FFB74D">
         <div class="dim-card-header">
           <div class="dim-icon" style="background:#FFF7ED">📸</div>
-          <span class="dim-score" style="color:#FFB74D">65</span>
+          <span class="dim-score" style="color:#FFB74D">55</span>
         </div>
         <div class="dim-name">照片與視覺內容</div>
         <div class="dim-weight">權重 20%</div>
         <div class="dim-status" style="background:#FFF7ED;color:#D97706">待改善</div>
-        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:65%;background:#FFB74D"></div></div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:55%;background:#FFB74D"></div></div>
       </div>
       <div class="dim-card animate-in d4" style="border-left-color:#FF6B6B">
         <div class="dim-card-header">
@@ -546,7 +546,7 @@
 
     <!-- Keyword Rankings -->
     <div class="keyword-rank">
-      <div class="keyword-rank-title">🔍 搜尋「台中 嬰兒背帶 揹巾」前 10 名</div>
+      <div class="keyword-rank-title">🔍 搜尋「台中 嬰兒背帶 揹巾」前 5 名</div>
       <ol class="keyword-rank-list">
         <li class="keyword-rank-item is-target">
           <span class="keyword-rank-pos">1</span>
@@ -577,7 +577,7 @@
     </div>
 
     <div class="keyword-rank">
-      <div class="keyword-rank-title">🔍 搜尋「台中 嬰兒用品」前 10 名</div>
+      <div class="keyword-rank-title">🔍 搜尋「台中 嬰兒用品」前 5 名</div>
       <ol class="keyword-rank-list">
         <li class="keyword-rank-item">
           <span class="keyword-rank-pos">1</span>
@@ -608,7 +608,7 @@
     </div>
 
     <div class="keyword-rank">
-      <div class="keyword-rank-title">🔍 搜尋「台中南屯 嬰兒用品店」前 10 名</div>
+      <div class="keyword-rank-title">🔍 搜尋「台中南屯 嬰兒用品店」前 7 名</div>
       <ol class="keyword-rank-list">
         <li class="keyword-rank-item">
           <span class="keyword-rank-pos">1</span>
@@ -770,7 +770,7 @@
     <div class="section-header">
       <div class="section-icon" style="background:#FFF7ED">📸</div>
       <h2 class="section-title">面向三：照片與視覺內容</h2>
-      <span class="section-score-inline" style="background:#FFF7ED;color:#D97706">65 / 100</span>
+      <span class="section-score-inline" style="background:#FFF7ED;color:#D97706">55 / 100</span>
     </div>
     <div class="section-verdict">💡 API 回傳 10 張照片（最多回傳 10 張），代表至少有基本的視覺素材。但大多為顧客上傳的使用照，缺少商家自行上傳的專業產品照與店面環境照。</div>
     <div class="findings-grid">
@@ -817,7 +817,7 @@
           <span class="finding-source source-verified">已驗證</span>
         </div>
         <div class="finding-title">商家描述為空白</div>
-        <div class="finding-detail">API 回傳的 editorialSummary 為 null，代表 Google 目前無法自動生成您的商家摘要。這通常是因為商家檔案後台的「商家描述」欄位未填寫。消費者在 Google 地圖看到您的商家時，不會有任何文字說明您的特色。</div>
+        <div class="finding-detail">API 回傳的 description 為 null，代表商家檔案後台的「商家描述」欄位未填寫。消費者在 Google 地圖看到您的商家時，不會有任何文字說明您的特色。</div>
         <div class="finding-impact"><span class="finding-impact-icon">📉</span> 根據 SQ Magazine 2024，<span class="term">關鍵字<span class="tip">消費者在 Google 搜尋時輸入的詞彙，例如「台中嬰兒背帶」「嬰兒揹巾推薦」。</span></span>豐富的描述可提升 <span class="term">Local Pack<span class="tip">Google 搜尋結果頁上方出現的地圖 + 前三名商家的區塊，是在地 SEO 最重要的曝光位置。</span></span> 能見度 31%。</div>
       </div>
       <div class="finding-card status-pass">
@@ -1075,7 +1075,7 @@
     <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:var(--space-md)">A. 評分計算方式</h3>
     <div class="scoring-formula">
       總分 = 基本資訊（25%） + 評論（30%） + 照片（20%） + 描述與關鍵字（25%）<br>
-      <strong>66</strong> = 86 × 0.25 + 72 × 0.30 + 65 × 0.20 + 40 × 0.25<br>
+      <strong>64</strong> ≈ 86 × 0.25 + 72 × 0.30 + 55 × 0.20 + 40 × 0.25（四捨五入取整）<br>
       <span style="font-size:0.75rem;color:var(--color-text-muted)">權重依據：Whitespark 2026 Local Search Ranking Factors</span>
     </div>
     <div class="scoring-matrix-wrap">
@@ -1188,7 +1188,7 @@
             <td>商家描述完整度</td>
             <td class="score-cell">40</td>
             <td class="score-cell score-fail">0</td>
-            <td>API editorialSummary</td>
+            <td>API description</td>
           </tr>
           <tr>
             <td>在地關鍵字覆蓋</td>
