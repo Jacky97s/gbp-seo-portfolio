@@ -46,18 +46,13 @@
     .page-header p { color: var(--text-secondary); font-size: 0.95rem; max-width: 520px; margin: 0 auto; }
 
     /* Pricing Cards */
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; padding-bottom: 80px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-bottom: 80px; }
     .pricing-card {
       background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 36px 28px; position: relative; transition: box-shadow 0.2s;
     }
     .pricing-card:hover { box-shadow: var(--shadow-md); }
     .pricing-card.featured { border-color: var(--accent); }
-    .pricing-card.featured::before {
-      content: '最受歡迎'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: var(--accent); color: var(--white); font-size: 0.72rem; font-weight: 700;
-      padding: 4px 16px; border-radius: var(--radius-full);
-    }
     .pricing-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
     .pricing-card .price { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; }
     .pricing-card .price-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 20px; }
@@ -99,6 +94,7 @@
       .page-header { padding: 60px 0 32px; }
       .page-header h1 { font-size: 1.5rem; }
       .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { margin-top: 0; }
     }
   </style>
 </head>

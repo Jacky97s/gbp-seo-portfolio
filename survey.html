@@ -1248,26 +1248,17 @@
           </div>
         </div>
 
-        <!-- Sponsor -->
+        <!-- Sponsor (Stripe Buy Button — customers choose what to pay, TWD) -->
         <div class="sponsor-block">
           <h3>想支持我繼續做下去？</h3>
           <p>覺得有幫助的話，價值由你決定</p>
 
-          <div class="sponsor-amounts">
-            <button type="button" class="sponsor-chip" data-amount="100">NT$100</button>
-            <button type="button" class="sponsor-chip" data-amount="500">NT$500</button>
-            <button type="button" class="sponsor-chip" data-amount="1000">NT$1,000</button>
-            <button type="button" class="sponsor-chip" data-amount="3000">NT$3,000</button>
-            <button type="button" class="sponsor-chip" data-amount="6000">NT$6,000</button>
-          </div>
-
-          <div class="sponsor-custom-row">
-            <span>NT$</span>
-            <input type="number" id="sponsor-amount" min="100" max="6000" step="100" placeholder="自訂金額">
-          </div>
-
           <div class="sponsor-center">
-            <button type="button" class="btn-sponsor" id="sponsor-btn">前往 Paddle 付款 &rarr;</button>
+            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1TCCy7B3vI7gmrPfUOIKNNz9"
+              publishable-key="pk_live_51TCCkgB3vI7gmrPfMDFTqv7eFXRYuU1hEuTTLihTdAqRdbztESIDnOWGb22b7lOBFgWzEVLd8kZ5nFbGSC89vsbC00OB0VSCc4">
+            </stripe-buy-button>
           </div>
         </div>
 
@@ -1478,43 +1469,7 @@
         });
       });
 
-      /* ===== Sponsor ===== */
-      var sponsorInput = document.getElementById('sponsor-amount');
-      var sponsorChips = document.querySelectorAll('.sponsor-chip');
-      var sponsorBtn = document.getElementById('sponsor-btn');
-
-      /* TODO: Replace with actual Paddle Payment Link */
-      var PADDLE_URL = 'https://buy.paddle.com/PLACEHOLDER';
-
-      sponsorChips.forEach(function (chip) {
-        chip.addEventListener('click', function () {
-          sponsorChips.forEach(function (c) { c.classList.remove('active'); });
-          chip.classList.add('active');
-          sponsorInput.value = chip.getAttribute('data-amount');
-        });
-      });
-
-      sponsorInput.addEventListener('input', function () {
-        sponsorChips.forEach(function (c) { c.classList.remove('active'); });
-      });
-
-      sponsorInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') e.preventDefault();
-      });
-
-      sponsorBtn.addEventListener('click', function () {
-        var amount = parseInt(sponsorInput.value, 10);
-        if (!amount || amount < 30) {
-          alert('請輸入至少 NT$30 的金額');
-          return;
-        }
-        if (amount > 6000) {
-          alert('最高金額為 NT$6,000，感謝你的心意！');
-          sponsorInput.value = 6000;
-          return;
-        }
-        window.open(PADDLE_URL, '_blank');
-      });
+      /* Sponsor: handled by Stripe Buy Button embed */
     })();
   </script>
 
