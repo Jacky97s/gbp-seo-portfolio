@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>服務方案與價格 — GBP SEO 分析服務</title>
+  <meta name="description" content="GBP SEO 分析服務方案與價格。免費健檢報告、專業代操方案，幫助在地商家提升 Google 地圖排名。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gbp-seo.devfromzero.xyz/pricing.html">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231C1917'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 110%; scroll-behavior: smooth; }
+    :root {
+      --bg: #F8F9FA; --surface: #F1F3F4; --text: #202124; --text-secondary: #5F6368;
+      --text-muted: #9AA0A6; --accent: #4285F4; --accent-light: #E8F0FE;
+      --accent-hover: #3367D6; --border: #DADCE0; --white: #FFFFFF;
+      --success: #059669; --success-light: #E6FAF5;
+      --shadow-sm: 0 1px 3px rgba(32,33,36,0.06); --shadow-md: 0 4px 16px rgba(32,33,36,0.08);
+      --shadow-lg: 0 8px 32px rgba(32,33,36,0.10);
+      --radius: 20px; --radius-sm: 12px; --radius-full: 9999px;
+      --font: 'Outfit','Noto Sans TC',system-ui,sans-serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    .nav-bar { padding: 18px 0; border-bottom: 1px solid var(--border); background: var(--white); }
+    .nav-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.95rem; font-weight: 700; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .nav-brand svg { width: 22px; height: 22px; color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.82rem; font-weight: 500; }
+    .nav-links a { color: var(--text-secondary); }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* Page */
+    .page-header { text-align: center; padding: 80px 0 40px; }
+    .page-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .page-header p { color: var(--text-secondary); font-size: 0.95rem; max-width: 520px; margin: 0 auto; }
+
+    /* Pricing Cards */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; padding-bottom: 80px; }
+    .pricing-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 36px 28px; position: relative; transition: box-shadow 0.2s;
+    }
+    .pricing-card:hover { box-shadow: var(--shadow-md); }
+    .pricing-card.featured { border-color: var(--accent); }
+    .pricing-card.featured::before {
+      content: '最受歡迎'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: var(--white); font-size: 0.72rem; font-weight: 700;
+      padding: 4px 16px; border-radius: var(--radius-full);
+    }
+    .pricing-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .pricing-card .price { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .pricing-card .price-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 20px; }
+    .pricing-card .desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; }
+    .pricing-card ul { list-style: none; margin-bottom: 28px; }
+    .pricing-card ul li {
+      font-size: 0.85rem; padding: 6px 0; padding-left: 24px; position: relative; color: var(--text-secondary);
+    }
+    .pricing-card ul li::before {
+      content: ''; position: absolute; left: 0; top: 12px; width: 14px; height: 14px;
+      background: var(--success-light); border-radius: 50%;
+    }
+    .pricing-card ul li::after {
+      content: ''; position: absolute; left: 4px; top: 16px; width: 6px; height: 3px;
+      border-left: 1.5px solid var(--success); border-bottom: 1.5px solid var(--success);
+      transform: rotate(-45deg);
+    }
+    .btn-pricing {
+      display: block; width: 100%; text-align: center; padding: 12px; border-radius: var(--radius-sm);
+      font-family: var(--font); font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      border: 1px solid var(--border); background: var(--white); color: var(--text); transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-pricing:hover { background: var(--surface); border-color: var(--text-muted); color: var(--text); }
+    .btn-pricing.primary { background: var(--accent); color: var(--white); border-color: var(--accent); }
+    .btn-pricing.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--white); }
+
+    /* Note */
+    .pricing-note { text-align: center; padding: 0 0 80px; color: var(--text-muted); font-size: 0.82rem; }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; font-size: 0.8rem; }
+    .footer-links a { color: var(--text-muted); }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
+    @media (max-width: 640px) {
+      .page-header { padding: 60px 0 32px; }
+      .page-header h1 { font-size: 1.5rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        GBP SEO 分析服務
+      </a>
+      <div class="nav-links">
+        <a href="/">首頁</a>
+        <a href="/portfolio.html">案例</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="page-header">
+      <h1>服務方案與價格</h1>
+      <p>從免費健檢到全方位代操，選擇最適合你的方案，讓 Google 商家檔案成為你的獲客引擎。</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Free -->
+      <div class="pricing-card">
+        <h3>免費健檢報告</h3>
+        <div class="price">NT$0</div>
+        <div class="price-note">完全免費，無需綁卡</div>
+        <p class="desc">快速了解你的 Google 商家檔案現況，取得可執行的優化建議。</p>
+        <ul>
+          <li>四大面向量化評分</li>
+          <li>具體問題標示</li>
+          <li>可執行的優化步驟</li>
+          <li>一次性報告</li>
+        </ul>
+        <a href="/" class="btn-pricing">免費索取報告</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card featured">
+        <h3>專業代操方案</h3>
+        <div class="price" style="color:var(--text-muted)">Coming Soon</div>
+        <div class="price-note">方案準備中，敬請期待</div>
+        <p class="desc">由我全面負責你的 Google 商家檔案優化與持續經營。</p>
+        <ul>
+          <li>商家資訊完整建置與優化</li>
+          <li>照片拍攝指導與上傳</li>
+          <li>關鍵字策略規劃</li>
+          <li>每月代發 Google 貼文</li>
+          <li>評論回覆管理</li>
+          <li>排名追蹤與月報</li>
+          <li>專屬 LINE 支援</li>
+        </ul>
+        <span class="btn-pricing" style="opacity:0.5;cursor:default">即將推出</span>
+      </div>
+
+      <!-- Custom -->
+      <div class="pricing-card">
+        <h3>多店面 / 企業方案</h3>
+        <div class="price">客製報價</div>
+        <div class="price-note">依據店面數量與需求報價</div>
+        <p class="desc">適合連鎖品牌或多據點商家，提供統一管理與批量優化。</p>
+        <ul>
+          <li>所有專業代操方案內容</li>
+          <li>多據點統一管理</li>
+          <li>品牌一致性稽核</li>
+          <li>競品分析報告</li>
+          <li>優先支援</li>
+        </ul>
+        <a href="/#form-section" class="btn-pricing">聯絡我</a>
+      </div>
+
+    </div>
+
+    <p class="pricing-note">所有方案皆以新台幣計價。專業代操方案可隨時取消，無綁約限制。如有任何疑問歡迎<a href="/#form-section">聯絡我</a>。</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="/pricing.html">價格方案</a>
+        <a href="/terms.html">服務條款</a>
+        <a href="/privacy.html">隱私權政策</a>
+        <a href="/refund.html">退款政策</a>
+      </div>
+      <p class="footer-copy">&copy; 2025 GBP SEO 分析服務 — devfromzero.xyz</p>
+    </div>
+  </footer>
+</body>
+
+</html>

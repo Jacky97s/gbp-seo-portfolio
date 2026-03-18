@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GBP SEO 服務回饋問卷 — 3 分鐘幫我們變更好</title>
+  <title>GBP SEO 服務回饋問卷 — 3 分鐘幫我變更好</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231C1917'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>">
@@ -291,10 +291,14 @@
     .scale-item {
       flex: 1;
       text-align: center;
+      position: relative;
     }
 
     .scale-item input {
-      display: none;
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
     }
 
     .scale-item label {
@@ -468,6 +472,167 @@
       color: var(--text-secondary);
     }
 
+    .survey-hero.hidden {
+      display: none;
+    }
+
+    /* ===== Sponsor ===== */
+    .sponsor-block {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sponsor-block h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .sponsor-block > p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .sponsor-qr-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+
+    .sponsor-qr-item {
+      text-align: center;
+    }
+
+    .sponsor-qr-item .qr-placeholder {
+      width: 140px;
+      height: 140px;
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      background: var(--surface);
+    }
+
+    .sponsor-qr-item .qr-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .sponsor-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 24px 0;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .sponsor-divider::before,
+    .sponsor-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .sponsor-amounts {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .sponsor-chip {
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      background: var(--white);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text);
+    }
+
+    .sponsor-chip:hover,
+    .sponsor-chip.active {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .sponsor-custom-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .sponsor-custom-row span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .sponsor-custom-row input {
+      width: 120px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .sponsor-custom-row input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
+    }
+
+    .btn-sponsor {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 12px 32px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: var(--text);
+      color: var(--white);
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .btn-sponsor:hover {
+      opacity: 0.85;
+    }
+
+    .btn-sponsor:active {
+      transform: scale(0.97);
+    }
+
+    .sponsor-center {
+      text-align: center;
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 600px) {
       html {
@@ -490,6 +655,45 @@
         height: 40px;
         font-size: 0.82rem;
       }
+
+      .scale-group.scale-nps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .scale-group.scale-nps .scale-item:first-child label {
+        border-radius: var(--radius-sm) 0 0 0;
+      }
+
+      .scale-group.scale-nps .scale-item:nth-child(5) label {
+        border-radius: 0 var(--radius-sm) 0 0;
+      }
+
+      .scale-group.scale-nps .scale-item:nth-child(6) label {
+        border-radius: 0 0 0 var(--radius-sm);
+        border-left: 1px solid var(--border);
+      }
+
+      .scale-group.scale-nps .scale-item:last-child label {
+        border-radius: 0 0 var(--radius-sm) 0;
+      }
+
+      .scale-group.scale-nps .scale-item:nth-child(n+6) label {
+        border-top: none;
+      }
+
+      .sponsor-card {
+        padding: 24px 20px;
+      }
+
+      .sponsor-qr-row {
+        gap: 16px;
+      }
+
+      .sponsor-qr-item .qr-placeholder {
+        width: 120px;
+        height: 120px;
+      }
     }
   </style>
 </head>
@@ -502,8 +706,8 @@
   <header class="survey-hero">
     <div class="container">
       <div class="survey-badge">GBP SEO 服務回饋</div>
-      <h1>你的意見，<br>決定我們下一步</h1>
-      <p>感謝你使用 GBP SEO 分析服務。花 3 分鐘告訴我們哪裡做得好、哪裡能更好，順便許願你最想要的服務。</p>
+      <h1>你的意見，<br>決定我下一步</h1>
+      <p>感謝你使用 GBP SEO 分析服務。花 3 分鐘告訴我哪裡做得好、哪裡能更好，順便許願你最想要的服務。</p>
       <div class="survey-meta">約 3 分鐘完成 / 共 6 個段落 / 所有資料僅供服務優化使用</div>
     </div>
   </header>
@@ -516,7 +720,7 @@
         <div class="survey-section-header">
           <div class="survey-section-num">1</div>
           <h2>關於你的商家</h2>
-          <p>讓我們了解你的背景，才能給出更貼合的建議</p>
+          <p>讓我了解你的背景，才能給出更貼合的建議</p>
         </div>
 
         <div class="question">
@@ -604,7 +808,7 @@
         <div class="survey-section-header">
           <div class="survey-section-num">2</div>
           <h2>報告品質回饋</h2>
-          <p>告訴我們分析報告哪裡做得好、哪裡可以改進</p>
+          <p>告訴我分析報告哪裡做得好、哪裡可以改進</p>
         </div>
 
         <div class="question">
@@ -711,7 +915,7 @@
         <div class="survey-section-header">
           <div class="survey-section-num">3</div>
           <h2>你的 Google 商家檔案煩惱</h2>
-          <p>了解你的痛點，我們才能對症下藥</p>
+          <p>了解你的痛點，我才能對症下藥</p>
         </div>
 
         <div class="question">
@@ -764,15 +968,23 @@
         <div class="survey-section-header">
           <div class="survey-section-num">4</div>
           <h2>服務許願池</h2>
-          <p>如果我們能提供更多服務，你最想要哪些？</p>
+          <p>如果我能提供更多服務，你最想要哪些？</p>
         </div>
 
         <div class="question">
-          <label class="question-label">以下哪些服務你會想付費使用？<span class="question-hint">可複選，勾越多我們越有動力開發</span></label>
+          <label class="question-label">以下哪些服務你最想付費使用？<span class="question-hint">最多選 3 個</span></label>
           <div class="option-group">
             <label class="option-item">
               <input type="checkbox" name="wishlist" value="每月排名追蹤報告">
-              <span>每月排名追蹤報告（看到自己進步的軌跡）</span>
+              <span>每月排名追蹤報告（關鍵字排名變化、進步軌跡）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="每月評論分析報告">
+              <span>每月評論分析報告（正負評趨勢、負評即時預警）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="GBP健檢分數定期追蹤">
+              <span>GBP 健檢分數定期追蹤（每月重新評分，看到優化成效）</span>
             </label>
             <label class="option-item">
               <input type="checkbox" name="wishlist" value="Google貼文代寫代發">
@@ -783,12 +995,28 @@
               <span>評論回覆代操（專業、有溫度的回覆範本）</span>
             </label>
             <label class="option-item">
-              <input type="checkbox" name="wishlist" value="商家照片拍攝指導">
-              <span>商家照片拍攝指導（教你用手機拍出好照片）</span>
+              <input type="checkbox" name="wishlist" value="商家照片定期更新">
+              <span>商家照片定期更新（每月更新照片、優化照片組合）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="產品與服務目錄代管">
+              <span>產品與服務目錄代管（定期更新品項、優化描述與關鍵字）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="問與答代管">
+              <span>問與答代管（即時回覆顧客提問、建立常見問答）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="Google廣告投放代操">
+              <span>Google 廣告投放代操（關鍵字廣告設定與優化）</span>
             </label>
             <label class="option-item">
               <input type="checkbox" name="wishlist" value="競爭對手監控">
-              <span>競爭對手監控（對手做了什麼、排名變化）</span>
+              <span>競爭對手監控（對手動態、排名變化）</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="wishlist" value="商家資訊異動監控">
+              <span>商家資訊異動監控（被惡意修改時即時通知）</span>
             </label>
             <label class="option-item">
               <input type="checkbox" name="wishlist" value="多平台整合管理">
@@ -821,7 +1049,7 @@
         <div class="survey-section-header">
           <div class="survey-section-num">5</div>
           <h2>價格與付費意願</h2>
-          <p>坦白說就好，你的答案會直接影響我們的定價策略</p>
+          <p>坦白說就好，你的答案會直接影響我的定價策略</p>
         </div>
 
         <div class="question">
@@ -942,7 +1170,7 @@
         <div class="survey-section-header">
           <div class="survey-section-num">6</div>
           <h2>最後一題</h2>
-          <p>你的真心話對我們最珍貴</p>
+          <p>你的真心話對我最珍貴</p>
         </div>
 
         <div class="question">
@@ -951,8 +1179,8 @@
             <span>不太可能</span>
             <span>非常願意</span>
           </div>
-          <div class="scale-group">
-            <div class="scale-item"><input type="radio" name="nps" value="1" id="nps-1"><label
+          <div class="scale-group scale-nps">
+            <div class="scale-item"><input type="radio" name="nps" value="1" id="nps-1" required><label
                 for="nps-1">1</label></div>
             <div class="scale-item"><input type="radio" name="nps" value="2" id="nps-2"><label
                 for="nps-2">2</label></div>
@@ -976,9 +1204,49 @@
         </div>
 
         <div class="question">
-          <label class="question-label">有什麼想對我們說的？</label>
+          <label class="question-label">有什麼想對我說的？</label>
           <textarea class="survey-textarea" name="feedback" rows="4"
             placeholder="任何建議、吐槽、鼓勵都歡迎。真心話不會公開，但會被認真對待。"></textarea>
+        </div>
+
+        <!-- 服務討論與諮詢 -->
+        <div class="sponsor-block">
+          <h3>服務討論與諮詢</h3>
+          <p>歡迎直接加好友詢問</p>
+
+          <div class="sponsor-qr-row">
+            <div class="sponsor-qr-item">
+              <div class="qr-placeholder" id="qr-line">QR Code<br>稍後提供</div>
+              <span class="qr-label">LINE</span>
+            </div>
+            <div class="sponsor-qr-item">
+              <div class="qr-placeholder" id="qr-whatsapp">QR Code<br>稍後提供</div>
+              <span class="qr-label">WhatsApp</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sponsor -->
+        <div class="sponsor-block">
+          <h3>想支持我繼續做下去？</h3>
+          <p>覺得有幫助的話，價值由你決定</p>
+
+          <div class="sponsor-amounts">
+            <button type="button" class="sponsor-chip" data-amount="100">NT$100</button>
+            <button type="button" class="sponsor-chip" data-amount="500">NT$500</button>
+            <button type="button" class="sponsor-chip" data-amount="1000">NT$1,000</button>
+            <button type="button" class="sponsor-chip" data-amount="3000">NT$3,000</button>
+            <button type="button" class="sponsor-chip" data-amount="6000">NT$6,000</button>
+          </div>
+
+          <div class="sponsor-custom-row">
+            <span>NT$</span>
+            <input type="number" id="sponsor-amount" min="100" max="6000" step="100" placeholder="自訂金額">
+          </div>
+
+          <div class="sponsor-center">
+            <button type="button" class="btn-sponsor" id="sponsor-btn">前往 Paddle 付款 &rarr;</button>
+          </div>
         </div>
 
       </div>
@@ -987,7 +1255,7 @@
       <div class="survey-submit-section" id="submit-section">
         <div class="cf-turnstile" data-sitekey="0x4AAAAAACl4rs-G2afDAzBg" data-theme="light" style="margin-bottom:16px;display:flex;justify-content:center;"></div>
         <button type="submit" class="btn-submit" id="submit-btn">送出問卷</button>
-        <p class="submit-note">感謝你的寶貴意見，我們會認真對待每一個回饋</p>
+        <p class="submit-note">感謝你的寶貴意見，我會認真對待每一個回饋</p>
       </div>
 
     </form>
@@ -1001,7 +1269,7 @@
         </svg>
       </div>
       <h2>感謝你的回饋！</h2>
-      <p>你的意見會直接影響我們的服務方向。如果你留了聯絡資訊，有新服務上線時我們會第一時間通知你。</p>
+      <p>你的意見會直接影響我的服務方向。有新服務上線時，我會透過你留下的聯絡方式第一時間通知你。</p>
     </div>
   </main>
 
@@ -1013,6 +1281,8 @@
 
   <script>
     (function () {
+      var STORAGE_KEY = 'gbp-seo-survey-draft';
+
       /* ===== Option item selection visual feedback ===== */
       document.querySelectorAll('.option-item').forEach(function (item) {
         var input = item.querySelector('input');
@@ -1020,7 +1290,6 @@
 
         input.addEventListener('change', function () {
           if (input.type === 'radio') {
-            /* Clear siblings */
             var group = item.closest('.option-group');
             group.querySelectorAll('.option-item').forEach(function (s) {
               s.classList.remove('selected');
@@ -1032,26 +1301,79 @@
             item.classList.remove('selected');
           }
 
-          /* Checkbox max 3 for pain_points */
-          if (input.name === 'pain_points') {
-            var checked = document.querySelectorAll('[name="pain_points"]:checked');
+          /* Checkbox max 3 for pain_points & wishlist */
+          if (input.name === 'pain_points' || input.name === 'wishlist') {
+            var checked = document.querySelectorAll('[name="' + input.name + '"]:checked');
             if (checked.length >= 3) {
-              document.querySelectorAll('[name="pain_points"]:not(:checked)').forEach(function (cb) {
+              document.querySelectorAll('[name="' + input.name + '"]:not(:checked)').forEach(function (cb) {
                 cb.disabled = true;
                 cb.closest('.option-item').style.opacity = '0.5';
               });
             } else {
-              document.querySelectorAll('[name="pain_points"]').forEach(function (cb) {
+              document.querySelectorAll('[name="' + input.name + '"]').forEach(function (cb) {
                 cb.disabled = false;
                 cb.closest('.option-item').style.opacity = '1';
               });
             }
           }
+
+          saveDraft();
         });
       });
 
+      /* Save draft on text input */
+      document.querySelectorAll('.survey-input, .survey-textarea').forEach(function (el) {
+        el.addEventListener('input', saveDraft);
+      });
+
+      /* ===== localStorage auto-save ===== */
+      function saveDraft() {
+        try {
+          var form = document.getElementById('survey-form');
+          var fd = new FormData(form);
+          var draft = {};
+          fd.forEach(function (value, key) {
+            if (key === 'cf-turnstile-response') return;
+            if (draft[key]) {
+              if (Array.isArray(draft[key])) {
+                draft[key].push(value);
+              } else {
+                draft[key] = [draft[key], value];
+              }
+            } else {
+              draft[key] = value;
+            }
+          });
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+        } catch (e) { /* ignore */ }
+      }
+
+      function restoreDraft() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          var draft = JSON.parse(raw);
+          Object.keys(draft).forEach(function (key) {
+            var value = draft[key];
+            var values = Array.isArray(value) ? value : [value];
+            var els = document.querySelectorAll('[name="' + key + '"]');
+            els.forEach(function (el) {
+              if (el.type === 'radio' || el.type === 'checkbox') {
+                if (values.indexOf(el.value) !== -1) {
+                  el.checked = true;
+                  el.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+              } else {
+                el.value = values[0];
+              }
+            });
+          });
+        } catch (e) { /* ignore */ }
+      }
+
+      restoreDraft();
+
       /* ===== Progress bar ===== */
-      var sections = document.querySelectorAll('.survey-section');
       var bar = document.getElementById('progress-bar');
 
       function updateProgress() {
@@ -1066,17 +1388,14 @@
 
       /* ===== Form submit ===== */
       var form = document.getElementById('survey-form');
-      var submitSection = document.getElementById('submit-section');
       var successEl = document.getElementById('survey-success');
 
-      /* Parse query params (id from report link) */
       var params = new URLSearchParams(window.location.search);
       var reportId = params.get('id') || '';
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        /* Cloudflare Turnstile validation */
         var turnstileRes = document.querySelector('[name="cf-turnstile-response"]');
         var cfToken = turnstileRes ? turnstileRes.value : '';
         if (!cfToken) {
@@ -1088,7 +1407,6 @@
         btn.disabled = true;
         btn.textContent = '送出中...';
 
-        /* Collect data */
         var formData = new FormData(form);
         var data = {};
 
@@ -1104,12 +1422,19 @@
           }
         });
 
+        /* Fix "other" business type */
+        if (data.business_type === 'other') {
+          data.business_type = data.business_type_other
+            ? '其他：' + data.business_type_other
+            : '其他（未填寫）';
+        }
+        delete data.business_type_other;
+
         data.reportId = reportId;
         data.cfTurnstileToken = cfToken;
         data.submittedAt = new Date().toISOString();
         data.refUrl = window.location.href;
 
-        /* Send to webhook */
         var WEBHOOK_URL = 'https://jacky97s-n8n.zeabur.app/webhook/gbp-seo-survey';
 
         fetch(WEBHOOK_URL, {
@@ -1119,15 +1444,54 @@
         }).then(function (res) {
           if (!res.ok) throw new Error(res.status);
           form.style.display = 'none';
-          submitSection.style.display = 'none';
+          document.querySelector('.survey-hero').classList.add('hidden');
           successEl.classList.add('show');
           window.scrollTo({ top: 0, behavior: 'smooth' });
+          try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
         }).catch(function () {
           btn.disabled = false;
           btn.textContent = '送出問卷';
           if (window.turnstile) turnstile.reset();
           alert('送出時發生錯誤，請稍後再試。');
         });
+      });
+
+      /* ===== Sponsor ===== */
+      var sponsorInput = document.getElementById('sponsor-amount');
+      var sponsorChips = document.querySelectorAll('.sponsor-chip');
+      var sponsorBtn = document.getElementById('sponsor-btn');
+
+      /* TODO: Replace with actual Paddle Payment Link */
+      var PADDLE_URL = 'https://buy.paddle.com/PLACEHOLDER';
+
+      sponsorChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          sponsorChips.forEach(function (c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          sponsorInput.value = chip.getAttribute('data-amount');
+        });
+      });
+
+      sponsorInput.addEventListener('input', function () {
+        sponsorChips.forEach(function (c) { c.classList.remove('active'); });
+      });
+
+      sponsorInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+
+      sponsorBtn.addEventListener('click', function () {
+        var amount = parseInt(sponsorInput.value, 10);
+        if (!amount || amount < 30) {
+          alert('請輸入至少 NT$30 的金額');
+          return;
+        }
+        if (amount > 6000) {
+          alert('最高金額為 NT$6,000，感謝你的心意！');
+          sponsorInput.value = 6000;
+          return;
+        }
+        window.open(PADDLE_URL, '_blank');
       });
     })();
   </script>
