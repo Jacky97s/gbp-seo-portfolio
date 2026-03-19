@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google 商家檔案 SEO 分析報告 — 看見23咖啡(正義鐵道店)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #0F2B3C;
+    --color-primary-light: #1A3F54;
+    --color-accent: #00C9A7;
+    --color-accent-glow: rgba(0,201,167,0.15);
+    --color-accent-soft: #E6FAF5;
+    --color-score-excellent: #00C9A7;
+    --color-score-good: #4DB8FF;
+    --color-score-fair: #FFB74D;
+    --color-score-poor: #FF6B6B;
+    --color-bg: #F6F8FB;
+    --color-surface: #FFFFFF;
+    --color-surface-alt: #F0F3F8;
+    --color-border: #E2E8F0;
+    --color-text: #1E293B;
+    --color-text-secondary: #64748B;
+    --color-text-muted: #94A3B8;
+    --font-display: 'DM Sans', 'Noto Sans TC', sans-serif;
+    --font-body: 'Noto Sans TC', 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px;
+    --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px rgba(15,43,60,0.06);
+    --shadow-md: 0 4px 16px rgba(15,43,60,0.08);
+    --shadow-lg: 0 8px 32px rgba(15,43,60,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes scaleIn { from { opacity:0; transform:scale(0.9); } to { opacity:1; transform:scale(1); } }
+  @keyframes circleProgress { from { stroke-dashoffset: 490; } }
+  @keyframes slideRight { from { width: 0%; } }
+  @keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.6; } }
+  @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .animate-in { animation: fadeInUp 0.6s ease-out both; }
+  .d1 { animation-delay:0.1s } .d2 { animation-delay:0.2s } .d3 { animation-delay:0.3s } .d4 { animation-delay:0.4s } .d5 { animation-delay:0.5s }
+
+  .report-container { max-width: 1120px; margin: 0 auto; padding: var(--space-lg); }
+
+  /* ===== HERO ===== */
+  .hero { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 60%, #1B4D6E 100%); border-radius: var(--radius-lg); padding: var(--space-2xl) var(--space-xl); margin-bottom: var(--space-lg); position: relative; overflow: hidden; animation: scaleIn 0.5s ease-out; }
+  .hero::before { content:''; position:absolute; top:-50%; right:-20%; width:500px; height:500px; background:radial-gradient(circle,rgba(0,201,167,0.12) 0%,transparent 70%); border-radius:50%; }
+  .hero::after { content:''; position:absolute; bottom:-30%; left:-10%; width:400px; height:400px; background:radial-gradient(circle,rgba(77,184,255,0.08) 0%,transparent 70%); border-radius:50%; }
+  .hero-content { position:relative; z-index:1; }
+  .hero-badge { display:inline-flex; align-items:center; gap:var(--space-sm); background:rgba(0,201,167,0.15); border:1px solid rgba(0,201,167,0.3); color:var(--color-accent); font-family:var(--font-mono); font-size:0.75rem; font-weight:500; padding:6px 14px; border-radius:var(--radius-full); margin-bottom:var(--space-lg); letter-spacing:0.05em; text-transform:uppercase; }
+  .hero-badge::before { content:''; width:6px; height:6px; background:var(--color-accent); border-radius:50%; animation:pulse 2s infinite; }
+  .hero-value-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); font-family:var(--font-mono); font-size:0.7rem; font-weight:500; padding:5px 12px; border-radius:var(--radius-full); margin-left:var(--space-sm); letter-spacing:0.03em; }
+  .hero-value-tag .value-amount { color:rgba(255,255,255,0.95); font-weight:700; }
+  .hero h1 { font-family:var(--font-display); font-size:clamp(1.75rem,4vw,2.5rem); font-weight:900; color:#FFF; margin-bottom:var(--space-sm); letter-spacing:-0.02em; }
+  .hero-subtitle { font-size:1rem; color:rgba(255,255,255,0.6); margin-bottom:var(--space-xl); }
+  .hero-meta { display:flex; flex-wrap:wrap; gap:var(--space-lg); font-size:0.875rem; color:rgba(255,255,255,0.75); }
+  .hero-meta-item { display:flex; align-items:center; gap:var(--space-sm); }
+  .hero-meta-item svg { width:16px; height:16px; opacity:0.6; }
+  .hero-creator { margin-top:var(--space-lg); padding-top:var(--space-md); border-top:1px solid rgba(255,255,255,0.1); }
+  .hero-creator a { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.8); font-family:var(--font-mono); font-size:0.8rem; text-decoration:none; padding:6px 16px; border-radius:var(--radius-full); border:1px solid rgba(255,255,255,0.2); transition:all 0.25s; letter-spacing:0.02em; }
+  .hero-creator a:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.35); color:white; }
+
+  /* ===== STICKY NAV ===== */
+  .sticky-nav { position:sticky; top:0; z-index:100; background:rgba(246,248,251,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--color-border); margin:0 calc(-1 * var(--space-lg)); padding:0 var(--space-lg); margin-bottom:var(--space-lg); }
+  .sticky-nav-inner { display:flex; gap:var(--space-xs); overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding:var(--space-sm) 0; }
+  .sticky-nav-inner::-webkit-scrollbar { display:none; }
+  .sticky-nav a { display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:var(--radius-full); font-size:0.8rem; font-weight:500; color:var(--color-text-secondary); text-decoration:none; white-space:nowrap; transition:all 0.2s; border:1px solid transparent; }
+  .sticky-nav a:hover { background:var(--color-surface); color:var(--color-text); border-color:var(--color-border); }
+
+  /* ===== DASHBOARD ===== */
+  .dashboard { display:grid; grid-template-columns:280px 1fr; gap:var(--space-lg); margin-bottom:var(--space-xl); }
+  @media(max-width:768px){ .dashboard{ grid-template-columns:1fr; } }
+  .total-score-card { background:var(--color-surface); border-radius:var(--radius-lg); padding:var(--space-xl); box-shadow:var(--shadow-md); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .score-ring { position:relative; width:180px; height:180px; margin-bottom:var(--space-lg); }
+  @media(max-width:560px){ .score-ring { width:140px; height:140px; } .score-ring svg { width:140px; height:140px; } .score-number { font-size:2.2rem !important; } }
+  .score-ring svg { transform:rotate(-90deg); }
+  .score-ring-bg { fill:none; stroke:var(--color-surface-alt); stroke-width:10; }
+  .score-ring-progress { fill:none; stroke-width:10; stroke-linecap:round; stroke-dasharray:490; animation:circleProgress 1.5s ease-out forwards; }
+  .score-ring-value { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .score-number { font-family:var(--font-display); font-size:3rem; font-weight:900; line-height:1; letter-spacing:-0.03em; }
+  .score-label { font-size:0.8rem; color:var(--color-text-muted); margin-top:var(--space-xs); text-transform:uppercase; letter-spacing:0.1em; }
+  .score-grade { font-family:var(--font-display); font-size:1rem; font-weight:700; padding:6px 20px; border-radius:var(--radius-full); }
+  .grade-excellent { background:var(--color-accent-soft); color:#059669; }
+  .grade-good { background:#EFF6FF; color:#2563EB; }
+  .grade-fair { background:#FFF7ED; color:#D97706; }
+  .grade-poor { background:#FEF2F2; color:#DC2626; }
+
+  .dimension-scores { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); }
+  @media(max-width:560px){ .dimension-scores{ grid-template-columns:1fr; } }
+  .dim-card { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); border-left:4px solid transparent; transition:transform 0.2s, box-shadow 0.2s; }
+  .dim-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .dim-card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-sm); }
+  .dim-icon { width:40px; height:40px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+  .dim-score { font-family:var(--font-display); font-size:1.75rem; font-weight:900; letter-spacing:-0.02em; }
+  .dim-name { font-size:0.9rem; font-weight:500; margin-bottom:2px; }
+  .dim-weight { font-size:0.75rem; color:var(--color-text-muted); font-family:var(--font-mono); }
+  .dim-status { font-size:0.75rem; font-weight:600; margin-top:var(--space-sm); padding:3px 10px; border-radius:var(--radius-full); display:inline-block; }
+  .dim-bar { height:6px; background:var(--color-surface-alt); border-radius:var(--radius-full); margin-top:var(--space-sm); overflow:hidden; }
+  .dim-bar-fill { height:100%; border-radius:var(--radius-full); animation:slideRight 1s ease-out 0.5s forwards; width:0; }
+
+  /* ===== EXECUTIVE SUMMARY ===== */
+  .exec-summary { background:linear-gradient(135deg,#F0FDFA 0%,#E6FAF5 100%); border:2px solid rgba(0,201,167,0.2); border-radius:var(--radius-lg); padding:var(--space-xl); margin-bottom:var(--space-xl); position:relative; }
+  .exec-summary-badge { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:#059669; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-md); }
+  .exec-summary-text { font-size:1.05rem; line-height:1.8; color:var(--color-text); margin-bottom:var(--space-lg); }
+  .exec-do-now { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); border-left:4px solid var(--color-score-poor); }
+  .exec-do-now-label { font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--color-score-poor); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-sm); }
+  .exec-do-now-title { font-weight:700; font-size:1.05rem; margin-bottom:var(--space-xs); }
+  .exec-do-now-time { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); }
+  .exec-good-news { margin-top:var(--space-lg); padding:var(--space-md) var(--space-lg); background:var(--color-surface); border-radius:var(--radius-md); border-left:4px solid var(--color-score-excellent); font-size:0.95rem; color:var(--color-text-secondary); line-height:1.7; }
+
+  /* ===== COMPETITOR SECTION ===== */
+  .compete-table-wrap { overflow-x:auto; margin-bottom:var(--space-lg); }
+  .compete-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+  .compete-table th { background:var(--color-primary); color:white; padding:var(--space-sm) var(--space-md); text-align:left; font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap; }
+  .compete-table th:first-child { border-radius:var(--radius-sm) 0 0 0; }
+  .compete-table th:last-child { border-radius:0 var(--radius-sm) 0 0; }
+  .compete-table td { padding:var(--space-sm) var(--space-md); border-bottom:1px solid var(--color-border); white-space:nowrap; }
+  .compete-table tr:hover { background:var(--color-surface-alt); }
+  .compete-table tr.is-target { background:var(--color-accent-soft); font-weight:600; }
+  .compete-table tr.is-target td { border-bottom-color:rgba(0,201,167,0.3); }
+  .compete-table .rank-num { font-family:var(--font-mono); font-weight:700; color:var(--color-text-muted); }
+  .compete-table .target-marker { color:var(--color-accent); font-weight:700; }
+  .compete-gap-callout { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); border-left:4px solid var(--color-score-fair); font-size:0.9rem; color:var(--color-text-secondary); line-height:1.6; margin-bottom:var(--space-lg); }
+  .keyword-rank { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-md); }
+  .keyword-rank-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-md); display:flex; align-items:center; gap:var(--space-sm); }
+  .keyword-rank-list { list-style:none; display:grid; gap:var(--space-xs); }
+  .keyword-rank-item { display:flex; align-items:center; gap:var(--space-md); padding:var(--space-sm) var(--space-md); border-radius:var(--radius-sm); font-size:0.85rem; }
+  .keyword-rank-item:nth-child(odd) { background:var(--color-surface-alt); }
+  .keyword-rank-item.is-target { background:var(--color-accent-soft); font-weight:600; }
+  .keyword-rank-pos { font-family:var(--font-mono); font-weight:700; min-width:28px; color:var(--color-text-muted); }
+  .keyword-rank-name { flex:1; }
+  .keyword-rank-rating { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); }
+  .keyword-not-found { background:#FEF2F2; border:1px solid rgba(220,38,38,0.2); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); font-size:0.9rem; color:#DC2626; font-weight:500; margin-top:var(--space-sm); }
+
+  /* ===== SECTIONS ===== */
+  .section { margin-bottom:var(--space-xl); scroll-margin-top:60px; }
+  .section-header { display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-lg); flex-wrap:wrap; }
+  .section-icon { width:44px; height:44px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+  .section-title { font-family:var(--font-display); font-size:1.35rem; font-weight:700; letter-spacing:-0.01em; }
+  .section-score-inline { margin-left:auto; font-family:var(--font-mono); font-size:0.9rem; font-weight:500; padding:4px 12px; border-radius:var(--radius-full); white-space:nowrap; }
+  .section-verdict { width:100%; font-size:0.95rem; color:var(--color-text-secondary); padding:var(--space-md) var(--space-lg); background:var(--color-surface-alt); border-radius:var(--radius-sm); margin-top:calc(-1 * var(--space-sm)); line-height:1.6; border-left:3px solid var(--color-border); margin-bottom:var(--space-lg); }
+
+  /* ===== FINDINGS ===== */
+  .findings-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-md); margin-bottom:var(--space-lg); }
+  @media(max-width:560px){ .findings-grid { grid-template-columns:1fr; } }
+  .finding-card { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); border-top:3px solid var(--color-border); display:flex; flex-direction:column; }
+  .finding-card.status-pass { border-top-color:var(--color-score-excellent); }
+  .finding-card.status-warn { border-top-color:var(--color-score-fair); }
+  .finding-card.status-fail { border-top-color:var(--color-score-poor); }
+  .finding-status { display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:var(--space-sm); }
+  .finding-status-dot { width:8px; height:8px; border-radius:50%; }
+  .finding-source { display:inline-flex; align-items:center; gap:4px; font-size:0.65rem; font-weight:600; padding:2px 8px; border-radius:var(--radius-full); margin-left:var(--space-sm); letter-spacing:0.03em; }
+  .source-verified { background:#DCFCE7; color:#15803D; }
+  .source-cross-checked { background:#DBEAFE; color:#1D4ED8; }
+  .finding-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-sm); }
+  .finding-detail { font-size:0.875rem; color:var(--color-text-secondary); line-height:1.6; flex:1; }
+  .finding-impact { margin-top:var(--space-md); padding-top:var(--space-md); border-top:1px dashed var(--color-border); font-size:0.8rem; color:var(--color-text-secondary); line-height:1.5; display:flex; gap:6px; }
+  .finding-impact-icon { flex-shrink:0; }
+  .finding-card.status-pass .finding-detail { display:none; }
+  .finding-card.status-pass .finding-impact { display:none; }
+  .finding-card.status-pass { padding:var(--space-md) var(--space-lg); }
+
+  /* ===== ACTION PLAN ===== */
+  .action-matrix { display:grid; gap:var(--space-lg); margin-bottom:var(--space-lg); }
+  .action-group { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); }
+  .action-group-header { display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-lg); padding-bottom:var(--space-md); border-bottom:1px solid var(--color-border); }
+  .action-group-badge { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:4px 12px; border-radius:var(--radius-full); white-space:nowrap; }
+  .badge-do-now { background:#FEF2F2; color:#DC2626; }
+  .badge-this-week { background:#FFF7ED; color:#D97706; }
+  .badge-when-free { background:#EFF6FF; color:#2563EB; }
+  .badge-optional { background:#F3F4F6; color:#6B7280; }
+  .action-group-title { font-family:var(--font-display); font-weight:700; font-size:1.05rem; }
+  .action-items { display:grid; gap:var(--space-md); }
+  .action-item { border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-lg); transition:box-shadow 0.2s; }
+  .action-item:hover { box-shadow:var(--shadow-md); }
+  .action-item-header { display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-md); flex-wrap:wrap; }
+  .action-item-title { font-weight:700; font-size:1rem; flex:1; }
+  .action-difficulty { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); white-space:nowrap; }
+  .action-time { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); padding:2px 10px; background:var(--color-surface-alt); border-radius:var(--radius-full); white-space:nowrap; }
+  .action-why { font-size:0.875rem; color:var(--color-text-secondary); line-height:1.6; margin-bottom:var(--space-md); }
+  .action-why cite { font-style:normal; font-size:0.8rem; color:var(--color-text-muted); }
+  .action-steps { display:grid; gap:var(--space-sm); margin-bottom:var(--space-md); }
+  .action-step { display:flex; gap:var(--space-md); align-items:flex-start; font-size:0.875rem; }
+  .action-step-num { flex-shrink:0; width:24px; height:24px; border-radius:50%; background:var(--color-primary); color:white; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:0.75rem; margin-top:2px; }
+  .action-step-text { flex:1; line-height:1.5; color:var(--color-text-secondary); }
+  .action-tiers { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-sm); }
+  @media(max-width:560px){ .action-tiers { grid-template-columns:1fr; } }
+  .action-tier { padding:var(--space-md); border-radius:var(--radius-sm); font-size:0.8rem; line-height:1.5; text-align:center; }
+  .tier-diy { background:#DCFCE7; color:#15803D; }
+  .tier-expert { background:#FEF2F2; color:#DC2626; }
+  .action-result { display:flex; align-items:center; gap:var(--space-sm); padding:var(--space-md); background:var(--color-accent-soft); border-radius:var(--radius-sm); font-size:0.85rem; color:#059669; font-weight:500; margin-top:var(--space-md); }
+
+  /* ===== APPENDIX ===== */
+  .scoring-matrix-wrap { overflow-x:auto; margin-bottom:var(--space-lg); }
+  .scoring-matrix { width:100%; border-collapse:collapse; font-size:0.825rem; }
+  .scoring-matrix th { background:var(--color-surface-alt); padding:var(--space-sm) var(--space-md); text-align:left; font-weight:600; font-size:0.75rem; border-bottom:2px solid var(--color-border); }
+  .scoring-matrix td { padding:var(--space-sm) var(--space-md); border-bottom:1px solid var(--color-border); }
+  .scoring-matrix tr:hover { background:var(--color-surface-alt); }
+  .scoring-matrix .score-cell { font-family:var(--font-mono); font-weight:600; text-align:center; }
+  .scoring-matrix .score-pass { color:#059669; }
+  .scoring-matrix .score-partial { color:#D97706; }
+  .scoring-matrix .score-fail { color:#DC2626; }
+  .scoring-formula { background:var(--color-surface-alt); border-radius:var(--radius-md); padding:var(--space-lg); font-family:var(--font-mono); font-size:0.85rem; text-align:center; margin-bottom:var(--space-lg); color:var(--color-text-secondary); }
+
+  .copy-template { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-md); }
+  .copy-template-title { font-weight:600; font-size:0.95rem; margin-bottom:var(--space-md); display:flex; align-items:center; gap:var(--space-sm); }
+  .copy-template-content { background:var(--color-surface-alt); border-radius:var(--radius-sm); padding:var(--space-lg); font-size:0.875rem; line-height:1.8; color:var(--color-text-secondary); white-space:pre-wrap; position:relative; }
+  .copy-btn { position:absolute; top:var(--space-sm); right:var(--space-sm); background:var(--color-primary); color:white; border:none; padding:6px 14px; border-radius:var(--radius-full); font-size:0.75rem; font-family:var(--font-mono); cursor:pointer; transition:all 0.2s; }
+  .copy-btn:hover { background:var(--color-accent); }
+  .copy-btn.copied { background:#059669; }
+
+  .glossary { background:var(--color-surface); border-radius:var(--radius-md); padding:var(--space-lg); box-shadow:var(--shadow-sm); margin-bottom:var(--space-lg); }
+  .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-sm); }
+  .glossary-item { display:flex; gap:var(--space-sm); font-size:0.825rem; padding:var(--space-sm) 0; }
+  .glossary-term { font-weight:600; min-width:100px; flex-shrink:0; color:var(--color-primary); }
+  .glossary-def { color:var(--color-text-secondary); line-height:1.5; }
+
+  .term { border-bottom:1px dashed var(--color-text-muted); cursor:help; position:relative; }
+  .term .tip { visibility:hidden; opacity:0; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--color-primary); color:white; font-size:0.75rem; font-weight:400; padding:8px 12px; border-radius:var(--radius-sm); white-space:normal; width:240px; line-height:1.5; z-index:200; box-shadow:var(--shadow-lg); pointer-events:none; transition:opacity 0.2s, visibility 0.2s; text-transform:none; letter-spacing:normal; }
+  .term .tip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:var(--color-primary); }
+  .term:hover .tip, .term:focus .tip { visibility:visible; opacity:1; }
+  @media(max-width:768px){ .term .tip { left:0; transform:none; width:200px; } }
+
+  /* ===== ABOUT / CTA ===== */
+  .about-section { background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-primary-light) 60%,#1B4D6E 100%); border-radius:var(--radius-lg); padding:var(--space-2xl); margin-bottom:var(--space-xl); position:relative; overflow:hidden; color:white; }
+  .about-section::before { content:''; position:absolute; top:-40%; right:-15%; width:400px; height:400px; background:radial-gradient(circle,rgba(0,201,167,0.12) 0%,transparent 70%); border-radius:50%; }
+  .about-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:var(--space-xl); align-items:center; }
+  @media(max-width:768px){ .about-inner { grid-template-columns:1fr; } }
+  .about-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-accent); margin-bottom:var(--space-md); display:flex; align-items:center; gap:8px; }
+  .about-label::before { content:''; width:24px; height:2px; background:var(--color-accent); }
+  .about-name { font-family:var(--font-display); font-size:clamp(1.4rem,3vw,1.8rem); font-weight:900; margin-bottom:var(--space-md); letter-spacing:-0.02em; }
+  .about-desc { font-size:0.95rem; line-height:1.8; color:rgba(255,255,255,0.75); margin-bottom:var(--space-lg); }
+  .about-cta { display:flex; flex-direction:column; gap:var(--space-md); }
+  .about-cta-label { font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.5); margin-bottom:var(--space-xs); }
+  .cta-card { display:flex; align-items:center; gap:var(--space-md); padding:var(--space-md) var(--space-lg); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-md); text-decoration:none; color:white; transition:all 0.25s; }
+  .cta-card:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25); transform:translateY(-2px); }
+  .cta-card-icon { width:44px; height:44px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+  .cta-card-text { flex:1; }
+  .cta-card-title { font-family:var(--font-display); font-weight:700; font-size:0.95rem; margin-bottom:2px; }
+  .cta-card-desc { font-size:0.8rem; color:rgba(255,255,255,0.55); }
+  .cta-card-arrow { font-size:1.2rem; color:rgba(255,255,255,0.3); transition:all 0.2s; }
+  .cta-card:hover .cta-card-arrow { color:var(--color-accent); transform:translateX(4px); }
+
+  .report-cta-banner { background:linear-gradient(135deg,#F0FDFA 0%,#E6FAF5 50%,#EFF6FF 100%); border:2px solid rgba(0,201,167,0.25); border-radius:var(--radius-lg); padding:var(--space-xl); margin-bottom:var(--space-xl); text-align:center; }
+  .report-cta-badge { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:#059669; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-md); }
+  .report-cta-title { font-family:var(--font-display); font-size:1.3rem; font-weight:900; margin-bottom:var(--space-sm); letter-spacing:-0.02em; }
+  .report-cta-desc { font-size:0.95rem; color:var(--color-text-secondary); max-width:540px; margin:0 auto var(--space-lg); line-height:1.7; }
+  .report-cta-guarantee { margin-top:var(--space-lg); padding-top:var(--space-md); border-top:1px solid rgba(0,201,167,0.15); font-size:0.8rem; color:var(--color-text-muted); }
+
+  .service-tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-md); margin-bottom:var(--space-md); text-align:left; }
+  @media(max-width:768px){ .service-tiers { grid-template-columns:1fr; } }
+  .service-tier { background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-lg); display:flex; flex-direction:column; transition:transform 0.2s, box-shadow 0.2s; }
+  .service-tier:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .service-tier-highlight { border-color:var(--color-accent); border-width:2px; position:relative; background:linear-gradient(180deg,#F0FDFA 0%,#FFFFFF 100%); }
+  .service-tier-popular { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--color-accent); color:white; font-family:var(--font-mono); font-size:0.7rem; font-weight:700; padding:3px 14px; border-radius:var(--radius-full); letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; }
+  .service-tier-icon { font-size:1.5rem; margin-bottom:var(--space-sm); }
+  .service-tier-name { font-family:var(--font-display); font-weight:800; font-size:1.05rem; margin-bottom:var(--space-xs); }
+  .service-tier-price { font-family:var(--font-mono); font-size:0.85rem; color:var(--color-accent); font-weight:600; margin-bottom:var(--space-md); }
+  .service-tier-list { list-style:none; flex:1; margin-bottom:var(--space-lg); }
+  .service-tier-list li { font-size:0.8rem; color:var(--color-text-secondary); padding:4px 0; display:flex; align-items:flex-start; gap:6px; line-height:1.5; }
+  .service-tier-list li::before { content:'✓'; color:var(--color-accent); font-weight:700; flex-shrink:0; }
+  .service-tier-btn { display:block; text-align:center; padding:10px 20px; border-radius:var(--radius-full); font-family:var(--font-display); font-size:0.85rem; font-weight:700; text-decoration:none; transition:all 0.25s; }
+  .service-tier-btn-outline { background:transparent; color:var(--color-text-secondary); border:1px solid var(--color-border); }
+  .service-tier-btn-outline:hover { border-color:var(--color-accent); color:var(--color-accent); }
+  .service-tier-btn-primary { background:var(--color-accent); color:white; border:1px solid var(--color-accent); }
+  .service-tier-btn-primary:hover { background:#00B294; transform:translateY(-1px); box-shadow:var(--shadow-sm); }
+  .service-tier-btn-dark { background:var(--color-primary); color:white; border:1px solid var(--color-primary); }
+  .service-tier-btn-dark:hover { background:var(--color-primary-light); transform:translateY(-1px); box-shadow:var(--shadow-sm); }
+  .cta-card-highlight { background:rgba(0,201,167,0.1)!important; border-color:rgba(0,201,167,0.3)!important; }
+  .cta-card-highlight:hover { background:rgba(0,201,167,0.18)!important; border-color:rgba(0,201,167,0.5)!important; }
+  .cta-card-highlight .cta-card-title { color:var(--color-accent); }
+
+  .survey-cta { text-align:center; padding:var(--space-xl) var(--space-lg); margin-top:var(--space-xl); background:linear-gradient(135deg, var(--color-accent-soft) 0%, #F0F7FF 100%); border-radius:var(--radius-lg); border:1px solid var(--color-border); }
+  .survey-cta-icon { font-size:2rem; margin-bottom:var(--space-md); }
+  .survey-cta h3 { font-family:var(--font-display); font-size:1.2rem; font-weight:700; margin-bottom:var(--space-sm); color:var(--color-text); }
+  .survey-cta p { font-size:0.88rem; color:var(--color-text-secondary); max-width:460px; margin:0 auto var(--space-lg); line-height:1.7; }
+  .survey-cta-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 32px; background:var(--color-accent); color:white; font-family:var(--font-display); font-size:0.95rem; font-weight:600; border-radius:var(--radius-full); text-decoration:none; transition:all 0.25s; border:none; cursor:pointer; }
+  .survey-cta-btn:hover { background:#00B294; transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .survey-cta-btn svg { width:18px; height:18px; }
+  .survey-cta-note { font-size:0.75rem; color:var(--color-text-muted); margin-top:var(--space-sm); }
+
+  .report-footer { text-align:center; padding:var(--space-xl) 0 var(--space-lg); border-top:1px solid var(--color-border); margin-top:var(--space-xl); }
+  .footer-date { font-family:var(--font-mono); font-size:0.8rem; color:var(--color-text-muted); margin-bottom:var(--space-sm); }
+  .footer-disclaimer { font-size:0.75rem; color:var(--color-text-muted); max-width:600px; margin:0 auto; line-height:1.6; }
+  .footer-brand { margin-top:var(--space-lg); padding-top:var(--space-lg); border-top:1px solid var(--color-border); display:flex; flex-direction:column; align-items:center; gap:var(--space-sm); }
+  .footer-brand-text { font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-muted); letter-spacing:0.03em; }
+  .footer-brand-links { display:flex; align-items:center; gap:var(--space-md); flex-wrap:wrap; justify-content:center; }
+  .footer-brand-link { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.75rem; color:var(--color-primary); text-decoration:none; padding:4px 12px; border-radius:var(--radius-full); border:1px solid var(--color-border); transition:all 0.2s; }
+  .footer-brand-link:hover { background:var(--color-primary); color:white; border-color:var(--color-primary); }
+  .footer-brand-link svg { width:14px; height:14px; }
+
+  .consult-section { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-xl) var(--space-lg); text-align: center; margin-top: var(--space-xl); animation: fadeInUp 0.6s ease-out both; }
+  .consult-section h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--color-text); margin-bottom: 4px; }
+  .consult-section p { font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 24px; }
+  .consult-qr-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .consult-qr-item { text-align: center; }
+  .consult-qr-item img { width: 140px; height: 140px; border-radius: var(--radius-md); display: block; margin: 0 auto 8px; border: 1px solid var(--color-border); }
+  .consult-qr-label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--color-text); }
+  .consult-qr-sub { display: block; font-size: 0.75rem; color: var(--color-text-muted); margin-top: 4px; }
+
+  @media print {
+    body { background:white; }
+    .report-container { padding:0; max-width:100%; }
+    .sticky-nav { display:none; }
+    .hero { break-inside:avoid; }
+    .section { break-inside:avoid; }
+    .animate-in { animation:none!important; opacity:1!important; }
+    .term .tip { display:none; }
+    .report-cta-banner { break-inside:avoid; }
+  }
+</style>
+<!-- PostHog Analytics -->
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_shgbyaRaNRrno9dyUIkbJXuMFSEkLjmzkNEl6ks44XP', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-01-30',
+        session_recording: { maskAllInputs: false, maskTextSelector: '[data-mask]' },
+        enable_recording_console_log: true,
+        enable_heatmaps: true,
+        autocapture: true,
+        capture_pageview: true,
+        capture_pageleave: true,
+        capture_performance: true,
+        capture_dead_clicks: true
+    })
+</script>
+<script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+<div class="report-container" data-report-id="MMWA0M01">
+
+  <!-- ========== 1. HERO ========== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-lg)">
+        <div class="hero-badge" style="margin-bottom:0">Google 商家檔案 SEO 分析報告</div>
+        <div class="hero-value-tag">價值 <span class="value-amount">NT$6,000</span></div>
+      </div>
+      <h1>看見23咖啡(正義鐵道店)</h1>
+      <p class="hero-subtitle">Google 商家檔案 SEO 健檢與優化策略</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>802台灣高雄市苓雅區鐵道街583號</span>
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>07 719 3324</span>
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>分析日期：2026-03-20</span>
+        </div>
+      </div>
+      <div class="hero-creator">
+        <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">
+          <svg viewBox="0 0 192 192" width="14" height="14" fill="rgba(255,255,255,0.8)"><path d="M141.537 88.988a66.667 66.667 0 00-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.672-1.14-23.772 1.371-39.07 15.243-38.23 34.682.425 9.847 5.253 18.348 13.595 23.945 7.038 4.723 16.108 7.09 25.537 6.668 12.425-.556 22.149-5.185 28.9-13.757 5.122-6.505 8.386-14.909 9.861-25.467 5.907 3.565 10.303 8.27 12.81 13.862 4.258 9.49 4.509 25.07-3.727 33.312-7.258 7.257-15.977 10.377-29.152 10.478-14.573-.112-25.584-4.788-32.72-13.902-6.674-8.52-10.146-20.644-10.329-36.042.183-15.398 3.655-27.52 10.33-36.042 7.135-9.114 18.146-13.79 32.72-13.902 14.693.114 25.834 4.834 33.126 14.036 3.546 4.478 6.2 10.199 7.946 16.98l14.461-3.855c-2.219-8.623-5.857-16.023-10.886-22.071C152.878 6.882 138.913 1.316 122.122 1.17h-.087c-16.707.143-30.613 5.72-41.327 16.581C71.396 27.148 66.25 40.79 66.003 57.586v.114c.247 16.796 5.393 30.436 14.705 39.835 10.714 10.86 24.62 16.438 41.327 16.581h.087c16.14-.125 28.106-4.575 38.784-15.253 13.597-13.597 13.178-30.552 7.37-43.454-4.17-9.268-11.858-16.765-22.739-22.421zm-39.21 55.294c-10.423.467-21.258-4.104-21.7-14.386-.328-7.616 5.398-16.093 24.668-17.202a96.03 96.03 0 0111.573.635c-1.327 18.992-7.262 30.45-14.54 30.953z"/></svg>
+          Analysed by @dev.from.zero
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 2. STICKY NAV ========== -->
+  <nav class="sticky-nav">
+    <div class="sticky-nav-inner">
+      <a href="#summary">📌 摘要</a>
+      <a href="#sec-compete">🏆 競爭態勢</a>
+      <a href="#sec-basic">📋 基本資訊</a>
+      <a href="#sec-review">💬 評論</a>
+      <a href="#sec-photo">📸 照片</a>
+      <a href="#sec-keyword">🔑 關鍵字</a>
+      <a href="#sec-action">🎯 行動計畫</a>
+      <a href="#sec-appendix">📎 附錄</a>
+    </div>
+  </nav>
+
+  <!-- ========== 3. SCORE DASHBOARD ========== -->
+  <section class="dashboard animate-in">
+    <div class="total-score-card">
+      <div class="score-ring">
+        <svg viewBox="0 0 180 180" width="180" height="180">
+          <circle class="score-ring-bg" cx="90" cy="90" r="78"/>
+          <circle class="score-ring-progress" cx="90" cy="90" r="78" stroke="#FFB74D" style="stroke-dashoffset:156.8"/>
+        </svg>
+        <div class="score-ring-value">
+          <span class="score-number" style="color:#FFB74D">68</span>
+          <span class="score-label">總體評分</span>
+        </div>
+      </div>
+      <span class="score-grade grade-fair">🟠 待改善</span>
+    </div>
+    <div class="dimension-scores">
+      <div class="dim-card animate-in d1" style="border-left-color:#4DB8FF">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#EFF6FF">📋</div>
+          <span class="dim-score" style="color:#4DB8FF">80</span>
+        </div>
+        <div class="dim-name">商家基本資訊</div>
+        <div class="dim-weight">權重 25%</div>
+        <div class="dim-status" style="background:#EFF6FF;color:#2563EB">良好</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:80%;background:#4DB8FF"></div></div>
+      </div>
+      <div class="dim-card animate-in d2" style="border-left-color:#4DB8FF">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#EFF6FF">💬</div>
+          <span class="dim-score" style="color:#4DB8FF">82</span>
+        </div>
+        <div class="dim-name">評論分析</div>
+        <div class="dim-weight">權重 30%</div>
+        <div class="dim-status" style="background:#EFF6FF;color:#2563EB">良好</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:82%;background:#4DB8FF"></div></div>
+      </div>
+      <div class="dim-card animate-in d3" style="border-left-color:#FFB74D">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#FFF7ED">📸</div>
+          <span class="dim-score" style="color:#FFB74D">65</span>
+        </div>
+        <div class="dim-name">照片與視覺內容</div>
+        <div class="dim-weight">權重 20%</div>
+        <div class="dim-status" style="background:#FFF7ED;color:#D97706">待改善</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:65%;background:#FFB74D"></div></div>
+      </div>
+      <div class="dim-card animate-in d4" style="border-left-color:#FF6B6B">
+        <div class="dim-card-header">
+          <div class="dim-icon" style="background:#FEF2F2">🔑</div>
+          <span class="dim-score" style="color:#FF6B6B">40</span>
+        </div>
+        <div class="dim-name">描述與關鍵字策略</div>
+        <div class="dim-weight">權重 25%</div>
+        <div class="dim-status" style="background:#FEF2F2;color:#DC2626">急需改善</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="--bar-width:40%;background:#FF6B6B"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. EXECUTIVE SUMMARY ========== -->
+  <section class="exec-summary animate-in" id="summary">
+    <div class="exec-summary-badge">📌 30 秒看懂這份報告</div>
+    <div class="exec-summary-text">
+      看見23咖啡有著讓人羨慕的 <strong>4.9 星好評與 272 則真心評論</strong>，顧客不斷提到「溫馨」「好吃」「親切」——這是花錢也買不到的真實口碑。但有個隱藏的問題：<strong>Google 把您歸類為「食品專賣店」而不是「咖啡廳」</strong>，就像您明明開了一間溫馨的咖啡廳，門牌卻寫著「食品行」。結果？當高雄人搜尋「苓雅 咖啡廳」時，<strong>前 10 名找不到您</strong>。加上商家描述完全空白、網站連結只放了 LINE，等於把三張免費廣告位留白了。好消息是，這些修正都很簡單，最快 10 分鐘就能讓您的好口碑被更多人看見。
+    </div>
+    <div class="exec-do-now">
+      <div class="exec-do-now-label">🔴 最該先做的 1 件事</div>
+      <div class="exec-do-now-title">到 Google 商家後台，將主要類別從「食品專賣店」改為「咖啡廳」</div>
+      <div class="exec-do-now-time">⏱ 約 10 分鐘</div>
+    </div>
+    <div class="exec-good-news">
+      ✅ <strong>好消息：</strong>您的 4.9 星評分在苓雅區獨立咖啡廳中名列前茅，搜尋「高雄鐵道 咖啡」和「正義車站 咖啡」時您都是<strong>第 1 名</strong>。您已有強大的口碑基礎，只需補齊幾個「空白欄位」，排名就有很大的提升空間。
+    </div>
+  </section>
+
+  <!-- ========== 5. COMPETITIVE LANDSCAPE ========== -->
+  <section class="section animate-in" id="sec-compete">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FFF7ED">🏆</div>
+      <h2 class="section-title">競爭態勢：方圓 5km 同業比較</h2>
+    </div>
+    <div class="section-verdict">💡 搜尋「高雄苓雅 咖啡廳」前 10 名中沒有您的身影——主要原因是 Google 類別設為「食品專賣店」而非「咖啡廳」。但在地區性搜尋「高雄鐵道 咖啡」您穩居第 1。</div>
+
+    <div class="compete-table-wrap">
+      <table class="compete-table">
+        <thead>
+          <tr><th>#</th><th>商家</th><th>評分</th><th>評論數</th><th>距離</th><th>照片數</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rank-num">1</td><td>The Light x Coffee Art 灯泡咖啡館</td><td>4.9</td><td>1,034</td><td>1.0km</td><td>10</td></tr>
+          <tr><td class="rank-num">2</td><td>路人咖啡1號店</td><td>4.7</td><td>881</td><td>4.1km</td><td>10</td></tr>
+          <tr><td class="rank-num">3</td><td>有。咖啡</td><td>4.6</td><td>700</td><td>2.2km</td><td>10</td></tr>
+          <tr><td class="rank-num">4</td><td>BASSOTTO CAFFE 巴索托咖啡館</td><td>4.2</td><td>672</td><td>2.6km</td><td>10</td></tr>
+          <tr><td class="rank-num">5</td><td>Around Cafe 流浪咖啡</td><td>4.7</td><td>385</td><td>2.9km</td><td>10</td></tr>
+          <tr><td class="rank-num">6</td><td>留白</td><td>4.8</td><td>329</td><td>1.1km</td><td>10</td></tr>
+          <tr><td class="rank-num">7</td><td>Beetle tree cafe 金龜樹咖啡</td><td>4.7</td><td>315</td><td>1.5km</td><td>10</td></tr>
+          <tr class="is-target"><td class="rank-num target-marker">★</td><td><strong>看見23咖啡(正義鐵道店)</strong></td><td><strong>4.9</strong></td><td><strong>272</strong></td><td>--</td><td><strong>10</strong></td></tr>
+          <tr><td class="rank-num">8</td><td>Furu Cafe</td><td>4.8</td><td>243</td><td>4.4km</td><td>10</td></tr>
+          <tr><td class="rank-num">9</td><td>Viter Cafe 維特咖啡</td><td>4.9</td><td>196</td><td>1.3km</td><td>10</td></tr>
+          <tr><td class="rank-num">10</td><td>Heidi Garden Cafe</td><td>5.0</td><td>128</td><td>2.8km</td><td>10</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="compete-gap-callout">
+      ⚡ 以評論數排名，您在 10 家苓雅獨立咖啡廳中排第 8。但您的 <strong>4.9 星評分並列第一</strong>！評論數是拉開差距的關鍵——第一名灯泡咖啡館有 1,034 則，是您的近 4 倍。
+    </div>
+
+    <!-- Keyword Rankings -->
+    <div class="keyword-rank">
+      <div class="keyword-rank-title">🔍 搜尋「高雄鐵道 咖啡」</div>
+      <ol class="keyword-rank-list">
+        <li class="keyword-rank-item is-target"><span class="keyword-rank-pos">1</span><span class="keyword-rank-name">★ 看見23咖啡(正義鐵道店)</span><span class="keyword-rank-rating">⭐ 4.9 · 272 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">2</span><span class="keyword-rank-name">放啡 Fine Coffee</span><span class="keyword-rank-rating">⭐ 5.0 · 7 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">3</span><span class="keyword-rank-name">鐵道街.629</span><span class="keyword-rank-rating">⭐ 5.0 · 20 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">4</span><span class="keyword-rank-name">鐵道廣場</span><span class="keyword-rank-rating">⭐ 4.1 · 130 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">5</span><span class="keyword-rank-name">陪伴甜點 咖啡</span><span class="keyword-rank-rating">⭐ 4.7 · 214 則</span></li>
+      </ol>
+    </div>
+
+    <div class="keyword-rank">
+      <div class="keyword-rank-title">🔍 搜尋「高雄 早午餐 咖啡」前 10 名</div>
+      <ol class="keyword-rank-list">
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">1</span><span class="keyword-rank-name">Mumu Kitchen 烘烤燕麥</span><span class="keyword-rank-rating">⭐ 4.6 · 1,500 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">2</span><span class="keyword-rank-name">好食屋早午餐</span><span class="keyword-rank-rating">⭐ 4.8 · 831 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">3</span><span class="keyword-rank-name">隅室咖啡餐廳 六合店</span><span class="keyword-rank-rating">⭐ 4.8 · 4,129 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">4</span><span class="keyword-rank-name">Futali & Brunch</span><span class="keyword-rank-rating">⭐ 4.8 · 265 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">5</span><span class="keyword-rank-name">周氏本舖</span><span class="keyword-rank-rating">⭐ 4.7 · 1,323 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">6</span><span class="keyword-rank-name">凱琳咖啡</span><span class="keyword-rank-rating">⭐ 4.8 · 1,232 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">7</span><span class="keyword-rank-name">拾。輕食 Ten Cafe & Brunch</span><span class="keyword-rank-rating">⭐ 4.9 · 175 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">8</span><span class="keyword-rank-name">CoCo Brunch 早午餐 咖啡</span><span class="keyword-rank-rating">⭐ 4.7 · 261 則</span></li>
+        <li class="keyword-rank-item"><span class="keyword-rank-pos">9</span><span class="keyword-rank-name">隅室咖啡餐廳 美術店</span><span class="keyword-rank-rating">⭐ 4.8 · 2,291 則</span></li>
+        <li class="keyword-rank-item is-target"><span class="keyword-rank-pos">10</span><span class="keyword-rank-name">★ 看見23咖啡(正義鐵道店)</span><span class="keyword-rank-rating">⭐ 4.9 · 272 則</span></li>
+      </ol>
+    </div>
+
+    <div class="keyword-rank">
+      <div class="keyword-rank-title">🔍 搜尋「高雄苓雅 咖啡廳」前 10 名</div>
+      <div class="keyword-not-found">⚠️ 搜尋「高雄苓雅 咖啡廳」前 10 名中找不到您的商家——原因是您的主要類別為「食品專賣店」而非「咖啡廳」</div>
+    </div>
+
+    <div class="keyword-rank">
+      <div class="keyword-rank-title">🔍 搜尋「高雄苓雅 早午餐」前 10 名</div>
+      <div class="keyword-not-found">⚠️ 搜尋「高雄苓雅 早午餐」前 10 名中找不到您的商家</div>
+    </div>
+  </section>
+
+  <!-- ========== 6a. 面向一：商家基本資訊 ========== -->
+  <section class="section animate-in" id="sec-basic">
+    <div class="section-header">
+      <div class="section-icon" style="background:#EFF6FF">📋</div>
+      <h2 class="section-title">面向一：商家基本資訊完整度</h2>
+      <span class="section-score-inline" style="background:#EFF6FF;color:#2563EB">80 / 100</span>
+    </div>
+    <div class="section-verdict">💡 基本資訊大致完整，但主要類別設定錯誤和網站連結為 LINE 是兩個顯著的漏洞。</div>
+    <div class="findings-grid">
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">商家名稱規範 ✓ 「看見23咖啡(正義鐵道店)」</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">地址完整 ✓ 802台灣高雄市苓雅區鐵道街583號</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">電話已設定 ✓ 07 719 3324</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">營業時間完整 ✓ 週二至週六 11:00-17:00 / 週日 13:00-17:00 / 週一公休</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">次類別已設定 ✓ 含 cafe、brunch_restaurant、restaurant 等 7 類</div>
+      </div>
+      <div class="finding-card status-fail">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 未通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">主要類別錯誤：顯示為「食品專賣店」(food_store)</div>
+        <div class="finding-detail">您的商家主要類別被設為 <strong>food_store（食品專賣店）</strong>，但實際上您是一間咖啡廳兼早午餐餐廳。這導致搜尋「咖啡廳」時 Google 不會優先推薦您。應改為 <strong>cafe（咖啡廳）</strong>。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 直接原因：搜尋「高雄苓雅 咖啡廳」前 10 名找不到您</div>
+      </div>
+      <div class="finding-card status-warn">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 部分通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">網站連結為 LINE 官方帳號（lin.ee）</div>
+        <div class="finding-detail">目前的「網站」欄位連結到 LINE 官方帳號，不是一個可被搜尋引擎索引的網頁。建議改為 Facebook 粉專或建立簡易官網。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> LINE 連結無法被 Google 爬蟲索引，等於放棄了一個免費的 SEO 加分機會</div>
+      </div>
+      <div class="finding-card status-warn">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 部分通過 <span class="finding-source source-cross-checked">交叉比對</span></div>
+        <div class="finding-title"><span class="term">NAP<span class="tip">Name（商家名稱）、Address（地址）、Phone（電話）在所有網路平台上要一模一樣</span></span> 部分不一致</div>
+        <div class="finding-detail">網路上搜尋到的舊地址「正義路309巷23號」仍出現在部分平台（LINE 熱點、痞客邦文章），與目前 Google 地圖上的「鐵道街583號」不同。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 不一致的地址會降低 Google 對商家資訊的信任度，影響排名可信度評分</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6b. 面向二：評論分析 ========== -->
+  <section class="section animate-in" id="sec-review">
+    <div class="section-header">
+      <div class="section-icon" style="background:#EFF6FF">💬</div>
+      <h2 class="section-title">面向二：評論分析</h2>
+      <span class="section-score-inline" style="background:#EFF6FF;color:#2563EB">82 / 100</span>
+    </div>
+    <div class="section-verdict">💡 基於 99 則評論深度分析。4.9 星的評分在高雄咖啡廳中屬頂尖水準，評論中自然提及的「溫馨」「好吃」「親切」正為您累積寶貴的<span class="term">關鍵字<span class="tip">消費者在 Google 搜尋時輸入的詞彙，評論中的關鍵字會影響您的搜尋排名</span></span>資產。</div>
+    <div class="findings-grid">
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">評論數量「豐富」：272 則（已跨越 30 則門檻）</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">平均評分「優秀」：4.9 星</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">星級分布極優：5★ 佔 75.8%、4★ 佔 18.2%、負評僅 6 則</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">近期趨勢穩定：2026 年 1-3 月持續獲得 5 星好評</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">評論關鍵字豐富：「好吃」(8次)「親切」(6次)「美味」(5次)「舒適」(4次)</div>
+      </div>
+      <div class="finding-card status-warn">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 待改善 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">商家回覆率 68.7%（68/99 則有回覆）</div>
+        <div class="finding-detail">回覆率尚可，但未達 100%。更重要的是回覆內容多為「感謝您的蒞臨，歡迎再度光臨」等制式回覆，缺少個人化和關鍵字融入。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 根據 SQ Magazine 2024，100% 回覆評論的商家轉換率提升 5.1%+。好的回覆也能影響潛在顧客的消費決策</div>
+      </div>
+      <div class="finding-card status-warn">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 注意 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">最新 1 星評論（2026/01）：對派的負面評價</div>
+        <div class="finding-detail">「派真的..沒吃過這麼難吃的派 香菇的水份加上味道蓋過整個派」——商家已回覆致歉並承諾改善，處理態度良好。台灣消費者特別會看負評來判斷商家，因此持續維持高品質的負評回覆很重要。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">💡</span> 負評回覆的品質直接影響潛在顧客的轉換率，比正面評論回覆更重要</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6c. 面向三：照片與視覺 ========== -->
+  <section class="section animate-in" id="sec-photo">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FFF7ED">📸</div>
+      <h2 class="section-title">面向三：照片與視覺內容</h2>
+      <span class="section-score-inline" style="background:#FFF7ED;color:#D97706">65 / 100</span>
+    </div>
+    <div class="section-verdict">💡 API 回傳 10 張照片（上限），包含店家自上傳和顧客拍攝。但 Google 未產生 Editorial Summary，代表內容豐富度仍可加強。</div>
+    <div class="findings-grid">
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">照片數量達 API 上限（10 張），含商家與顧客照片</div>
+      </div>
+      <div class="finding-card status-pass">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-excellent)"></span> 通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">59.6% 的評論附有照片（59/99 則），顧客主動拍照分享</div>
+      </div>
+      <div class="finding-card status-fail">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 缺失 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">Google Editorial Summary 為空</div>
+        <div class="finding-detail">Google 尚未為您的商家產生 Editorial Summary（編輯摘要），這通常代表 Google 認為商家資訊不夠充足來自動生成描述。補齊商家描述和增加內容可提高生成機率。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> Editorial Summary 是 Google AI 理解商家特色的重要信號，缺失會影響 AI 搜尋推薦</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6d. 面向四：描述與關鍵字 ========== -->
+  <section class="section animate-in" id="sec-keyword">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FEF2F2">🔑</div>
+      <h2 class="section-title">面向四：商家描述與關鍵字策略</h2>
+      <span class="section-score-inline" style="background:#FEF2F2;color:#DC2626">40 / 100</span>
+    </div>
+    <div class="section-verdict">💡 這是最需要改善的面向。商家描述完全空白，等於放棄了一張免費的廣告位。線上存在感有限，主要仰賴 Google 評論中的自然關鍵字。</div>
+    <div class="findings-grid">
+      <div class="finding-card status-fail">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-poor)"></span> 未通過 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">商家描述完全空白</div>
+        <div class="finding-detail">API 回傳的 editorialSummary 為 null。商家描述是 Google 判斷您「在做什麼」和「有什麼特色」的重要依據，空白描述等於讓 Google 只能從評論和類別猜測您的定位。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 根據 SQ Magazine 2024，關鍵字豐富的描述可提升 Local Pack 能見度 31%</div>
+      </div>
+      <div class="finding-card status-warn">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 待改善 <span class="finding-source source-cross-checked">交叉比對</span></div>
+        <div class="finding-title">線上存在感中等</div>
+        <div class="finding-detail">目前可找到的外部資訊：Facebook 粉專（see23.cafe）、LINE 官方帳號、LINE 熱點列表、2 篇部落格食記（痞客邦、個人部落格）。未發現 Instagram 帳號、iFoodie、OpenRice 或 Fonfood 上的資訊。</div>
+        <div class="finding-impact"><span class="finding-impact-icon">📉</span> 外部資訊越豐富，Google 對您的可信度評分越高，排名也越好</div>
+      </div>
+      <div class="finding-card status-warn">
+        <div class="finding-status"><span class="finding-status-dot" style="background:var(--color-score-fair)"></span> 建議 <span class="finding-source source-verified">已驗證</span></div>
+        <div class="finding-title">建議操作的在地關鍵字</div>
+        <div class="finding-detail">
+          <strong>流量字（拼曝光）：</strong>高雄咖啡廳、苓雅咖啡、高雄早午餐、高雄下午茶<br>
+          <strong>轉換字（拼轉換）：</strong>正義車站咖啡、鐵道街咖啡、高雄素食咖啡廳、高雄手沖咖啡<br>
+          <strong>地區字（優先操作）：</strong>高雄苓雅咖啡廳、苓雅區早午餐、苓雅區下午茶、正義車站美食
+        </div>
+        <div class="finding-impact"><span class="finding-impact-icon">💡</span> 「地區 + 服務」組合自帶搜尋量且競爭較低，應優先埋入商家描述和 Google 貼文</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. ACTION PLAN ========== -->
+  <section class="section animate-in" id="sec-action">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--color-accent-soft)">🎯</div>
+      <h2 class="section-title">行動計畫</h2>
+    </div>
+
+    <div class="action-matrix">
+      <!-- 🔴 立刻做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-do-now">🔴 立刻做</span>
+          <span class="action-group-title">高影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">修改主要類別：「食品專賣店」→「咖啡廳」</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 10 分鐘</span>
+            </div>
+            <div class="action-why">
+              這是整份報告中<strong>影響力最大</strong>的一項修改。Google 根據主要類別決定在哪些搜尋中推薦您。目前您被分類為「食品專賣店」，所以當消費者搜尋「咖啡廳」時，Google 根本不會考慮推薦您——就像您的店在 Google 地圖上「隱形」了。
+              <cite>— 修正後預期效果：出現在「高雄苓雅 咖啡廳」等核心搜尋結果中</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><div class="action-step-text">登入 <a href="https://business.google.com" target="_blank" rel="noopener">Google 商家檔案</a> 後台</div></div>
+              <div class="action-step"><div class="action-step-num">2</div><div class="action-step-text">點選「修改商家檔案」→ 找到「商家類別」</div></div>
+              <div class="action-step"><div class="action-step-num">3</div><div class="action-step-text">將主要類別改為「咖啡廳」(Cafe)，保留原有的次要類別</div></div>
+              <div class="action-step"><div class="action-step-num">4</div><div class="action-step-text">確認次要類別包含「早午餐餐廳」和「餐廳」，按儲存</div></div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>照著上面 4 步驟，10 分鐘搞定</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>包含在 SEO 優化服務中，可同時確認最佳類別組合</div>
+            </div>
+            <div class="action-result">📈 預期效果：出現在「咖啡廳」相關搜尋，曝光量大幅提升</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🟡 本週做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-this-week">🟡 本週做</span>
+          <span class="action-group-title">高影響力 + 需要時間 / 中影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">撰寫商家描述（750 字內）</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 30-60 分鐘</span>
+            </div>
+            <div class="action-why">
+              商家描述是 Google 判斷您「在做什麼」的重要依據。目前完全空白，等於放棄了一張免費的廣告位。描述中融入關鍵字可以讓 Google 更精準地在相關搜尋中推薦您。
+              <cite>— 根據 SQ Magazine 2024，關鍵字豐富的描述可提升 Local Pack 能見度 31%</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><div class="action-step-text">登入 Google 商家檔案後台 → 點選「修改商家檔案」→ 找到「商家描述」</div></div>
+              <div class="action-step"><div class="action-step-num">2</div><div class="action-step-text">複製附錄中的商家描述範本，修改為您的實際內容</div></div>
+              <div class="action-step"><div class="action-step-num">3</div><div class="action-step-text">確保包含：地區（苓雅/鐵道街/正義車站）、服務（咖啡/早午餐/甜點）、特色（溫馨/手沖/素食友善）</div></div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>使用附錄範本修改，約 30 分鐘</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>含關鍵字研究與描述撰寫優化</div>
+            </div>
+            <div class="action-result">📈 預期效果：Local Pack 能見度 +31%，Google AI 更容易理解您的特色</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">將網站連結更新為 Facebook 粉專或官網</div>
+              <span class="action-difficulty">⭐ 簡單</span>
+              <span class="action-time">⏱ 5 分鐘</span>
+            </div>
+            <div class="action-why">
+              目前的「網站」欄位連結到 LINE 官方帳號（lin.ee），LINE 連結無法被搜尋引擎索引。建議改為 Facebook 粉專 (facebook.com/see23.cafe)，這至少是一個可被 Google 索引的頁面。
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><div class="action-step-text">Google 商家後台 →「修改商家檔案」→ 找到「網站」欄位</div></div>
+              <div class="action-step"><div class="action-step-num">2</div><div class="action-step-text">將網址改為 https://www.facebook.com/see23.cafe/</div></div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>5 分鐘即完成</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>可協助建立簡易 Google Sites 官網</div>
+            </div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">在後台新增菜單（餐飲業必備）</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 1-2 小時</span>
+            </div>
+            <div class="action-why">
+              咖啡廳/餐飲業的 Google 商家檔案後台有「菜單」功能，餐點名稱會成為搜尋關鍵字。顧客評論中提到的「西西里咖啡」「愛爾蘭燉肉」「手作布丁」「早午餐」都應出現在菜單中。
+              <cite>— 根據同產業案例（烘焙坊），菜單建制後瀏覽量 +212.9%、關鍵字帶出量 +169.8%</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><div class="action-step-text">Google 商家後台 → 左側選單「菜單」</div></div>
+              <div class="action-step"><div class="action-step-num">2</div><div class="action-step-text">新增分類（如：咖啡飲品、早午餐、輕食、甜點），逐一輸入品項名稱和價格</div></div>
+              <div class="action-step"><div class="action-step-num">3</div><div class="action-step-text">品項名稱使用顧客會搜尋的字（如「手沖咖啡」而非「今日手沖」）</div></div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>把現有菜單逐一輸入即可</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>含菜單關鍵字優化策略</div>
+            </div>
+            <div class="action-result">📈 預期效果：瀏覽量和關鍵字帶出量可望大幅提升</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🔵 有空再做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-when-free">🔵 有空再做</span>
+          <span class="action-group-title">中影響力 + 需要時間 / 低影響力 + 簡單</span>
+        </div>
+        <div class="action-items">
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">提升評論回覆品質：個人化 + 融入關鍵字</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 每則 2-3 分鐘</span>
+            </div>
+            <div class="action-why">
+              目前的回覆大多是「感謝您的蒞臨，歡迎再度光臨」——雖然禮貌但缺乏個人化。好的回覆能提及顧客點的餐點、融入關鍵字（如「我們的手沖咖啡」「鐵道街咖啡廳」），並影響其他潛在顧客的消費決策。
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><div class="action-step-text">優先回覆「最相關」和「最低分」的評論</div></div>
+              <div class="action-step"><div class="action-step-num">2</div><div class="action-step-text">使用附錄中的回覆範本，根據每則評論客製化內容</div></div>
+              <div class="action-step"><div class="action-step-num">3</div><div class="action-step-text">每次回覆自然帶入 1-2 個關鍵字（如「手沖咖啡」「鐵道街」「正義車站」）</div></div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>使用附錄範本，養成回覆習慣</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>含評論管理策略與代回覆</div>
+            </div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">清理跨平台舊地址，統一 NAP 資訊</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 1-2 小時</span>
+            </div>
+            <div class="action-why">
+              LINE 熱點和部分部落格仍顯示舊地址「正義路309巷23號」。各平台的名稱、地址、電話必須統一，Google 才會信任您的資料。
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><div class="action-step-text">登入 LINE 熱點後台，更新地址為「鐵道街583號」</div></div>
+              <div class="action-step"><div class="action-step-num">2</div><div class="action-step-text">確認 Facebook 粉專上的地址、電話和 Google 完全一致</div></div>
+              <div class="action-step"><div class="action-step-num">3</div><div class="action-step-text">聯繫部落客作者，請求更新文章中的地址資訊</div></div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>逐一檢查各平台資訊</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>含全網 NAP 審計與修正</div>
+            </div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">定期發布 Google 貼文</div>
+              <span class="action-difficulty">⭐⭐ 中等</span>
+              <span class="action-time">⏱ 每週 15 分鐘</span>
+            </div>
+            <div class="action-why">
+              <span class="term">Google 貼文<span class="tip">商家檔案中的免費發文功能，類似 Facebook 貼文，會直接出現在 Google 搜尋結果中</span></span>功能的權重正在提升，貼文中的關鍵字將可被 Google 抓取。每週發一則包含餐點照片和關鍵字的貼文，可增加活躍度和曝光。
+              <cite>— 根據 SQ Magazine 2024，每週發 Google 貼文可增加在地曝光 26%</cite>
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><div class="action-step-text">Google 商家後台 →「新增動態」</div></div>
+              <div class="action-step"><div class="action-step-num">2</div><div class="action-step-text">分享新菜色、季節限定、活動資訊，搭配高品質照片</div></div>
+              <div class="action-step"><div class="action-step-num">3</div><div class="action-step-text">貼文內容自然帶入關鍵字（如「高雄苓雅咖啡廳」「鐵道街下午茶」）</div></div>
+            </div>
+            <div class="action-tiers">
+              <div class="action-tier tier-diy">🟢 自己做<br>每週花 15 分鐘發一則即可</div>
+              <div class="action-tier tier-expert">🔴 交給專家<br>含 Google 貼文策略與代發</div>
+            </div>
+            <div class="action-result">📈 預期效果：在地曝光增加 26%，商家檔案活躍度提升</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⚪ 可以不做 -->
+      <div class="action-group">
+        <div class="action-group-header">
+          <span class="action-group-badge badge-optional">⚪ 可以不做</span>
+          <span class="action-group-title">低影響力 + 需要時間（前瞻性建議）</span>
+        </div>
+        <div class="action-items">
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">經營 Instagram 並連結至 Google 商家檔案</div>
+              <span class="action-difficulty">⭐⭐⭐ 耗時</span>
+              <span class="action-time">⏱ 持續經營</span>
+            </div>
+            <div class="action-why">目前搜尋不到您的 Instagram 帳號。IG 是高雄咖啡廳被年輕族群發現的重要管道，且 IG 帳號可連結到 Google 商家檔案，增加外部資訊來源。</div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-header">
+              <div class="action-item-title">YouTube Short 串接商家 + Geotag</div>
+              <span class="action-difficulty">⭐⭐⭐ 耗時</span>
+              <span class="action-time">⏱ 持續經營</span>
+            </div>
+            <div class="action-why">Google 正整合 YouTube Short 與地圖功能，加上 Geotag 可推給特定地區使用者。這是未來趨勢，但目前優先把基本面做好即可。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. APPENDIX ========== -->
+  <section class="section animate-in" id="sec-appendix">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--color-surface-alt)">📎</div>
+      <h2 class="section-title">附錄</h2>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:var(--space-md)">A. 評分計算方式</h3>
+    <div class="scoring-formula">
+      總分 = 基本資訊（25%）+ 評論（30%）+ 照片（20%）+ 描述與關鍵字（25%）<br>
+      <span style="font-size:0.75rem;color:var(--color-text-muted)">68 = 80×0.25 + 82×0.30 + 65×0.20 + 40×0.25</span>
+    </div>
+    <div class="scoring-matrix-wrap">
+      <table class="scoring-matrix">
+        <thead>
+          <tr><th>面向</th><th>檢查項</th><th>滿分</th><th>得分</th><th>資料來源</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="8">商家基本資訊（25%）<br>得分：80</td><td>商家名稱與招牌一致</td><td class="score-cell">10</td><td class="score-cell score-pass">10</td><td>API displayName</td></tr>
+          <tr><td>地址完整且格式正確</td><td class="score-cell">10</td><td class="score-cell score-pass">10</td><td>API formattedAddress</td></tr>
+          <tr><td>電話號碼已設定</td><td class="score-cell">10</td><td class="score-cell score-pass">10</td><td>API nationalPhoneNumber</td></tr>
+          <tr><td>營業時間完整</td><td class="score-cell">10</td><td class="score-cell score-pass">10</td><td>API regularOpeningHours</td></tr>
+          <tr><td>主類別精確</td><td class="score-cell">15</td><td class="score-cell score-partial">8</td><td>API primaryType: food_store</td></tr>
+          <tr><td>次類別已設定（≥2）</td><td class="score-cell">10</td><td class="score-cell score-pass">10</td><td>API types（7 類）</td></tr>
+          <tr><td>網站連結已設定</td><td class="score-cell">10</td><td class="score-cell score-partial">5</td><td>API websiteUri: LINE link</td></tr>
+          <tr><td>NAP 跨平台一致</td><td class="score-cell">10</td><td class="score-cell score-partial">5</td><td>交叉比對：舊地址殘留</td></tr>
+          <tr><td rowspan="3">評論分析（30%）<br>得分：82</td><td>評論數量（272 則）</td><td class="score-cell">—</td><td class="score-cell score-pass">豐富</td><td>API userRatingCount</td></tr>
+          <tr><td>平均評分（4.9 星）</td><td class="score-cell">—</td><td class="score-cell score-pass">優秀</td><td>API rating</td></tr>
+          <tr><td>商家回覆率（68.7%）</td><td class="score-cell">—</td><td class="score-cell score-partial">待提升</td><td>SerpAPI 99 則分析</td></tr>
+          <tr><td rowspan="2">照片與視覺（20%）<br>得分：65</td><td>照片數量（10 張 API 上限）</td><td class="score-cell">—</td><td class="score-cell score-pass">達標</td><td>API photos</td></tr>
+          <tr><td>Editorial Summary</td><td class="score-cell">—</td><td class="score-cell score-fail">無</td><td>API editorialSummary: null</td></tr>
+          <tr><td rowspan="2">描述與關鍵字（25%）<br>得分：40</td><td>商家描述</td><td class="score-cell">—</td><td class="score-cell score-fail">空白</td><td>API editorialSummary: null</td></tr>
+          <tr><td>線上存在感</td><td class="score-cell">—</td><td class="score-cell score-partial">中等</td><td>交叉比對：FB、LINE、2 篇部落格</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:700;margin:var(--space-xl) 0 var(--space-md)">B. 直接複製範本</h3>
+
+    <div class="copy-template">
+      <div class="copy-template-title">📝 商家描述範本</div>
+      <div class="copy-template-content" id="tmpl-desc">看見23咖啡位於高雄苓雅區鐵道街上，緊鄰台鐵正義車站，步行僅 3 分鐘。我們提供手沖咖啡、義式咖啡、特調飲品（招牌西西里咖啡）、早午餐輕食與手作甜點，選用優質食材，每一杯咖啡、每一道餐點都堅持用心製作。
+
+店長持有 SCA 國際咖啡師認證，從豆子挑選到沖煮都專業把關。店內空間溫馨舒適，提供免費 WiFi 與插座，適合放鬆閱讀、朋友聚會或安靜工作。我們也提供素食／蔬食友善選項，歡迎各種飲食需求的朋友。
+
+除了咖啡與餐食，我們也舉辦手作課程與包場活動，是苓雅區鐵道公園旁一個充滿溫度的社區咖啡廳。
+
+📍 鐵道街583號（正義車站旁，附設收費停車場）
+⏰ 週二至週六 11:00-17:00 ｜ 週日 13:00-17:00 ｜ 週一公休<button class="copy-btn" onclick="copyTemplate('tmpl-desc')">複製</button></div>
+    </div>
+
+    <div class="copy-template">
+      <div class="copy-template-title">💬 正面評論回覆範本（請客製化）</div>
+      <div class="copy-template-content" id="tmpl-reply-pos">感謝您特地來留下評論！很高興我們的【餐點名稱/咖啡/空間】讓您有美好的體驗 ☕ 下次來鐵道街散步時，推薦您試試我們的【推薦品項】，期待在看見23再見到您！<button class="copy-btn" onclick="copyTemplate('tmpl-reply-pos')">複製</button></div>
+    </div>
+
+    <div class="copy-template">
+      <div class="copy-template-title">💬 負面評論回覆範本（請客製化）</div>
+      <div class="copy-template-content" id="tmpl-reply-neg">您好，非常感謝您的回饋。對於【具體問題】造成您不好的體驗，我們深感抱歉。我們已經【具體改善措施，如：調整食譜/加強品管】，希望有機會再次為您服務，讓您感受到我們的改進。如有任何問題，歡迎直接來電：07-719-3324。<button class="copy-btn" onclick="copyTemplate('tmpl-reply-neg')">複製</button></div>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:700;margin:var(--space-xl) 0 var(--space-md)">C. 名詞小辭典</h3>
+    <div class="glossary">
+      <div class="glossary-grid">
+        <div class="glossary-item"><span class="glossary-term">Google 商家檔案</span><span class="glossary-def">您在 Google 地圖上的店家頁面，包含地址、電話、評論、照片等。消費者搜尋附近店家時看到的就是這個。</span></div>
+        <div class="glossary-item"><span class="glossary-term">SEO</span><span class="glossary-def">搜尋引擎優化（Search Engine Optimization），讓您的商家在 Google 搜尋結果中排名更前面的技巧。</span></div>
+        <div class="glossary-item"><span class="glossary-term">NAP 一致性</span><span class="glossary-def">Name（商家名稱）、Address（地址）、Phone（電話）在所有網路平台上要一模一樣，Google 才會信任你的資料。</span></div>
+        <div class="glossary-item"><span class="glossary-term">關鍵字</span><span class="glossary-def">消費者在 Google 搜尋時輸入的詞彙，例如「高雄咖啡廳」「手沖咖啡推薦」。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Google 貼文</span><span class="glossary-def">商家檔案中的免費發文功能，類似 Facebook 貼文，會直接出現在 Google 搜尋結果中。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Local Pack</span><span class="glossary-def">Google 搜尋結果頁上方出現的地圖 + 前三名商家的區塊，是在地 SEO 最重要的曝光位置。</span></div>
+        <div class="glossary-item"><span class="glossary-term">主要類別</span><span class="glossary-def">Google 商家檔案中最重要的分類設定。Google 根據主要類別決定在哪些搜尋中推薦您的商家。</span></div>
+        <div class="glossary-item"><span class="glossary-term">Editorial Summary</span><span class="glossary-def">Google 根據商家資訊自動生成的摘要文字，出現在商家檔案頁面上，代表 Google 對您商家的理解程度。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 9. ABOUT & CTA ========== -->
+  <section class="about-section animate-in">
+    <div class="about-inner">
+      <div class="about-content">
+        <div class="about-label">關於我</div>
+        <div style="display:flex;align-items:center;gap:var(--space-lg);margin-bottom:var(--space-lg)">
+          <img src="https://gbp-seo.devfromzero.xyz/assets/avatar.png" alt="dev.from.zero" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 4px 20px rgba(0,201,167,0.3);border:2px solid rgba(255,255,255,0.2)">
+          <div>
+            <div class="about-name">dev.from.zero</div>
+          </div>
+        </div>
+        <div class="about-desc">
+          懶惰的工程師，所以什麼都想自動化 🤖<br><br>
+          平常交流的主題：SaaS 開發心得、好用工具推薦、AI 自動化工作流程、NoCode / LowCode 實作、SEO 優化策略。相信「能讓機器做的事就不要自己做」，一直在找更聰明的方式解決問題。<br><br>
+          從寫程式到做 SEO 分析，核心理念都一樣 — 用數據驅動決策，用自動化節省時間，把省下來的時間拿去發呆（或研究下一個自動化）。<br><br>
+          歡迎各種資訊交流、專案討論、合作提案，或單純來聊聊你正在做的有趣東西 💬
+        </div>
+      </div>
+      <div class="about-cta">
+        <div class="about-cta-label">需要幫忙執行？</div>
+        <a class="cta-card cta-card-highlight" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(0,201,167,0.2)">🚀</div>
+          <div class="cta-card-text">
+            <div class="cta-card-title">專業代操服務</div>
+            <div class="cta-card-desc">沒時間自己動手？交給我們從頭到尾幫你執行所有優化，私訊了解方案與報價</div>
+          </div>
+          <div class="cta-card-arrow">→</div>
+        </a>
+        <a class="cta-card" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(0,201,167,0.15)">📊</div>
+          <div class="cta-card-text">
+            <div class="cta-card-title">免費索取分析報告</div>
+            <div class="cta-card-desc">到官網填寫商家資訊，免費獲得一份完整的 SEO 健檢報告</div>
+          </div>
+          <div class="cta-card-arrow">→</div>
+        </a>
+        <a class="cta-card" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">
+          <div class="cta-card-icon" style="background:rgba(255,255,255,0.08)">💬</div>
+          <div class="cta-card-text">
+            <div class="cta-card-title">追蹤 Threads @dev.from.zero</div>
+            <div class="cta-card-desc">SaaS 開發、AI 自動化、SEO 優化 — 歡迎交流或私訊聊聊任何想法</div>
+          </div>
+          <div class="cta-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SPONSOR ========== -->
+  <div class="survey-cta animate-in" style="background:linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 50%, #FFF7ED 100%); border-color:rgba(217,119,6,0.2); padding:var(--space-2xl) var(--space-xl); margin-bottom:var(--space-xl)">
+    <div class="survey-cta-icon" style="margin-bottom:var(--space-lg)">🎉</div>
+    <h3 style="margin-bottom:var(--space-md)">祝你生意興隆、曝光大突破！</h3>
+    <p style="margin-bottom:var(--space-xl)">希望這份報告能幫你的商家被更多人看見。<br>你的贊助 = 對我很大的支持，讓我能持續優化這個工具。</p>
+    <a href="https://donate.stripe.com/9B614m0EffsXaQz0kvd7q00" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:var(--color-primary);color:white;font-family:var(--font-display);font-size:0.95rem;font-weight:700;border-radius:var(--radius-full);text-decoration:none;transition:all 0.25s;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(15,43,60,0.15)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      贊助支持
+    </a>
+  </div>
+
+  <!-- ========== 10. SERVICE CTA ========== -->
+  <section class="report-cta-banner animate-in">
+    <div class="report-cta-badge">🚀 下一步行動</div>
+    <div class="report-cta-title">選擇最適合你的優化方式</div>
+    <div class="report-cta-desc">你剛讀完的這份報告，涵蓋了 4 大面向診斷、5 組關鍵字排名追蹤、10 家競品比對分析 — 等同於一次 <span style="font-family:var(--font-mono);font-weight:700;color:var(--color-text)">NT$6,000</span> 的專業 SEO 健檢。</div>
+    <div class="service-tiers">
+      <div class="service-tier">
+        <div class="service-tier-icon">📋</div>
+        <div class="service-tier-name">取得分析報告</div>
+        <div class="service-tier-price">NT$6,000</div>
+        <ul class="service-tier-list">
+          <li>照著本報告的行動計畫執行</li>
+          <li>使用附錄的 copy-paste 範本</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-outline" href="https://gbp-seo.devfromzero.xyz/#cta" target="_blank" rel="noopener">免費索取報告</a>
+      </div>
+      <div class="service-tier">
+        <div class="service-tier-icon">💬</div>
+        <div class="service-tier-name">1 對 1 諮詢</div>
+        <div class="service-tier-price">預約討論</div>
+        <ul class="service-tier-list">
+          <li>針對報告內容深度解說</li>
+          <li>依你的產業量身調整策略</li>
+          <li>回答所有 GBP 優化疑問</li>
+          <li>提供客製化關鍵字建議</li>
+        </ul>
+        <a class="service-tier-btn service-tier-btn-primary" href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener">💬 私訊預約</a>
+      </div>
+      <div class="service-tier service-tier-highlight">
+        <div class="service-tier-popular">Coming Soon</div>
+        <div class="service-tier-icon">🚀</div>
+        <div class="service-tier-name">專業代操</div>
+        <div class="service-tier-price" style="color:var(--color-text-muted)">Coming Soon</div>
+        <ul class="service-tier-list">
+          <li>專人執行報告所有優化項目</li>
+          <li>商家描述撰寫 + 關鍵字佈局</li>
+          <li>照片策略規劃 + 上傳優化</li>
+          <li>評論回覆範本 + 管理策略</li>
+          <li>Google 貼文定期代發</li>
+          <li>持續成效追蹤報告</li>
+        </ul>
+        <span class="service-tier-btn" style="opacity:0.5;cursor:default;border:1px solid var(--color-border);text-align:center;display:block;padding:10px 20px;border-radius:var(--radius-full);font-family:var(--font-display);font-size:0.85rem;font-weight:700">即將推出</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SURVEY CTA ========== -->
+  <div class="survey-cta animate-in">
+    <div class="survey-cta-icon">📋</div>
+    <h3>花 3 分鐘，幫我變更好</h3>
+    <p>你的回饋會直接影響我的服務方向。告訴我這份報告哪裡實用、哪裡能改進，還能許願你最想要的服務。</p>
+    <a class="survey-cta-btn" href="https://gbp-seo.devfromzero.xyz/survey.html?id=MMWA0M01" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      填寫回饋問卷
+    </a>
+    <p class="survey-cta-note">約 3 分鐘完成 / 所有資料僅供服務優化使用</p>
+  </div>
+
+  <!-- ========== 服務討論與諮詢 ========== -->
+  <section class="consult-section">
+    <h3>服務討論與諮詢</h3>
+    <p>歡迎直接加好友詢問</p>
+    <div class="consult-qr-row">
+      <div class="consult-qr-item">
+        <img src="https://gbp-seo.devfromzero.xyz/assets/qr-line.jpg" alt="LINE QR Code">
+        <span class="consult-qr-label">LINE</span>
+        <span class="consult-qr-sub">ID: jacky97s</span>
+      </div>
+      <div class="consult-qr-item">
+        <img src="https://gbp-seo.devfromzero.xyz/assets/qr-whatsapp.jpg" alt="WhatsApp QR Code">
+        <span class="consult-qr-label">WhatsApp</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 11. FOOTER ========== -->
+  <footer class="report-footer">
+    <p class="footer-date">報告產出日期：2026-03-20</p>
+    <p class="footer-disclaimer">
+      本報告基於 Google Places API (New) 回傳的真實數據及 SerpAPI 收集的 99 則評論進行分析。標示「已驗證」的項目為 API 直接回傳資料；標示「交叉比對」為多平台驗證結果。報告僅呈現可驗證的項目，分析結果僅供參考，實際搜尋排名受多重因素影響。
+    </p>
+    <div class="footer-brand">
+      <div class="footer-brand-text">Created by <a href="https://www.threads.com/@dev.from.zero" target="_blank" rel="noopener" style="color:var(--color-accent);text-decoration:none;font-weight:600;">@dev.from.zero</a></div>
+      <div class="footer-brand-links">
+        <a class="footer-brand-link" href="https://gbp-seo.devfromzero.xyz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          gbp-seo.devfromzero.xyz
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function copyTemplate(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.innerText.replace('複製','').replace('已複製','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.querySelector('.copy-btn');
+    if (btn) {
+      btn.textContent = '已複製';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 2000);
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.dim-bar-fill').forEach(el => {
+    const w = el.style.getPropertyValue('--bar-width');
+    if (w) setTimeout(() => { el.style.width = w; }, 500);
+  });
+});
+</script>
+</body>
+</html>
