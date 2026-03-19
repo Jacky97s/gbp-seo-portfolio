@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:scrap.io)",
+      "WebFetch(domain:hasdata.com)",
+      "Bash(python3 -c \"import playwright; print\\(''''playwright ok''''\\)\")",
+      "Bash(npx playwright:*)",
+      "Bash(pip3 list:*)",
+      "Read(//Users/jackytan/Documents/workspaces/gbp-seo/scripts/**)"
+    ]
+  }
+}

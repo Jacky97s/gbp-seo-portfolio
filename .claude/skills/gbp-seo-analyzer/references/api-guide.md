@@ -220,7 +220,106 @@ POST /places:searchText
 
 ---
 
-## 補充資料來源（免費，不耗 API）
+## 評論深度收集策略
+
+Google Places API (New) 硬上限 **5 則**評論，無分頁、無排序。專案提供 `scripts/scrape-reviews.py` 腳本，透過 SerpAPI 突破此限制，支援四種排序、自動分頁、去重與統計。
+
+### 使用腳本收集評論（建議方式）
+
+```bash
+# 四種排序各取最多 50 筆（去重後通常 ~120-160 則不重複）
+python3 scripts/scrape-reviews.py --place-id "${PLACE_ID}" --sort all --limit 50
+
+# 只取特定排序
+python3 scripts/scrape-reviews.py --place-id "${PLACE_ID}" --sort lowest --limit 50
+python3 scripts/scrape-reviews.py --place-id "${PLACE_ID}" --sort newest --limit 50
+```
+
+**排序選項：** `relevant`（最相關）| `newest`（最新）| `highest`（最高分）| `lowest`（最低分）| `all`（全部四種）
+
+**輸出 JSON 結構：**
+```json
+{
+  "meta": { "place_id", "sorts_requested", "limit_per_sort", "serp_api_pages_total" },
+  "place_info": { "title", "rating", "total_reviews", "address" },
+  "stats": {
+    "total_collected",        // 去重後總數
+    "avg_rating",             // 收集到的評論平均分
+    "rating_distribution",    // {"1.0": 10, "2.0": 1, ...}
+    "with_text_pct",          // 有文字的比例
+    "with_response",          // 有商家回覆的筆數
+    "response_rate_pct",      // 商家回覆率
+    "local_guides",           // 在地嚮導數
+    "local_guide_pct",        // 在地嚮導比例
+    "with_photos"             // 有附圖數
+  },
+  "by_sort": { "relevant": {...}, "newest": {...}, "highest": {...}, "lowest": {...} },
+  "all_unique_reviews": [...]  // 去重後的所有評論
+}
+```
+
+**每則評論包含（Places API 無法取得的以 ⭐ 標記）：**
+- `author` — 評論者名稱
+- `rating` — 星級（1-5）
+- `date` / `iso_date` — 發布時間
+- `text` — 評論文字
+- ⭐ `response` — 商家回覆內容
+- ⭐ `response_date` — 商家回覆日期
+- ⭐ `is_local_guide` — 是否為在地嚮導
+- ⭐ `reviewer_reviews` — 該評論者總評論數
+- ⭐ `likes` — 評論按讚數
+- `photo_count` — 評論附圖數
+
+**SerpAPI 呼叫消耗：** 第一頁固定 8 則，後續頁帶 `num=20` 取最大值。`--sort all --limit 50` 約消耗 **16 次** SerpAPI 搜尋（4 頁 × 4 排序），可取得約 **160+ 則不重複評論**。
+
+### 評論收集與 Places API 的搭配
+
+```
+Step 1: Places API Place Details → 取得 rating, userRatingCount, reviewSummary（基礎統計）
+Step 2: scripts/scrape-reviews.py → 取得大量評論原文 + 商家回覆 + 在地嚮導等深度資料
+Step 3: web_search → 跨平台評論（iFoodie、OpenRice 等，見下方補充資料來源）
+```
+
+在報告中標注「基於 N 則評論分析」。若 SerpAPI 不可用（無 key 或額度用完），退回使用 Places API 5 則評論 + web_search 補充。
+
+### 評論分析維度（8 項）
+
+收集評論後，依以下 8 個維度進行分析：
+
+1. **評論數量等級**：極少 <20 / 偏少 20-50 / 中等 50-150 / 豐富 150-500 / 非常豐富 >500
+   - ⚠️ 若 <20 則，強調「評論需超過 20-30 則才會開始在搜尋中出現」
+   - 數量的影響力大於星級（100 則五星 < 10,000 則四星）
+
+2. **星級分布**：統計 1-5 星各佔比（SerpAPI 從實際評論統計；僅 API 則用 `rating` + `userRatingCount` 推估）
+
+3. **最高分評論分析**（`ratingHigh`）：提取讚美面向（服務、產品、環境、CP值）、識別行銷金句、正面關鍵字貢獻排名
+
+4. **最低分評論分析**（`ratingLow`）：歸類負面主題、分析結構性問題、台灣消費者傾向從負評判斷 → 負評處理品質直接影響轉換
+
+5. **最新評論趨勢**（`newestFirst`）：近期評分趨勢（上升/持平/下降）、突發負評事件、評論頻率（每月幾則）
+
+6. **商家回覆分析**（SerpAPI `response` 欄位）：回覆率、回覆速度、回覆品質（千篇一律？針對問題？融入關鍵字？）。若無 SerpAPI 則標注「需 SerpAPI」，不列入評分
+
+7. **評論關鍵字分析**：高頻正面/負面詞、評論 = 「外部文章」+「內部內容」雙重 SEO 價值、識別缺失關鍵字
+
+8. **在地嚮導比例**（`local_guide` 欄位）：四級以上評論權重較高，統計佔比
+
+**評論行動建議應包含：** 正確的邀請方式（壓克力看板、口頭詢問）及禁止事項（不可利誘）、優先回覆最相關 → 最低分、針對重複負評提具體方案、鼓勵顧客評論中提及特定關鍵字的話術
+
+### 沒有 SERP_API_KEY 時的替代方案
+
+直接使用 SerpAPI curl 呼叫（不用腳本）：
+
+```bash
+SERP_KEY=$(grep SERP_API_KEY .env | cut -d '=' -f2)
+curl -s "https://serpapi.com/search.json?engine=google_maps_reviews&place_id=${PLACE_ID}&sort_by=ratingLow&hl=zh-TW&api_key=${SERP_KEY}"
+```
+
+或退回 Places API 5 則 + 加大 web_search 力度。
+
+---
+
+## 補充資料來源（免費，不耗 Google API）
 
 在 API 取得核心資料後，用 `web_search` 補充：
 
