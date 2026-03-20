@@ -4,3 +4,4 @@ index.html
 .DS_Store
 
 .env
+.gstack/
